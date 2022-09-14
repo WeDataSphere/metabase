@@ -1,9 +1,11 @@
 import React from "react";
 import moment from "moment";
+moment.locale(MetabaseSettings.get("site_local") == 'zh' ? 'zh-cn' : "en");
 import _ from "underscore";
 import cx from "classnames";
 
 import YearPicker from "metabase/components/YearPicker";
+import MetabaseSettings from "metabase/lib/settings";
 
 import { MonthContainer, MonthList } from "./DateMonthYearWidget.styled";
 

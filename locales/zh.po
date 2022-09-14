@@ -59,7 +59,7 @@ msgstr "数据库同步中"
 msgid "This is a lightweight process that checks for\n"
 "updates to this database’s schema. In most cases, you should be fine leaving this\n"
 "set to sync hourly."
-msgstr "这是一个检查数据库模式变化的轻量级的过程，大部分情况下，你可以使用每小时同步。"
+msgstr "这是一个检查数据库模式变化的轻量级过程，大部分情况下，你可以使用每小时同步。"
 
 #: frontend/src/metabase/admin/databases/components/widgets/CacheFieldValuesScheduleWidget.jsx:43
 #: frontend/src/metabase/admin/databases/components/widgets/MetadataSyncScheduleWidget.jsx:23
@@ -878,7 +878,7 @@ msgstr "设置"
 
 #: frontend/src/metabase/admin/datamodel/containers/TableSettingsApp.jsx:91
 msgid "Metabase can scan the values in this table to enable checkbox filters in dashboards and questions."
-msgstr "Metabase扫描此表中的值以启用仪表板和问题中的复选框过滤器。"
+msgstr "Metabase扫描此表中的值以启用仪表盘和问题中的复选框过滤器。"
 
 #: frontend/src/metabase/admin/datamodel/containers/TableSettingsApp.jsx:96
 msgid "Re-scan this table"
@@ -1730,7 +1730,7 @@ msgstr "它们将不再工作，也不能恢复，但你可以创建新的链接
 
 #: frontend/src/metabase/admin/settings/components/widgets/PublicLinksListing.jsx:127
 msgid "Public Dashboard Listing"
-msgstr "公共仪表板列表"
+msgstr "公共仪表盘列表"
 
 #: frontend/src/metabase/admin/settings/components/widgets/PublicLinksListing.jsx:130
 msgid "No dashboards have been publicly shared yet."
@@ -1968,7 +1968,7 @@ msgstr "同步组成员"
 
 #: frontend/src/metabase/plugins/builtin/auth/ldap.js:116
 msgid "Group search base"
-msgstr "集团搜索基地"
+msgstr "群组搜索地"
 
 #: frontend/src/metabase/admin/settings/selectors.js:208
 msgid "Maps"
@@ -1976,7 +1976,7 @@ msgstr "地图"
 
 #: frontend/src/metabase/admin/settings/selectors.js:213
 msgid "Map tile server URL"
-msgstr "地图瓦片服务器URL"
+msgstr "地图服务器URL"
 
 #: frontend/src/metabase/admin/settings/selectors.js:214
 msgid "Metabase uses OpenStreetMaps by default."
@@ -2000,7 +2000,7 @@ msgstr "启用公共共享"
 
 #: frontend/src/metabase/admin/settings/selectors.js:292
 msgid "Shared Dashboards"
-msgstr "共享的仪表板"
+msgstr "共享的仪表盘"
 
 #: frontend/src/metabase/admin/settings/selectors.js:298
 msgid "Shared Questions"
@@ -2020,7 +2020,7 @@ msgstr "嵌入秘钥"
 
 #: frontend/src/metabase/admin/settings/selectors.js:360
 msgid "Embedded Dashboards"
-msgstr "嵌入的仪表板"
+msgstr "嵌入的仪表盘"
 
 #: frontend/src/metabase/admin/settings/selectors.js:366
 msgid "Embedded Questions"
@@ -2257,11 +2257,11 @@ msgstr "咔哒咔哒"
 
 #: frontend/src/metabase/components/ButtonWithStatus.jsx:10
 msgid "Saved!"
-msgstr "挽救!"
+msgstr "保存!"
 
 #: frontend/src/metabase/components/ButtonWithStatus.jsx:11
 msgid "Saving failed."
-msgstr "挽救失败。"
+msgstr "保存失败。"
 
 #: frontend/src/metabase/components/Calendar.tsx:134
 msgid "Su"
@@ -2322,7 +2322,7 @@ msgstr "创建另一个集合"
 
 #: frontend/src/metabase/components/CollectionLanding.jsx:68
 msgid "Dashboards let you collect and share data in one place."
-msgstr "仪表板让你在一个地方收集和分享数据。"
+msgstr "仪表盘让你在一个地方收集和分享数据。"
 
 #: frontend/src/metabase/components/CollectionLanding.jsx:77
 msgid "Pulses let you send out the latest data to your team on a schedule via email or slack."
@@ -2504,7 +2504,7 @@ msgstr "档案行动"
 #: frontend/src/metabase/components/EntityMenu.info.js:99
 #: frontend/src/metabase/query_builder/components/QuestionActionButtons.jsx:103
 msgid "Add to dashboard"
-msgstr "添加到仪表板"
+msgstr "添加到仪表盘"
 
 #: enterprise/frontend/src/metabase-enterprise/feature_level_permissions/constants.ts:5
 #: enterprise/frontend/src/metabase-enterprise/feature_level_permissions/utils.ts:27
@@ -2538,7 +2538,7 @@ msgstr "查看SQL"
 
 #: frontend/src/metabase/components/EntitySegments.jsx:18
 msgid "Segments for this"
-msgstr "这方面的段子"
+msgstr "这方面的片段"
 
 #: frontend/src/metabase/components/ErrorDetails/ErrorDetails.tsx:26
 msgid "Show error details"
@@ -2684,7 +2684,7 @@ msgstr "一切"
 #: enterprise/frontend/src/metabase-enterprise/audit_app/components/AuditSidebar.jsx:62
 #: frontend/src/metabase/home/containers/SearchApp.jsx:32
 msgid "Dashboards"
-msgstr "仪表板"
+msgstr "仪表盘"
 
 #: enterprise/frontend/src/metabase-enterprise/audit_app/components/AuditSidebar.jsx:61
 #: enterprise/frontend/src/metabase-enterprise/tools/index.js:17
@@ -3036,7 +3036,7 @@ msgstr "确保为每个系列都做出了选择，不然筛选将不会在这个
 
 #: frontend/src/metabase/dashboard/components/Dashboard/DashboardEmptyState/DashboardEmptyState.jsx:18
 msgid "This dashboard is looking empty."
-msgstr "这个仪表板看起来很空。"
+msgstr "这个仪表盘看起来很空。"
 
 #: frontend/src/metabase/dashboard/components/Dashboard/DashboardEmptyState/DashboardEmptyState.jsx:19
 msgid "Add a question to start making it useful!"
@@ -3770,17 +3770,17 @@ msgstr "累积行数"
 #: frontend/src/metabase/lib/query/description.js:82
 #: frontend/src/metabase/lib/query/description.js:273
 msgid "Average of "
-msgstr "平均"
+msgstr "平均值"
 
 #: frontend/src/metabase/lib/query/description.js:87
 #: frontend/src/metabase/lib/query/description.js:275
 msgid "Distinct values of "
-msgstr "去重值"
+msgstr "唯一值种类个数"
 
 #: frontend/src/metabase/lib/query/description.js:92
 #: frontend/src/metabase/lib/query/description.js:277
 msgid "Standard deviation of "
-msgstr "的标准偏差 "
+msgstr "的标准差 "
 
 #: frontend/src/metabase/lib/query/description.js:97
 #: frontend/src/metabase/lib/query/description.js:279
@@ -3790,7 +3790,7 @@ msgstr "的总和 "
 #: frontend/src/metabase/lib/query/description.js:102
 #: frontend/src/metabase/lib/query/description.js:281
 msgid "Cumulative sum of "
-msgstr "累积的总和 "
+msgstr "的累积总和 "
 
 #: frontend/src/metabase/lib/query/description.js:107
 #: frontend/src/metabase/lib/query/description.js:283
@@ -3991,7 +3991,7 @@ msgstr "答案中的总行数。"
 
 #: frontend/src/metabase/lib/schema_metadata.js:617
 msgid "Sum of ..."
-msgstr "总的来说，..."
+msgstr "总和，..."
 
 #: frontend/src/metabase/lib/schema_metadata.js:619
 msgid "Sum of all the values of a column."
@@ -4007,7 +4007,7 @@ msgstr "一个字段所有数值的平均值。"
 
 #: frontend/src/metabase/lib/schema_metadata.js:635
 msgid "Number of distinct values of ..."
-msgstr "的不同值的数量...。"
+msgstr "唯一值种类个数...。"
 
 #: frontend/src/metabase/lib/schema_metadata.js:637
 msgid "Number of unique values of a column among all the rows in the answer."
@@ -4023,7 +4023,7 @@ msgstr "一个字段所有数值的累积加和。\\\\n比如：随着时间推�
 
 #: frontend/src/metabase/lib/schema_metadata.js:653
 msgid "Cumulative count of rows"
-msgstr "累积的行数"
+msgstr "累积行数"
 
 #: frontend/src/metabase/lib/schema_metadata.js:501
 msgid "Additive count of the number of rows.\\\\ne.x. total number of sales over time."
@@ -4031,7 +4031,7 @@ msgstr "累积的数据行数。\\\\ n比如：随着时间的推移销售数量
 
 #: frontend/src/metabase/lib/schema_metadata.js:662
 msgid "Standard deviation of ..."
-msgstr "标准偏差的..."
+msgstr "标准差的..."
 
 #: frontend/src/metabase/lib/schema_metadata.js:664
 msgid "Number which expresses how much the values of a column vary among all rows in the answer."
@@ -4039,7 +4039,7 @@ msgstr "一个字段所有数值的标准差。"
 
 #: frontend/src/metabase/lib/schema_metadata.js:671
 msgid "Minimum of ..."
-msgstr "至少有..."
+msgstr "最小值..."
 
 #: frontend/src/metabase/lib/schema_metadata.js:673
 msgid "Minimum value of a column"
@@ -4047,7 +4047,7 @@ msgstr "一个字段的最小值"
 
 #: frontend/src/metabase/lib/schema_metadata.js:680
 msgid "Maximum of ..."
-msgstr "最大的..."
+msgstr "最大值..."
 
 #: frontend/src/metabase/lib/schema_metadata.js:682
 msgid "Maximum value of a column"

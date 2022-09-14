@@ -254,14 +254,10 @@
                   collection_position (s/maybe su/IntGreaterThanZero)
                   dashboard_id        (s/maybe su/IntGreaterThanZero)}
                  (check-card-read-permissions cards)
-                 (let [dashboard (Dashboard :id dashboard_id)
-                       pulse     (-> (assoc body :creator_id api/*current-user-id*)
-                                     pulse/map->PulseInstance)
-                       result (metabase.pulse/execute-dashboard pulse dashboard)]
-
-                      {:status 200, :headers {"Content-Type" "application/json;charset=utf-8"
-                                              "Content-Encoding" "gzip"
-                                              "Content-Disposition" "attachment; filename=dashboard.preview"}, :body result}))
+                 (let [result (metabase.pulse/preview (assoc body :creator_id api/*current-user-id*))])
+                 {:status 200, :headers {"Content-Type" "application/json;charset=utf-8"
+                                         "Content-Encoding" "gzip"
+                                         "Content-Disposition" "attachment; filename=dashboard.preview"}, :body result})
 
 
 (api/defendpoint DELETE "/:id/subscription"

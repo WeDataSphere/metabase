@@ -498,3 +498,11 @@
                       (merge (when channel-ids {:channel-ids channel-ids})))]
     (when (not (:archived dashboard))
       (send-notifications! (pulse->notifications pulse dashboard)))))
+
+(defn preview
+      "preview a dashboard."
+      [{:keys [dashboard_id], :as pulse}]
+      (let [dashboard (Dashboard :id dashboard_id)
+            pulse     (-> pulse
+                          pulse/map->PulseInstance)])
+      (metabase.pulse/execute-dashboard pulse dashboard))

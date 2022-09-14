@@ -504,5 +504,5 @@
       [{:keys [dashboard_id], :as pulse}]
       (let [dashboard (Dashboard :id dashboard_id)
             pulse     (-> pulse
-                          pulse/map->PulseInstance)])
-      (metabase.pulse/execute-dashboard pulse dashboard))
+                          pulse/map->PulseInstance)]
+        (metabase.pulse/execute-dashboard pulse dashboard)))

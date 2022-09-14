@@ -244,6 +244,26 @@
   (metabase.pulse/send-pulse! (assoc body :creator_id api/*current-user-id*))
   {:ok true})
 
+(api/defendpoint POST "/preview"
+                 "preview a dashboard."
+                 [:as {{:keys [name cards skip_if_empty collection_id collection_position dashboard_id] :as body} :body}]
+                 {name                su/NonBlankString
+                  cards               (su/non-empty [pulse/CoercibleToCardRef])
+                  skip_if_empty       (s/maybe s/Bool)
+                  collection_id       (s/maybe su/IntGreaterThanZero)
+                  collection_position (s/maybe su/IntGreaterThanZero)
+                  dashboard_id        (s/maybe su/IntGreaterThanZero)}
+                 (check-card-read-permissions cards)
+                 (let [dashboard (Dashboard :id dashboard_id)
+                       pulse     (-> (assoc body :creator_id api/*current-user-id*)
+                                     pulse/map->PulseInstance)
+                       result (metabase.pulse/execute-dashboard pulse dashboard)]
+
+                      {:status 200, :headers {"Content-Type" "application/json;charset=utf-8"
+                                              "Content-Encoding" "gzip"
+                                              "Content-Disposition" "attachment; filename=dashboard.preview"}, :body result}))
+
+
 (api/defendpoint DELETE "/:id/subscription"
   "For users to unsubscribe themselves from a pulse subscription."
   [id]

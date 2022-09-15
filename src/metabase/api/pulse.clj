@@ -254,7 +254,6 @@
                   dashboard_id        (s/maybe su/IntGreaterThanZero)}
                  (let [result (metabase.pulse/preview (assoc body :creator_id api/*current-user-id*))]
                     {:status 200, :headers {"Content-Type" "application/json;charset=utf-8"
-                                         "Content-Encoding" "gzip"
                                          "Content-Disposition" "attachment; filename=dashboard.preview"}, :body result}))
 
 

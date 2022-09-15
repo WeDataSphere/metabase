@@ -507,5 +507,9 @@
                           pulse/map->PulseInstance)
             results  (metabase.pulse/execute-dashboard pulse dashboard)
             query-results    (filter :card results)
-            timezone         (-> query-results first :card defaulted-timezone)]
-           (messages/render-pulse-email timezone pulse dashboard results)))
+            timezone         (-> query-results first :card defaulted-timezone)
+            contents (messages/render-pulse-email timezone pulse dashboard results)]
+           (for [{type :type content :content, :as contentMap} contents]
+                (if [= "inline" type]
+                  (assoc contentMap :content (slurp content))
+                  contentMap))))

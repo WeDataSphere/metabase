@@ -4,22 +4,37 @@
   (:require [clojure.tools.logging :as log]
             [metabase.driver :as driver]
             [metabase.api.common :as api]
+            [metabase.api.user :as user]
             [metabase.util :as u]))
 
-(defn query->addProxyUser
+(defn get-user-name
+      "get username from email."
+      [email]
+      (let [[username suffix] (split email #"@")])
+        username)
+
+(defn query->native-with-proxy-user
       "Add proxy user for native query."
-      [{query :query, :as native-query}]
-      ;; get (get query :info) :executed-by
-      (assoc native-query :query (format "-- set proxy.user=%s\n%s" (api/*current-user*)  query)))
+      [{info :info, :as query}]
+      ;; {query :query, :as native-query}
+      (let [creator_id (:creator_id info)
+            current-user (api/*current-user*)
+            username (if (= nil current-user)
+                       (get-user-name (:email (user/fetch-user :id creator_id)))
+                       current-user)
+            native-query (driver/mbql->native driver/*driver* query)
+            to-sql (format "-- set proxy.user=%s\n%s" username native-query)]
+        (log/info "login-user: %s, from-sql: %s, to-sql: %s." username native-query to-sql)
+        (assoc native-query :query to-sql)))
 
 (defn query->native-form
   "Return a `:native` query form for `query`, converting it from MBQL if needed."
   [{query-type :type, :as query}]
   (if-not (= :query query-type)
     (:native query)
-    (if-not (= :sparksql driver/*driver*)
-            (driver/mbql->native driver/*driver* query)
-            (query->addProxyUser (driver/mbql->native driver/*driver* query)))))
+    (if (= :sparksql driver/*driver*)
+            (query->native-with-proxy-user query)
+            (driver/mbql->native driver/*driver* query))))
 
 (defn mbql->native
   "Middleware that handles conversion of MBQL queries to native (by calling driver QP methods) so the queries

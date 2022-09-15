@@ -504,5 +504,8 @@
       [{:keys [dashboard_id], :as pulse}]
       (let [dashboard (Dashboard :id dashboard_id)
             pulse     (-> pulse
-                          pulse/map->PulseInstance)]
-        (metabase.pulse/execute-dashboard pulse dashboard)))
+                          pulse/map->PulseInstance)
+            results  (metabase.pulse/execute-dashboard pulse dashboard)
+            query-results    (filter :card results)
+            timezone         (-> query-results first :card defaulted-timezone)]
+           (messages/render-pulse-email timezone pulse dashboard results)))

@@ -8,9 +8,9 @@
 
 (defn query->addProxyUser
       "Add proxy user for native query."
-      [query native-query]
+      [{query :query, :as native-query}]
       ;; get (get query :info) :executed-by
-      (assoc native-query :query (format "-- set proxy.user=%s\n%s" (api/*current-user*)  (get native-query :query))))
+      (assoc native-query :query (format "-- set proxy.user=%s\n%s" (api/*current-user*)  query)))
 
 (defn query->native-form
   "Return a `:native` query form for `query`, converting it from MBQL if needed."
@@ -19,7 +19,7 @@
     (:native query)
     (if-not (= :sparksql driver/*driver*)
             (driver/mbql->native driver/*driver* query)
-            (query->addProxyUser query (driver/mbql->native driver/*driver* query)))))
+            (query->addProxyUser (driver/mbql->native driver/*driver* query)))))
 
 (defn mbql->native
   "Middleware that handles conversion of MBQL queries to native (by calling driver QP methods) so the queries

@@ -21,10 +21,14 @@
       [{info :info, :as query}]
       ;; {query :query, :as native-query}
       (let [creator_id (:creator_id info)
-            username (get-user-name creator_id)
+            executed-by (:executed-by info)
+            user-id (if (= nil creator_id)
+                      executed-by
+                      creator_id)
+            username (get-user-name user-id)
             native-query (driver/mbql->native driver/*driver* query)
             to-sql (format "-- set proxy.user=%s\n%s" username native-query)]
-        (log/info "login-user: %s, from-sql: %s, to-sql: %s." username native-query to-sql)
+        (log/infof "login-user: %s, from-sql: %s, to-sql: %s." username native-query to-sql)
         (assoc native-query :query to-sql)))
 
 (defn query->native-form

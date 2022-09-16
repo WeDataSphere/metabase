@@ -516,4 +516,5 @@
                 (if [= "inline" type]
                   (assoc contentMap :content (String.
                                                (Base64/encodeBase64 (FileUtils/readFileToByteArray (new File content)))))
-                  contentMap))))
+                  contentMap))
+           contents))

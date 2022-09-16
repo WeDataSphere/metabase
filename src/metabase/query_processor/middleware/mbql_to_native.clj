@@ -13,8 +13,8 @@
       [creator_id]
       (let [user (apply db/select-one (vec (cons User user/admin-or-self-visible-columns)) :id creator_id)
             email (:email user)
-            [username suffix] (clojure.string/split email #"@")])
-        username)
+            [username suffix] (clojure.string/split email #"@")]
+           username))
 
 (defn query->native-with-proxy-user
       "Add proxy user for native query."

@@ -1,6 +1,6 @@
 (ns metabase.pulse
-  "Public API for sending Pulses."
-  (:require [clojure.string :as str]
+    "Public API for sending Pulses."
+    (:require [clojure.string :as str]
             [clojure.tools.logging :as log]
             [metabase.config :as config]
             [metabase.email :as email]
@@ -28,8 +28,11 @@
             [metabase.util.urls :as urls]
             [schema.core :as s]
             [toucan.db :as db])
-  (:import clojure.lang.ExceptionInfo
-           metabase.models.card.CardInstance))
+    (:import clojure.lang.ExceptionInfo
+      metabase.models.card.CardInstance
+      (java.io File)
+      org.apache.commons.codec.binary.Base64
+      org.apache.commons.io.FileUtils))
 
 ;;; ------------------------------------------------- PULSE SENDING --------------------------------------------------
 
@@ -511,5 +514,6 @@
             contents (messages/render-pulse-email timezone pulse dashboard results)]
            (for [{type :type content :content, :as contentMap} contents]
                 (if [= "inline" type]
-                  (assoc contentMap :content (slurp content))
+                  (assoc contentMap :content (String.
+                                               (Base64/encodeBase64 (FileUtils/readFileToByteArray (new File content)))))
                   contentMap))))

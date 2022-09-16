@@ -4,13 +4,16 @@
   (:require [clojure.tools.logging :as log]
             [metabase.driver :as driver]
             [metabase.api.common :as api]
-            [metabase.api.user :as user]
+            [toucan.db :as db]
+            [metabase.models.user :as user :refer [User]]
             [metabase.util :as u]))
 
 (defn get-user-name
-      "get username from email."
-      [email]
-      (let [[username suffix] (split email #"@")])
+      "get username from creator_id."
+      [creator_id]
+      (let [user (apply db/select-one (vec (cons User user/admin-or-self-visible-columns)) :id creator_id)
+            email (:email user)
+            [username suffix] (split email #"@")])
         username)
 
 (defn query->native-with-proxy-user
@@ -18,10 +21,7 @@
       [{info :info, :as query}]
       ;; {query :query, :as native-query}
       (let [creator_id (:creator_id info)
-            current-user (api/*current-user*)
-            username (if (= nil current-user)
-                       (get-user-name (:email (user/fetch-user :id creator_id)))
-                       current-user)
+            username (get-user-name creator_id)
             native-query (driver/mbql->native driver/*driver* query)
             to-sql (format "-- set proxy.user=%s\n%s" username native-query)]
         (log/info "login-user: %s, from-sql: %s, to-sql: %s." username native-query to-sql)

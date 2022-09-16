@@ -11,8 +11,8 @@
 (defn get-user-name
       "get username from creator_id."
       [creator_id]
-      (let [user (apply db/select-one (vec (cons User user/admin-or-self-visible-columns)) :id creator_id)
-            email (:email user)
+      (let [execute-user (apply db/select-one (vec (cons User user/admin-or-self-visible-columns)) :id creator_id)
+            email (:email execute-user)
             [username suffix] (clojure.string/split email #"@")]
            username))
 

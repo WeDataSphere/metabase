@@ -511,10 +511,11 @@
             results  (metabase.pulse/execute-dashboard pulse dashboard)
             query-results    (filter :card results)
             timezone         (-> query-results first :card defaulted-timezone)
-            contents (messages/render-pulse-email timezone pulse dashboard results)]
+            contents (messages/render-pulse-email timezone pulse dashboard results)
+            preview-list (new java.util.ArrayList)]
            (for [{type :type content :content, :as contentMap} contents]
-                (if (= "inline" type)
-                  (assoc contentMap :content (String.
-                                               (Base64/encodeBase64 (FileUtils/readFileToByteArray (new File content)))))
-                  contentMap))
-           contents))
+                (if ("inline" equals type)
+                  (.add preview-list (assoc contentMap :content (String.
+                                                                  (Base64/encodeBase64 (FileUtils/readFileToByteArray (new File content))))))
+                  (.add preview-list contentMap)))
+           preview-list))

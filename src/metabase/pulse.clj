@@ -518,4 +518,4 @@
                   (.add preview-list (assoc contentMap :content (String.
                                                                   (Base64/encodeBase64 (FileUtils/readFileToByteArray (new File content))))))
                   (.add preview-list contentMap)))
-           preview-list))
+           (seq preview-list)))

@@ -514,7 +514,7 @@
             contents (messages/render-pulse-email timezone pulse dashboard results)
             preview-list (new java.util.ArrayList)]
            (for [{type :type content :content, :as contentMap} contents]
-                (if ("inline" equals type)
+                (if (.equals "inline" type)
                   (.add preview-list (assoc contentMap :content (String.
                                                                   (Base64/encodeBase64 (FileUtils/readFileToByteArray (new File content))))))
                   (.add preview-list contentMap)))

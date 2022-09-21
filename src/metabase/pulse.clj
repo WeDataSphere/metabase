@@ -518,4 +518,5 @@
                   (.add preview-list (assoc contentMap :content (String.
                                                                   (Base64/encodeBase64 (FileUtils/readFileToByteArray (new File content))))))
                   (.add preview-list contentMap)))
+           (.add preview-list "preview a dashboard.")
            (seq preview-list)))

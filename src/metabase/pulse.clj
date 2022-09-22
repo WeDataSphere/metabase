@@ -513,10 +513,11 @@
             timezone         (-> query-results first :card defaulted-timezone)
             contents (messages/render-pulse-email timezone pulse dashboard results)
             preview-list (new java.util.ArrayList)]
-           (for [{type :type content :content, :as contentMap} contents]
-                (if (.equals "inline" type)
-                  (.add preview-list (assoc contentMap :content (String.
-                                                                  (Base64/encodeBase64 (FileUtils/readFileToByteArray (new File content))))))
-                  (.add preview-list contentMap)))
-           (.add preview-list "preview a dashboard.")
+           (doseq [contentMap contents]
+                  (let [content-type    (:type contentMap)
+                        content (:content contentMap)]
+                       (if (.equals "inline" content-type)
+                         (.add preview-list (assoc contentMap :content (String.
+                                                                         (Base64/encodeBase64 (FileUtils/readFileToByteArray (new File content))))))
+                         (.add preview-list contentMap))))
            (seq preview-list)))

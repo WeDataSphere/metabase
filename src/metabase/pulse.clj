@@ -514,11 +514,12 @@
             contents (messages/render-pulse-email timezone pulse dashboard results)
             preview-list (new java.util.ArrayList)]
            (doseq [content-map contents]
-                  (let [content-type    (get content-map "type")
-                        content (get content-map "content")]
+                  (let [content-type    (:content-type content-map )
+                        content (:content content-map)]
                        (log/infof "content-map: %s, content-type: %s, content: %s." content-map content-type content)
-                       (if (.equals "inline" content-type)
-                         (.add preview-list (assoc content-map "content" (String.
-                                                                         (Base64/encodeBase64 (FileUtils/readFileToByteArray (new File content))))))
-                         (.add preview-list content-map))))
+                       (cond
+                         (.equals "image/png" content-type) (.add preview-list (assoc content-map :content (String.
+                                                                         (Base64/encodeBase64 (FileUtils/readFileToByteArray (new File (.toURI content)))))))
+                         (.equals "text/csv" content-type) (.add preview-list (assoc content-map :content (FileUtils/readFileToString (new File (.toURI content)) "utf-8")))
+                         :else (.add preview-list content-map))))
            (seq preview-list)))

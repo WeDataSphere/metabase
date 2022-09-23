@@ -516,8 +516,9 @@
            (doseq [content-map contents]
                   (let [content-type    (get content-map "type")
                         content (get content-map "content")]
+                       (log/infof "content-map: %s, content-type: %s, content: %s." content-map content-type content)
                        (if (.equals "inline" content-type)
-                         (.add preview-list (assoc content-map :content (String.
+                         (.add preview-list (assoc content-map "content" (String.
                                                                          (Base64/encodeBase64 (FileUtils/readFileToByteArray (new File content))))))
                          (.add preview-list content-map))))
            (seq preview-list)))

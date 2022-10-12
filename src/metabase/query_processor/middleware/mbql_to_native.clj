@@ -12,7 +12,8 @@
       "get username from creator_id."
       [creator_id]
       (let [columns (cons User user/admin-or-self-visible-columns)
-            execute-user (apply db/select-one (vec columns) :id creator_id)
+            id-seq (seq [:id creator_id])
+            execute-user (apply db/select-one (vec columns) id-seq)
             email (:email execute-user)
             [username suffix] (clojure.string/split email #"@")]
            username))

@@ -8795,6 +8795,16 @@ msgstr "删除它并且创建一个新的"
 msgid "You cannot edit permissions for a Personal Collection or its descendants."
 msgstr "你不能编辑个人收藏或其后代的权限。"
 
+#: frontend/src/metabase/collections/components/CollectionHeader/CollectionMenu.tsx:43
+msgid "Edit permissions"
+msgstr "编辑权限"
+
+#: frontend/src/metabase/collections/components/CollectionHeader/CollectionMenu.tsx:72
+#: frontend/src/metabase/dashboard/containers/DashboardHeader.jsx:364
+#: frontend/src/metabase/query_builder/components/QuestionActions.tsx:229
+msgid "Move, archive, and more..."
+msgstr "移动、存档等..."
+
 #: src/metabase/models/permissions.clj
 #: target/classes/metabase/models/permissions.clj
 msgid "Looks like someone else edited the permissions and your data is out of date."
@@ -22798,6 +22808,17 @@ msgstr "你的仪表板已经准备好了"
 #: frontend/src/metabase/query_builder/actions/querying.js:163
 msgid "Doing Science..."
 msgstr "做好科学工作..."
+
+#: frontend/src/metabase/collections/components/CollectionHeader/CollectionCaption.tsx:64
+#: frontend/src/metabase/dashboard/components/DashboardInfoSidebar.tsx:80
+#: frontend/src/metabase/query_builder/components/view/sidebars/QuestionInfoSidebar.tsx:53
+msgid "Add description"
+msgstr "添加描述"
+
+#: frontend/src/metabase/dashboard/components/DashboardInfoSidebar.tsx:74
+#: frontend/src/metabase/query_builder/components/view/sidebars/QuestionInfoSidebar.tsx:50
+msgid "About"
+msgstr "关于"
 
 #: frontend/src/metabase/query_builder/actions/querying.js:165
 msgid "Still Here..."

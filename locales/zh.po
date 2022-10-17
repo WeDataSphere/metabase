@@ -2201,7 +2201,7 @@ msgstr "将这套收集合存档？"
 
 #: frontend/src/metabase/components/ArchiveCollectionModal.jsx:49
 msgid "The dashboards, collections, and pulses in this collection will also be archived."
-msgstr "这个集合中的仪表盘、集合、脉冲也将被归档。"
+msgstr "这个集合中的仪表盘、集合、报告也将被归档。"
 
 #: enterprise/frontend/src/metabase-enterprise/snippets/components/CollectionOptionsButton.jsx:85
 #: frontend/src/metabase/collections/components/BulkActions.jsx:29
@@ -5425,11 +5425,11 @@ msgstr "获取答案"
 
 #: frontend/src/metabase/query_builder/components/SavedQuestionIntroModal.jsx:15
 msgid "It's okay to play around with saved questions"
-msgstr "已保存的内容可修改"
+msgstr "玩弄保存的问题是可以的"
 
 #: frontend/src/metabase/query_builder/components/SavedQuestionIntroModal.jsx:14
 msgid "You won't make any permanent changes to a saved question unless you click the edit icon in the top-right."
-msgstr "请点击右上方的编辑图标，对已保存的问题进行永久性的修改。"
+msgstr "除非你点击右上方的编辑图标，否则你不会对已保存的问题做任何永久性的修改。"
 
 #: frontend/src/metabase/query_builder/components/SearchBar.jsx:28
 msgid "Search for"
@@ -8794,16 +8794,6 @@ msgstr "删除它并且创建一个新的"
 #: target/classes/metabase/models/permissions.clj
 msgid "You cannot edit permissions for a Personal Collection or its descendants."
 msgstr "你不能编辑个人收藏或其后代的权限。"
-
-#: frontend/src/metabase/collections/components/CollectionHeader/CollectionMenu.tsx:43
-msgid "Edit permissions"
-msgstr "编辑权限"
-
-#: frontend/src/metabase/collections/components/CollectionHeader/CollectionMenu.tsx:72
-#: frontend/src/metabase/dashboard/containers/DashboardHeader.jsx:364
-#: frontend/src/metabase/query_builder/components/QuestionActions.tsx:229
-msgid "Move, archive, and more..."
-msgstr "移动、存档等..."
 
 #: src/metabase/models/permissions.clj
 #: target/classes/metabase/models/permissions.clj
@@ -17553,7 +17543,7 @@ msgstr "还没有什么可看的。"
 
 #: frontend/src/metabase/components/CollectionEmptyState.jsx:45
 msgid "Use collections to organize and group dashboards and questions for your team or yourself"
-msgstr "使用集合为您的团队或您自己组织和分组仪表板和问题。"
+msgstr "使用集合为您的团队管理仪表盘和问题。"
 
 #: frontend/src/metabase/components/EntityItem.jsx:83
 msgid "Unpin this item"
@@ -17625,7 +17615,7 @@ msgstr "降序排序"
 
 #: frontend/src/metabase/nav/containers/MainNavbar/MainNavbarView.tsx:150
 msgid "Browse data"
-msgstr "数据库源库"
+msgstr "浏览数据"
 
 #: frontend/src/metabase/query_builder/components/LimitPopover.jsx:42
 msgid "Show maximum (first {0})"
@@ -22298,7 +22288,7 @@ msgstr "邮件"
 
 #: frontend/src/metabase/lib/timelines.ts:18
 msgid "Bell"
-msgstr "钟"
+msgstr "贝尔"
 
 #: frontend/src/metabase/lib/timelines.ts:35
 msgid "{0} events"
@@ -22522,11 +22512,11 @@ msgstr "以下是一些受欢迎的问题"
 
 #: frontend/src/metabase/home/homepage/components/HomePopularSection/HomePopularSection.tsx:50
 msgid "Here are some popular models"
-msgstr "这里有一些流行的模型"
+msgstr "这里有一些通用的模型"
 
 #: frontend/src/metabase/home/homepage/components/HomePopularSection/HomePopularSection.tsx:52
 msgid "Here are some popular dashboards"
-msgstr "这里有一些流行的仪表盘"
+msgstr "这里有一些通用的仪表盘"
 
 #: frontend/src/metabase/home/homepage/components/HomeRecentSection/HomeRecentSection.tsx:25
 msgid "Pick up where you left off"
@@ -22672,7 +22662,7 @@ msgstr "推出v2.0版"
 
 #: frontend/src/metabase/timelines/collections/components/TimelineEmptyState/TimelineEmptyState.tsx:69
 msgid "Add events to Metabase to show important milestones, launches, or anything else, right alongside your data."
-msgstr "在Metabase中添加事件，以显示重要的里程碑、发射或其他任何事情，就在你的数据旁边。"
+msgstr "在Metabase中添加事件，以显示重要的里程碑、发布或其他任何事情，就在你的数据旁边。"
 
 #: frontend/src/metabase/timelines/collections/components/TimelineEmptyState/TimelineEmptyState.tsx:70
 msgid "Events in Metabase let you see important milestones, launches, or anything else, right alongside your data."
@@ -22809,17 +22799,6 @@ msgstr "你的仪表板已经准备好了"
 msgid "Doing Science..."
 msgstr "做好科学工作..."
 
-#: frontend/src/metabase/collections/components/CollectionHeader/CollectionCaption.tsx:64
-#: frontend/src/metabase/dashboard/components/DashboardInfoSidebar.tsx:80
-#: frontend/src/metabase/query_builder/components/view/sidebars/QuestionInfoSidebar.tsx:53
-msgid "Add description"
-msgstr "添加描述"
-
-#: frontend/src/metabase/dashboard/components/DashboardInfoSidebar.tsx:74
-#: frontend/src/metabase/query_builder/components/view/sidebars/QuestionInfoSidebar.tsx:50
-msgid "About"
-msgstr "关于"
-
 #: frontend/src/metabase/query_builder/actions/querying.js:165
 msgid "Still Here..."
 msgstr "仍然在这里..."
@@ -22892,7 +22871,7 @@ msgstr "产品发布"
 
 #: frontend/src/metabase/entities/timeline-events/forms.js:26
 msgid "Markdown supported"
-msgstr "支持Markdown"
+msgstr "支持马克顿"
 
 #: frontend/src/metabase/entities/timeline-events/forms.js:27
 msgid "Add links and formatting via markdown"
@@ -23389,16 +23368,6 @@ msgstr "获取一个指定长度的时间间隔"
 msgid "Gets a timestamp relative to the current time"
 msgstr "获取一个相对于当前时间的时间戳"
 
-
-#: frontend/src/metabase/components/EntityItem.jsx:110
-msgid "Don’t show visualization"
-msgstr "不显示可视化"
-
-#: frontend/src/metabase/components/EntityItem.jsx:111
-msgid "Show visualization"
-msgstr "显示可视化"
-
-
 #: frontend/src/metabase/query_builder/components/QuestionActionButtons.jsx:141
 msgid "Unpersist model"
 msgstr "不存在的模式"
@@ -23587,3 +23556,37 @@ msgstr "无法刷新卡号为{0}的模型"
 #: src/metabase/task/persist_refresh.clj
 msgid "Unknown payload type {0}"
 msgstr "未知的有效载荷类型{0}。"
+
+#: frontend\src\metabase\visualizations\lib\settings\column.js:285
+msgid "Normal"
+msgstr "小数"
+
+#: frontend\src\metabase\visualizations\lib\settings\column.js:286
+msgid "Percent"
+msgstr "百分比"
+
+#: frontend\src\metabase\visualizations\lib\settings\column.js:287
+msgid "Scientific"
+msgstr "科学"
+
+#: frontend\src\metabase\visualizations\lib\settings\column.js:288
+msgid "Currency"
+msgstr "通用"
+
+
+#: frontend/src/metabase/collections/components/CollectionEmptyState/CollectionEmptyState.tsx:25
+msgid "This collection is empty"
+msgstr "这个集合是空的"
+
+
+#: frontend/src/metabase/collections/components/CollectionEmptyState/CollectionEmptyState.tsx:28
+msgid "Create a new…"
+msgstr "创建一个新的…"
+
+#: frontend/src/metabase/visualizations/components/settings/ChartSettingsTableFormatting.jsx:317
+msgid "Choose a column"
+msgstr "行字段"
+
+#: frontend/src/metabase/modes/components/drill/FormatAction.jsx:26
+msgid "Column formatting"
+msgstr "列字段"

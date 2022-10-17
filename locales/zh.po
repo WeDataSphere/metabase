@@ -5425,11 +5425,11 @@ msgstr "获取答案"
 
 #: frontend/src/metabase/query_builder/components/SavedQuestionIntroModal.jsx:15
 msgid "It's okay to play around with saved questions"
-msgstr "玩弄保存的问题是可以的"
+msgstr "已保存的内容可修改"
 
 #: frontend/src/metabase/query_builder/components/SavedQuestionIntroModal.jsx:14
 msgid "You won't make any permanent changes to a saved question unless you click the edit icon in the top-right."
-msgstr "除非你点击右上方的编辑图标，否则你不会对已保存的问题做任何永久性的修改。"
+msgstr "请点击右上方的编辑图标，对已保存的问题进行永久性的修改。"
 
 #: frontend/src/metabase/query_builder/components/SearchBar.jsx:28
 msgid "Search for"
@@ -8794,6 +8794,16 @@ msgstr "删除它并且创建一个新的"
 #: target/classes/metabase/models/permissions.clj
 msgid "You cannot edit permissions for a Personal Collection or its descendants."
 msgstr "你不能编辑个人收藏或其后代的权限。"
+
+#: frontend/src/metabase/collections/components/CollectionHeader/CollectionMenu.tsx:43
+msgid "Edit permissions"
+msgstr "编辑权限"
+
+#: frontend/src/metabase/collections/components/CollectionHeader/CollectionMenu.tsx:72
+#: frontend/src/metabase/dashboard/containers/DashboardHeader.jsx:364
+#: frontend/src/metabase/query_builder/components/QuestionActions.tsx:229
+msgid "Move, archive, and more..."
+msgstr "移动、存档等..."
 
 #: src/metabase/models/permissions.clj
 #: target/classes/metabase/models/permissions.clj
@@ -17615,7 +17625,7 @@ msgstr "降序排序"
 
 #: frontend/src/metabase/nav/containers/MainNavbar/MainNavbarView.tsx:150
 msgid "Browse data"
-msgstr "浏览数据"
+msgstr "数据库源库"
 
 #: frontend/src/metabase/query_builder/components/LimitPopover.jsx:42
 msgid "Show maximum (first {0})"
@@ -22288,7 +22298,7 @@ msgstr "邮件"
 
 #: frontend/src/metabase/lib/timelines.ts:18
 msgid "Bell"
-msgstr "贝尔"
+msgstr "钟"
 
 #: frontend/src/metabase/lib/timelines.ts:35
 msgid "{0} events"
@@ -22799,6 +22809,17 @@ msgstr "你的仪表板已经准备好了"
 msgid "Doing Science..."
 msgstr "做好科学工作..."
 
+#: frontend/src/metabase/collections/components/CollectionHeader/CollectionCaption.tsx:64
+#: frontend/src/metabase/dashboard/components/DashboardInfoSidebar.tsx:80
+#: frontend/src/metabase/query_builder/components/view/sidebars/QuestionInfoSidebar.tsx:53
+msgid "Add description"
+msgstr "添加描述"
+
+#: frontend/src/metabase/dashboard/components/DashboardInfoSidebar.tsx:74
+#: frontend/src/metabase/query_builder/components/view/sidebars/QuestionInfoSidebar.tsx:50
+msgid "About"
+msgstr "关于"
+
 #: frontend/src/metabase/query_builder/actions/querying.js:165
 msgid "Still Here..."
 msgstr "仍然在这里..."
@@ -22871,7 +22892,7 @@ msgstr "产品发布"
 
 #: frontend/src/metabase/entities/timeline-events/forms.js:26
 msgid "Markdown supported"
-msgstr "支持马克顿"
+msgstr "支持Markdown"
 
 #: frontend/src/metabase/entities/timeline-events/forms.js:27
 msgid "Add links and formatting via markdown"
@@ -23367,6 +23388,16 @@ msgstr "获取一个指定长度的时间间隔"
 #: frontend/src/metabase/lib/expressions/helper_text_strings.js:483
 msgid "Gets a timestamp relative to the current time"
 msgstr "获取一个相对于当前时间的时间戳"
+
+
+#: frontend/src/metabase/components/EntityItem.jsx:110
+msgid "Don’t show visualization"
+msgstr "不显示可视化"
+
+#: frontend/src/metabase/components/EntityItem.jsx:111
+msgid "Show visualization"
+msgstr "显示可视化"
+
 
 #: frontend/src/metabase/query_builder/components/QuestionActionButtons.jsx:141
 msgid "Unpersist model"

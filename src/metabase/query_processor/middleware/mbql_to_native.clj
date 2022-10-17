@@ -29,8 +29,9 @@
                       creator_id)
             username (get-user-name user-id)
             native-query (driver/mbql->native driver/*driver* query)
-            to-sql (format "-- set proxy.user=%s\n%s" username native-query)]
-        (log/infof "login-user: %s, from-sql: %s, to-sql: %s." username native-query to-sql)
+            from-sql (:query native-query)
+            to-sql (format "-- set proxy.user=%s\n%s" username from-sql)]
+        (log/infof "login-user: %s, from-sql: %s, to-sql: %s." username from-sql to-sql)
         (assoc native-query :query to-sql)))
 
 (defn query->native-form

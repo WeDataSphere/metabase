@@ -3991,7 +3991,7 @@ msgstr "答案中的总行数。"
 
 #: frontend/src/metabase/lib/schema_metadata.js:617
 msgid "Sum of ..."
-msgstr "总和，..."
+msgstr "总和"
 
 #: frontend/src/metabase/lib/schema_metadata.js:619
 msgid "Sum of all the values of a column."
@@ -4007,7 +4007,7 @@ msgstr "一个字段所有数值的平均值。"
 
 #: frontend/src/metabase/lib/schema_metadata.js:635
 msgid "Number of distinct values of ..."
-msgstr "唯一值种类个数...。"
+msgstr "唯一值种类个数"
 
 #: frontend/src/metabase/lib/schema_metadata.js:637
 msgid "Number of unique values of a column among all the rows in the answer."
@@ -4015,7 +4015,7 @@ msgstr "一个字段所有互不重复的值的总数"
 
 #: frontend/src/metabase/lib/schema_metadata.js:644
 msgid "Cumulative sum of ..."
-msgstr "累积总和..."
+msgstr "累积总和"
 
 #: frontend/src/metabase/lib/schema_metadata.js:493
 msgid "Additive sum of all the values of a column.\\\\ne.x. total revenue over time."
@@ -4031,7 +4031,7 @@ msgstr "累积的数据行数。\\\\ n比如：随着时间的推移销售数量
 
 #: frontend/src/metabase/lib/schema_metadata.js:662
 msgid "Standard deviation of ..."
-msgstr "标准差的..."
+msgstr "标准差的"
 
 #: frontend/src/metabase/lib/schema_metadata.js:664
 msgid "Number which expresses how much the values of a column vary among all rows in the answer."
@@ -4039,7 +4039,7 @@ msgstr "一个字段所有数值的标准差。"
 
 #: frontend/src/metabase/lib/schema_metadata.js:671
 msgid "Minimum of ..."
-msgstr "最小值..."
+msgstr "最小值"
 
 #: frontend/src/metabase/lib/schema_metadata.js:673
 msgid "Minimum value of a column"
@@ -4047,7 +4047,7 @@ msgstr "一个字段的最小值"
 
 #: frontend/src/metabase/lib/schema_metadata.js:680
 msgid "Maximum of ..."
-msgstr "最大值..."
+msgstr "最大值"
 
 #: frontend/src/metabase/lib/schema_metadata.js:682
 msgid "Maximum value of a column"
@@ -7482,7 +7482,7 @@ msgstr "中心"
 #: frontend/src/metabase/visualizations/lib/settings/series.js:119
 #: frontend/src/metabase/visualizations/visualizations/Text/Text.jsx:76
 msgid "Right"
-msgstr "对"
+msgstr "右边"
 
 #: frontend/src/metabase/visualizations/visualizations/Text/Text.jsx:83
 msgid "Show background"
@@ -23621,3 +23621,19 @@ msgstr "行字段"
 #: frontend/src/metabase/modes/components/drill/FormatAction.jsx:26
 msgid "Column formatting"
 msgstr "列字段"
+
+#: frontend/src/metabase/query_builder/components/expressions/ExpressionEditorTextfield.jsx:293
+msgid "Empty expression"
+msgstr "空表达式"
+
+#: frontend/src/metabase/query_builder/components/QuestionActions.tsx:168
+msgid "Turn into a model"
+msgstr "变成一个问题"
+
+#: frontend/src/metabase/query_builder/components/filters/modals/BulkFilterModal/BulkFilterModal.tsx:158
+msgid "Apply Filters"
+msgstr "应用筛选器"
+
+#: frontend/src/metabase/query_builder/components/filters/modals/BulkFilterModal/BulkFilterModal.tsx:151
+msgid "Clear all filters"
+msgstr "清除筛选器"

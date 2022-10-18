@@ -2218,7 +2218,7 @@ msgstr "这个集合中的仪表盘、集合、报告也将被归档。"
 #: frontend/src/metabase/query_builder/components/template_tags/SnippetModal.jsx:59
 #: frontend/src/metabase/routes.jsx:213
 msgid "Archive"
-msgstr "档案"
+msgstr "归档"
 
 #: frontend/src/metabase/containers/ErrorPages.jsx:51
 msgid "This {0} has been archived"
@@ -7792,7 +7792,7 @@ msgstr "表''{0}'现在可见。重新同步。"
 #: frontend/src/metabase-lib/lib/Dimension.ts:1661 src/metabase/api/table.clj
 #: target/classes/metabase/api/table.clj
 msgid "Auto bin"
-msgstr "自动垃圾箱"
+msgstr "回收站"
 
 #: src/metabase/api/table.clj target/classes/metabase/api/table.clj
 msgid "Don''t bin"
@@ -11983,7 +11983,7 @@ msgstr "重复的\"{0}\""
 #: frontend/src/metabase/entities/containers/EntityCopyModal.jsx:22
 #: frontend/src/metabase/entities/containers/EntityCopyModal.jsx:27
 msgid "Duplicate"
-msgstr "重复的"
+msgstr "复制"
 
 #: frontend/src/metabase/lib/query_time.js:153
 msgid "Tomorrow"
@@ -23652,3 +23652,6 @@ msgstr "应用筛选器"
 msgid "Clear all filters"
 msgstr "清除筛选器"
 
+ #: frontend/src/metabase/query_builder/components/filters/modals/BulkFilterModal/BulkFilterModal.tsx:258
+msgid "Unexpected input given to normalize. Expected type to be "object", found "string"
+msgstr "SQL片段名称重复(输入的参数不规范。类型应为object，但找到string)"

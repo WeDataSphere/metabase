@@ -2265,37 +2265,30 @@ msgstr "保存失败。"
 
 #: frontend/src/metabase/components/Calendar.tsx:134
 msgid "Su"
-msgstr "苏"
 msgstr "周日"
 
 #: frontend/src/metabase/components/Calendar.tsx:134
 msgid "Mo"
-msgstr "一"
 msgstr "周一"
 
 #: frontend/src/metabase/components/Calendar.tsx:134
 msgid "Tu"
-msgstr "图"
 msgstr "周二"
 
 #: frontend/src/metabase/components/Calendar.tsx:134
 msgid "We"
-msgstr "我们"
 msgstr "周三"
 
 #: frontend/src/metabase/components/Calendar.tsx:134
 msgid "Th"
-msgstr "钍"
 msgstr "周四"
 
 #: frontend/src/metabase/components/Calendar.tsx:134
 msgid "Fr"
-msgstr "冯"
 msgstr "周五"
 
 #: frontend/src/metabase/components/Calendar.tsx:134
 msgid "Sa"
-msgstr "萨"
 msgstr "周六"
 
 #: frontend/src/metabase/components/ChannelSetupMessage.jsx:41
@@ -17355,7 +17348,7 @@ msgstr "https://www.chromestatus.com/feature/5633521622188032"
 #: src/metabase/models/collection.clj
 #: target/classes/metabase/models/collection.clj
 msgid "Top folder"
-msgstr "顶级文件夹"
+msgstr "我们的分析方法"
 
 #: src/metabase/models/dashboard.clj src/metabase/models/pulse.clj
 #: target/classes/metabase/models/dashboard.clj

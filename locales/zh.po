@@ -2266,30 +2266,37 @@ msgstr "保存失败。"
 #: frontend/src/metabase/components/Calendar.tsx:134
 msgid "Su"
 msgstr "苏"
+msgstr "周日"
 
 #: frontend/src/metabase/components/Calendar.tsx:134
 msgid "Mo"
 msgstr "一"
+msgstr "周一"
 
 #: frontend/src/metabase/components/Calendar.tsx:134
 msgid "Tu"
 msgstr "图"
+msgstr "周二"
 
 #: frontend/src/metabase/components/Calendar.tsx:134
 msgid "We"
 msgstr "我们"
+msgstr "周三"
 
 #: frontend/src/metabase/components/Calendar.tsx:134
 msgid "Th"
 msgstr "钍"
+msgstr "周四"
 
 #: frontend/src/metabase/components/Calendar.tsx:134
 msgid "Fr"
 msgstr "冯"
+msgstr "周五"
 
 #: frontend/src/metabase/components/Calendar.tsx:134
 msgid "Sa"
 msgstr "萨"
+msgstr "周六"
 
 #: frontend/src/metabase/components/ChannelSetupMessage.jsx:41
 msgid "Your admin's email address"
@@ -3992,6 +3999,7 @@ msgstr "答案中的总行数。"
 #: frontend/src/metabase/lib/schema_metadata.js:617
 msgid "Sum of ..."
 msgstr "总和"
+msgstr "总和，..."
 
 #: frontend/src/metabase/lib/schema_metadata.js:619
 msgid "Sum of all the values of a column."
@@ -4008,6 +4016,7 @@ msgstr "一个字段所有数值的平均值。"
 #: frontend/src/metabase/lib/schema_metadata.js:635
 msgid "Number of distinct values of ..."
 msgstr "唯一值种类个数"
+msgstr "唯一值种类个数...。"
 
 #: frontend/src/metabase/lib/schema_metadata.js:637
 msgid "Number of unique values of a column among all the rows in the answer."
@@ -4016,6 +4025,7 @@ msgstr "一个字段所有互不重复的值的总数"
 #: frontend/src/metabase/lib/schema_metadata.js:644
 msgid "Cumulative sum of ..."
 msgstr "累积总和"
+msgstr "累积总和..."
 
 #: frontend/src/metabase/lib/schema_metadata.js:493
 msgid "Additive sum of all the values of a column.\\\\ne.x. total revenue over time."
@@ -4032,6 +4042,7 @@ msgstr "累积的数据行数。\\\\ n比如：随着时间的推移销售数量
 #: frontend/src/metabase/lib/schema_metadata.js:662
 msgid "Standard deviation of ..."
 msgstr "标准差的"
+msgstr "标准差的..."
 
 #: frontend/src/metabase/lib/schema_metadata.js:664
 msgid "Number which expresses how much the values of a column vary among all rows in the answer."
@@ -4040,6 +4051,7 @@ msgstr "一个字段所有数值的标准差。"
 #: frontend/src/metabase/lib/schema_metadata.js:671
 msgid "Minimum of ..."
 msgstr "最小值"
+msgstr "最小值..."
 
 #: frontend/src/metabase/lib/schema_metadata.js:673
 msgid "Minimum value of a column"
@@ -4048,6 +4060,7 @@ msgstr "一个字段的最小值"
 #: frontend/src/metabase/lib/schema_metadata.js:680
 msgid "Maximum of ..."
 msgstr "最大值"
+msgstr "最大值..."
 
 #: frontend/src/metabase/lib/schema_metadata.js:682
 msgid "Maximum value of a column"
@@ -5425,11 +5438,11 @@ msgstr "获取答案"
 
 #: frontend/src/metabase/query_builder/components/SavedQuestionIntroModal.jsx:15
 msgid "It's okay to play around with saved questions"
-msgstr "玩弄保存的问题是可以的"
+msgstr "已保存的内容可修改"
 
 #: frontend/src/metabase/query_builder/components/SavedQuestionIntroModal.jsx:14
 msgid "You won't make any permanent changes to a saved question unless you click the edit icon in the top-right."
-msgstr "除非你点击右上方的编辑图标，否则你不会对已保存的问题做任何永久性的修改。"
+msgstr "请点击右上方的编辑图标，对已保存的问题进行永久性的修改。"
 
 #: frontend/src/metabase/query_builder/components/SearchBar.jsx:28
 msgid "Search for"
@@ -7482,6 +7495,7 @@ msgstr "中心"
 #: frontend/src/metabase/visualizations/lib/settings/series.js:119
 #: frontend/src/metabase/visualizations/visualizations/Text/Text.jsx:76
 msgid "Right"
+msgstr "右边"
 msgstr "对"
 
 #: frontend/src/metabase/visualizations/visualizations/Text/Text.jsx:83
@@ -7778,11 +7792,11 @@ msgstr "表''{0}'现在可见。重新同步。"
 #: frontend/src/metabase-lib/lib/Dimension.ts:1661 src/metabase/api/table.clj
 #: target/classes/metabase/api/table.clj
 msgid "Auto bin"
-msgstr "删除"
+msgstr "自动垃圾箱"
 
 #: src/metabase/api/table.clj target/classes/metabase/api/table.clj
 msgid "Don''t bin"
-msgstr "返回"
+msgstr "不要垃圾桶"
 
 #: frontend/src/metabase-lib/lib/Dimension.ts:1715 src/metabase/api/table.clj
 #: target/classes/metabase/api/table.clj
@@ -8794,6 +8808,16 @@ msgstr "删除它并且创建一个新的"
 #: target/classes/metabase/models/permissions.clj
 msgid "You cannot edit permissions for a Personal Collection or its descendants."
 msgstr "你不能编辑个人收藏或其后代的权限。"
+
+#: frontend/src/metabase/collections/components/CollectionHeader/CollectionMenu.tsx:43
+msgid "Edit permissions"
+msgstr "编辑权限"
+
+#: frontend/src/metabase/collections/components/CollectionHeader/CollectionMenu.tsx:72
+#: frontend/src/metabase/dashboard/containers/DashboardHeader.jsx:364
+#: frontend/src/metabase/query_builder/components/QuestionActions.tsx:229
+msgid "Move, archive, and more..."
+msgstr "移动、存档等..."
 
 #: src/metabase/models/permissions.clj
 #: target/classes/metabase/models/permissions.clj
@@ -11574,7 +11598,7 @@ msgstr "按会话开始的页面划分的会话"
 #: resources/automagic_dashboards/field/Country.yaml
 #: resources/automagic_dashboards/field/GenericField.yaml
 msgid "Distinct values"
-msgstr "差异值"
+msgstr "鲜明的价值观"
 
 #: resources/automagic_dashboards/table/GenericTable.yaml
 msgid "Hours when [[this.short-name]] were added"
@@ -17615,7 +17639,7 @@ msgstr "降序排序"
 
 #: frontend/src/metabase/nav/containers/MainNavbar/MainNavbarView.tsx:150
 msgid "Browse data"
-msgstr "浏览数据"
+msgstr "数据库源库"
 
 #: frontend/src/metabase/query_builder/components/LimitPopover.jsx:42
 msgid "Show maximum (first {0})"
@@ -22288,7 +22312,7 @@ msgstr "邮件"
 
 #: frontend/src/metabase/lib/timelines.ts:18
 msgid "Bell"
-msgstr "贝尔"
+msgstr "钟"
 
 #: frontend/src/metabase/lib/timelines.ts:35
 msgid "{0} events"
@@ -22799,6 +22823,17 @@ msgstr "你的仪表板已经准备好了"
 msgid "Doing Science..."
 msgstr "做好科学工作..."
 
+#: frontend/src/metabase/collections/components/CollectionHeader/CollectionCaption.tsx:64
+#: frontend/src/metabase/dashboard/components/DashboardInfoSidebar.tsx:80
+#: frontend/src/metabase/query_builder/components/view/sidebars/QuestionInfoSidebar.tsx:53
+msgid "Add description"
+msgstr "添加描述"
+
+#: frontend/src/metabase/dashboard/components/DashboardInfoSidebar.tsx:74
+#: frontend/src/metabase/query_builder/components/view/sidebars/QuestionInfoSidebar.tsx:50
+msgid "About"
+msgstr "关于"
+
 #: frontend/src/metabase/query_builder/actions/querying.js:165
 msgid "Still Here..."
 msgstr "仍然在这里..."
@@ -22871,7 +22906,7 @@ msgstr "产品发布"
 
 #: frontend/src/metabase/entities/timeline-events/forms.js:26
 msgid "Markdown supported"
-msgstr "支持马克顿"
+msgstr "支持Markdown"
 
 #: frontend/src/metabase/entities/timeline-events/forms.js:27
 msgid "Add links and formatting via markdown"
@@ -23368,6 +23403,16 @@ msgstr "获取一个指定长度的时间间隔"
 msgid "Gets a timestamp relative to the current time"
 msgstr "获取一个相对于当前时间的时间戳"
 
+
+#: frontend/src/metabase/components/EntityItem.jsx:110
+msgid "Don’t show visualization"
+msgstr "不显示可视化"
+
+#: frontend/src/metabase/components/EntityItem.jsx:111
+msgid "Show visualization"
+msgstr "显示可视化"
+
+
 #: frontend/src/metabase/query_builder/components/QuestionActionButtons.jsx:141
 msgid "Unpersist model"
 msgstr "不存在的模式"
@@ -23591,7 +23636,6 @@ msgstr "行字段"
 msgid "Column formatting"
 msgstr "列字段"
 
-
 #: frontend/src/metabase/query_builder/components/expressions/ExpressionEditorTextfield.jsx:293
 msgid "Empty expression"
 msgstr "空表达式"
@@ -23608,6 +23652,3 @@ msgstr "应用筛选器"
 msgid "Clear all filters"
 msgstr "清除筛选器"
 
-#: frontend/src/metabase/query_builder/components/filters/modals/BulkFilterModal/BulkFilterModal.tsx:258
-msgid "Unexpected input given to normalize. Expected type to be "object", found "string"
-msgstr "SQL片段名称重复"

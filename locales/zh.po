@@ -85,7 +85,7 @@ msgstr "Metabase 应该在什么时候自动扫描缓存的字段值"
 
 #: frontend/src/metabase/admin/databases/components/widgets/CacheFieldValuesScheduleWidget.jsx:26
 msgid "Regularly, on a schedule"
-msgstr "根据排程，周期性地进行"
+msgstr "根据调度，周期性地进行"
 
 #: frontend/src/metabase/admin/databases/components/widgets/CacheFieldValuesScheduleWidget.jsx:51
 msgid "Only when adding a new filter widget"
@@ -345,7 +345,7 @@ msgstr "成功创建!"
 
 #: frontend/src/metabase/admin/databases/database.js:394
 msgid "Successfully saved!"
-msgstr "成功获救!"
+msgstr "成功保存!"
 
 #: frontend/src/metabase/admin/datamodel/components/ObjectActionSelect.jsx:48
 #: frontend/src/metabase/dashboard/components/DashCard.jsx:464
@@ -4034,7 +4034,6 @@ msgstr "累积的数据行数。\\\\ n比如：随着时间的推移销售数量
 
 #: frontend/src/metabase/lib/schema_metadata.js:662
 msgid "Standard deviation of ..."
-msgstr "标准差的"
 msgstr "标准差的..."
 
 #: frontend/src/metabase/lib/schema_metadata.js:664
@@ -4043,7 +4042,6 @@ msgstr "一个字段所有数值的标准差。"
 
 #: frontend/src/metabase/lib/schema_metadata.js:671
 msgid "Minimum of ..."
-msgstr "最小值"
 msgstr "最小值..."
 
 #: frontend/src/metabase/lib/schema_metadata.js:673
@@ -4052,7 +4050,6 @@ msgstr "一个字段的最小值"
 
 #: frontend/src/metabase/lib/schema_metadata.js:680
 msgid "Maximum of ..."
-msgstr "最大值"
 msgstr "最大值..."
 
 #: frontend/src/metabase/lib/schema_metadata.js:682

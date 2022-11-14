@@ -172,7 +172,8 @@
                              response                        {:id (str session-uuid)}]
                          (mw.session/set-session-cookies request response session request-time)))]
        (if throttling-disabled?
-         (do-login)
+         ((log/info (trs "[非阻碍式登录] with no throttling login."))
+          (do-login))
          (http-401-on-error
            (throttle/with-throttling [(login-throttlers :ip-address) ip-address
                                       (login-throttlers :username)   username]

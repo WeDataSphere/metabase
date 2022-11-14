@@ -177,7 +177,7 @@
        ;(throttle/with-throttling [(login-throttlers :ip-address) ip-address
        ;                           (login-throttlers :username)   username]
        ;    (do-login))
-       (log/error e (trs "登录失败，有可能密码账号错误![Login failed, possibly the password and account are wrong]"))
+       (log/error (trs "登录失败，有可能密码账号错误![Login failed, possibly the password and account are wrong]"))
        ))))
 
 (api/defendpoint DELETE "/"

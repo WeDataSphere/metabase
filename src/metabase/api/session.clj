@@ -180,7 +180,7 @@
           (http-401-on-error
             (throttle/with-throttling [(login-throttlers :ip-address) ip-address
                                       (login-throttlers :username)   username]
-                                     (do-login))))))
+                                     (do-login)))))))
 
 (api/defendpoint DELETE "/"
   "Logout."

@@ -23556,3 +23556,11 @@ msgstr "无法刷新卡号为{0}的模型"
 #: src/metabase/task/persist_refresh.clj
 msgid "Unknown payload type {0}"
 msgstr "未知的有效载荷类型{0}。"
+
+#: frontend/src/metabase/components/EntityItem.jsx:110
+msgid "Don’t show visualization"
+msgstr "不显示可视化"
+
+#: frontend/src/metabase/components/EntityItem.jsx:111
+msgid "Show visualization"
+msgstr "显示可视化"

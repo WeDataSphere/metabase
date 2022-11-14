@@ -171,13 +171,10 @@
                        (let [{session-uuid :id, :as session} (login username password (request.u/device-info request))
                              response                        {:id (str session-uuid)}]
                          (mw.session/set-session-cookies request response session request-time)))]
-       (if throttling-disabled?
+       (if (throttling-disabled?)
          ((log/info (trs "[非阻碍式登录] with no throttling login."))
           (do-login))
-         (http-401-on-error
-           (throttle/with-throttling [(login-throttlers :ip-address) ip-address
-                                      (login-throttlers :username)   username]
-                                     (do-login))))))
+         (http-401-on-error (do-login)))))
 
 (api/defendpoint DELETE "/"
   "Logout."

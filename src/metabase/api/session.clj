@@ -126,7 +126,7 @@
       (u.password/verify-password password fake-salt fake-hashed-password)
       nil)))
 
-(def ^:private throttling-disabled? (true))
+(def ^:private throttling-disabled? (config/config-bool "true"))
 
 (defn- throttle-check
   "Pass through to `throttle/check` but will not check if `throttling-disabled?` is true"

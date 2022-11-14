@@ -126,7 +126,7 @@
       (u.password/verify-password password fake-salt fake-hashed-password)
       nil)))
 
-(def ^:private throttling-disabled? (config/config-bool :mb-disable-session-throttle))
+(def ^:private throttling-disabled? (config/config-bool true))
 
 (defn- throttle-check
   "Pass through to `throttle/check` but will not check if `throttling-disabled?` is true"
@@ -171,14 +171,12 @@
                        (let [{session-uuid :id, :as session} (login username password (request.u/device-info request))
                              response                        {:id (str session-uuid)}]
                          (mw.session/set-session-cookies request response session request-time)))]
-    (if throttling-disabled?
-      (do-login)
-      (http-401-on-error
-       ;(throttle/with-throttling [(login-throttlers :ip-address) ip-address
-       ;                           (login-throttlers :username)   username]
-       ;    (do-login))
-       (log/error (trs "登录失败，有可能密码账号错误![Login failed, possibly the password and account are wrong]"))
-       ))))
+       (if throttling-disabled?
+         (do-login)
+         (http-401-on-error
+           (throttle/with-throttling [(login-throttlers :ip-address) ip-address
+                                      (login-throttlers :username)   username]
+                                     (do-login))))))
 
 (api/defendpoint DELETE "/"
   "Logout."

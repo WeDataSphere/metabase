@@ -103,9 +103,10 @@
                                update-field-values-summary)])
 
 (s/defn update-field-values!
-  "Update the advanced FieldValues (distinct values for categories and certain other fields that are shown
-   in widgets like filters) for the Tables in DATABASE (as needed)."
-  [database :- i/DatabaseInstance]
-        (format "[Cache field values ignore database is %s]" (sync-util/name-for-logging database))
-    (let [tables (sync-util/db->sync-tables database)]
-     (sync-util/run-sync-operation "field values scanning" database (make-sync-field-values-steps tables))))
+        "Update the advanced FieldValues (distinct values for categories and certain other fields that are shown
+         in widgets like filters) for the Tables in DATABASE (as needed)."
+        [database :- i/DatabaseInstance]
+        (sync-util/sync-operation :cache-field-values database (format "Cache field values in %s"
+                                                                       (sync-util/name-for-logging database))
+                                  (let [tables (sync-util/db->sync-tables database)]
+                                       (sync-util/run-sync-operation "field values scanning" database (make-sync-field-values-steps tables)))))

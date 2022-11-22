@@ -6,6 +6,7 @@
             [metabase.sync :as sync]
             [metabase.sync.sync-metadata :as sync-metadata]
             [metabase.util :as u]
+            [metabase.sync.util :as sync-util]
             [metabase.util.i18n :refer [trs]]))
 
 (def ^:const sync-database-topics

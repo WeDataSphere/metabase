@@ -109,7 +109,7 @@
   {:style/indent 0}
   [{:keys [subject recipients message-type message]} :- EmailMessage]
   (when-not (email-smtp-host)
-    (throw (ex-info (tru "SMTP host is not set.") {:cause :smtp-host-not-set})))
+    (log/error (trs "email-smtp-host not set. But it does not affect the use.")))
   ;; Now send the email
   (send-email! (smtp-settings)
                (merge

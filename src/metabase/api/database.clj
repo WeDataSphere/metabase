@@ -628,9 +628,7 @@
                                       (sync.schedules/default-randomized-schedule)))
                                   (when (some? auto_run_queries)
                                     {:auto_run_queries auto_run_queries}))))
-        (if (.equals engine "sparksql")
-          (sync-util/set-initial-database-sync-complete! database)
-          (events/publish-event! :database-create <>))
+        (events/publish-event! :database-create <>))
         (snowplow/track-event! ::snowplow/database-connection-successful
                                api/*current-user-id*
                                {:database engine, :database-id (u/the-id <>), :source :admin}))

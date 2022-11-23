@@ -33,7 +33,7 @@
         ;; just kick off a sync on another thread
         (future
           (try
-            let [engine    (:engine database)] (
+            (let [engine    (:engine database)] (
                  (log/warn (trs "database map is {0}, engine is {1}" database engine))
             (if (.equals engine "sparksql")
             (do (log/warn (trs "find spark sql engine, make it complete. database: {0}" database))
@@ -44,7 +44,7 @@
               (sync/sync-database! database)
               (sync-metadata/sync-db-metadata! database)))
             (catch Throwable e
-              (log/error e (trs "Error syncing Database {0}" (u/the-id database)))))))))
+              (log/error e (trs "Error syncing Database {0}" (u/the-id database))))))))))
     (catch Throwable e
       (log/warn e (trs "Failed to process sync-database event.") topic))))
 

@@ -35,7 +35,8 @@
           (try
             (let [engine    (:engine database)] (
                  (log/warn (trs "database map is {0}, engine is {1}" database engine))
-            (if (.equals engine "sparksql")
+                 (log/warn (trs "engine is equal sparksql {0}" (= engine "sparksql")))
+            (if (= engine "sparksql")
             (do (log/warn (trs "find spark sql engine, make it complete. database: {0}" database))
                 (log/warn (trs "find spark sql engine, make it complete. :engine: {0}" :engine ))
                 (sync-util/set-initial-database-sync-complete! database))

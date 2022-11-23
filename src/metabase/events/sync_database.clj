@@ -33,7 +33,7 @@
         ;; just kick off a sync on another thread
         (future
           (try
-            (if (.equals ( database) "sparksql")
+            (if (.equals (:engine database) "sparksql")
             (do (log/warn (trs "find spark sql engine, make it complete. database: {0}" database))
                 (log/warn (trs "find spark sql engine, make it complete. :engine: {0}" :engine ))
                 (sync-util/set-initial-database-sync-complete! database))

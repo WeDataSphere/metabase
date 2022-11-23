@@ -116,7 +116,7 @@
   ;; Don't set the timeout too low -- I've have Circle fail when the timeout was 1000ms on *one* occasion.
   :default    (if config/is-test?
                 3000
-                10000))
+                60000))
 
 (defn- connection-error? [^Throwable throwable]
   (and (some? throwable)

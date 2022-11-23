@@ -39,6 +39,8 @@
                  (log/warn (trs "engine compare sparksql {0}" (= 0 (compare (engine "sparksql"))))
                  (log/warn (trs "engine is equal sparksql {0}" (.equals engine "sparksql")))
                  (log/warn (trs "engine type is {0}" (type engine)))
+                 (log/warn (trs "engine str is {0}" (str engine)))
+                 (log/warn (trs "engine str type is {0}" (type (str engine))))
                  (log/warn (trs "sparksql type is {0}" (type "sparksql")))
             (if (= engine "sparksql")
             (do (log/warn (trs "find spark sql engine, make it complete. database: {0}" database))

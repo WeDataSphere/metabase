@@ -42,7 +42,7 @@
                  (log/warn (trs "engine str is {0}" (str engine)))
                  (log/warn (trs "engine str type is {0}" (type (str engine))))
                  (log/warn (trs "sparksql type is {0}" (type "sparksql")))
-            (if (= engine "sparksql")
+            (if (= (str engine) "sparksql")
             (do (log/warn (trs "find spark sql engine, make it complete. database: {0}" database))
                 (log/warn (trs "find spark sql engine, make it complete. :engine: {0}" :engine ))
                 (sync-util/set-initial-database-sync-complete! database))

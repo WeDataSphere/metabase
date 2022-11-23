@@ -36,9 +36,7 @@
             (let [engine    (:engine database)] (
                  (log/warn (trs "database map is {0}, engine is {1}" database engine))
                  (log/warn (trs "engine is = sparksql {0}" (= engine "sparksql")))
-                 (log/warn (trs "engine compare sparksql {0}" (= 0 (compare engine "sparksql"))))
                  (log/warn (trs "engine is equal sparksql {0}" (.equals engine "sparksql")))
-                 (log/warn (trs "database map is {0}, engine is {1}" database engine))
                  (log/warn (trs "engine str is = sparksql {0}" (= (str engine) "sparksql")))
                  (log/warn (trs "engine str compare sparksql {0}" (= 0 (compare (str engine) "sparksql"))))
                  (log/warn (trs "engine str is equal sparksql {0}" (.equals (str engine) "sparksql")))

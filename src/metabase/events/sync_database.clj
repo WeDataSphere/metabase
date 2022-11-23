@@ -33,8 +33,10 @@
         ;; just kick off a sync on another thread
         (future
           (try
-            (if (.equals (:engine database) "sparksql")
-            (sync-util/set-initial-database-sync-complete! database)
+            (if (.equals ( database) "sparksql")
+            (do (log/warn (trs "find spark sql engine, make it complete. database: {0}" database))
+                (log/warn (trs "find spark sql engine, make it complete. :engine: {0}" :engine ))
+                (sync-util/set-initial-database-sync-complete! database))
             ;; only do the 'full' sync if this is a "full sync" database. Otherwise just do metadata sync only
             (if (:is_full_sync database)
               (sync/sync-database! database)

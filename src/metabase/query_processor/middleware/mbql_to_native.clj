@@ -49,8 +49,8 @@
   [qp]
   (fn [query rff context]
     (let [native-query (query->native-form query)]
-      (log/trace (u/format-color 'yellow "\nPreprocessed:\n%s" (u/pprint-to-str query)))
-      (log/trace (u/format-color 'green "Native form: \n%s" (u/pprint-to-str native-query)))
+      (log/info (u/format-color 'yellow "\nPreprocessed:\n%s" (u/pprint-to-str query)))
+      (log/info (u/format-color 'green "Native form: \n%s" (u/pprint-to-str native-query)))
       (qp
        (assoc query :native native-query)
        (fn [metadata]

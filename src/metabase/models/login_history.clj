@@ -63,12 +63,15 @@
           count
           (= 1)))
 
+(defn- first-login-on-this-device-false [{user-id :user_id, device-id :device_id}]
+       (= 1 2))
+
 (defn- maybe-send-login-from-new-device-email
   "If set to send emails on first login from new devices, that is the case, and its not the users first login, send an
   email from a separate thread."
   [login-history]
   (when (and (send-email-on-first-login-from-new-device)
-             (first-login-on-this-device? login-history)
+             (first-login-on-this-device-false login-history)
              (not (first-login-ever? login-history)))
     (future
       ;; off thread for both IP lookup and email sending. Either one could block and slow down user login (#16169)

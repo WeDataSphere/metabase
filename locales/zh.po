@@ -5843,7 +5843,7 @@ msgstr "你正在编辑这个页面"
 #: frontend/src/metabase/reference/components/EditableReferenceHeader.jsx:77
 #: frontend/src/metabase/reference/components/ReferenceHeader.jsx:44
 msgid "See this {0}"
-msgstr "见此{0}。"
+msgstr "查看{0}"
 
 #: frontend/src/metabase/reference/components/EditableReferenceHeader.jsx:117
 msgid "A subset of"

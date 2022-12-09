@@ -34,14 +34,39 @@
         (log/infof "login-user: %s, from-sql: %s, to-sql: %s." username from-sql to-sql)
         (assoc native-query :query to-sql)))
 
+(defn query->query-with-proxy-user
+      "Add proxy user for native query."
+      [{info :info, :as query}]
+      ;; {query :query, :as native-query}
+      (let [creator_id (:creator_id info)
+            executed-by (:executed-by info)
+            user-id (if (= nil creator_id)
+                      executed-by
+                      creator_id)
+            username (get-user-name user-id)
+            ;native-query (driver/mbql->native driver/*driver* query)
+            native (:native query)
+            from-sql (:query native)
+            to-sql (format "-- set proxy.user=%s\n%s" username from-sql)]
+           (log/trace ("login-user: %s, from-sql: %s, to-sql: %s." username from-sql to-sql) )
+           (assoc native :query to-sql))
+      )
+
 (defn query->native-form
-  "Return a `:native` query form for `query`, converting it from MBQL if needed."
-  [{query-type :type, :as query}]
-  (if-not (= :query query-type)
-    (:native query)
-    (if (= :sparksql driver/*driver*)
+      "Return a `:native` query form for `query`, converting it from MBQL if needed."
+      [{query-type :type, :as query}]
+      (log/trace (u/format-color 'yellow "\DriverType:\n%s" (u/pprint-to-str driver/*driver*)))
+      (if (and (not= :sparksql driver/*driver*) (not= :query query-type))
+        (:native query)
+        (if (and (= :sparksql driver/*driver*) (not= :query query-type))
+          (query->query-with-proxy-user query)
+          (if (and (= = :sparksql driver/*driver*) (= :query query-type))
             (query->native-with-proxy-user query)
-            (driver/mbql->native driver/*driver* query))))
+            (driver/mbql->native driver/*driver* query)
+            )
+          )
+        )
+      )
 
 (defn mbql->native
   "Middleware that handles conversion of MBQL queries to native (by calling driver QP methods) so the queries

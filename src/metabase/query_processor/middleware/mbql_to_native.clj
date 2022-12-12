@@ -48,7 +48,6 @@
             native (:native query)
             from-sql (:query native)
             to-sql (format "-- set proxy.user=%s\n%s" username from-sql)]
-           (log/info (trs "login-user: {0}, from-sql: {1}, to-sql: {2}." username from-sql to-sql))
            (assoc native :query to-sql))
       )
 

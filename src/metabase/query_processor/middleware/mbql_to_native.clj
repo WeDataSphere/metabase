@@ -48,19 +48,20 @@
             native (:native query)
             from-sql (:query native)
             to-sql (format "-- set proxy.user=%s\n%s" username from-sql)]
-           (log/trace ("login-user: %s, from-sql: %s, to-sql: %s." username from-sql to-sql) )
+           (log/info (trs "login-user: {0}, from-sql: {1}, to-sql: {2}." username from-sql to-sql))
            (assoc native :query to-sql))
       )
 
 (defn query->native-form
       "Return a `:native` query form for `query`, converting it from MBQL if needed."
       [{query-type :type, :as query}]
+      (log/info (trs "query: {0}, query-type: {1}." query query-type))
       (log/trace (u/format-color 'yellow "\DriverType:\n%s" (u/pprint-to-str driver/*driver*)))
       (if (and (not= :sparksql driver/*driver*) (not= :query query-type))
         (:native query)
         (if (and (= :sparksql driver/*driver*) (not= :query query-type))
           (query->query-with-proxy-user query)
-          (if (and (= = :sparksql driver/*driver*) (= :query query-type))
+          (if (and (= :sparksql driver/*driver*) (= :query query-type))
             (query->native-with-proxy-user query)
             (driver/mbql->native driver/*driver* query)
             )

@@ -54,8 +54,6 @@
 (defn query->native-form
       "Return a `:native` query form for `query`, converting it from MBQL if needed."
       [{query-type :type, :as query}]
-      (log/info (trs "query: {0}, query-type: {1}." query query-type))
-      (log/trace (u/format-color 'yellow "\DriverType:\n%s" (u/pprint-to-str driver/*driver*)))
       (if (and (not= :sparksql driver/*driver*) (not= :query query-type))
         (:native query)
         (if (and (= :sparksql driver/*driver*) (not= :query query-type))
@@ -67,6 +65,13 @@
           )
         )
       )
+
+(defn query->native-form-look-sql
+  "Return a `:native` query form for `query`, converting it from MBQL if needed."
+  [{query-type :type, :as query}]
+  (if-not (= :query query-type)
+          (:native query)
+          (driver/mbql->native driver/*driver* query)))
 
 (defn mbql->native
   "Middleware that handles conversion of MBQL queries to native (by calling driver QP methods) so the queries

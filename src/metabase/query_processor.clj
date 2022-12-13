@@ -296,6 +296,28 @@
   (let [driver (driver.u/database->driver (:database (preprocess query)))]
     (driver/splice-parameters-into-native-query driver (compile query))))
 
+(defn compile-native
+  "Return the native form for `query` (e.g. for a MBQL query on Postgres this would return a map containing the compiled
+  SQL form). Like `preprocess`, this function will throw an Exception if preprocessing was not successful."
+  [query]
+  (let [qp (qp.reducible/combine-middleware
+            (conj (vec around-middleware)
+                  prevent-infinite-recursive-preprocesses/prevent-infinite-recursive-preprocesses)
+            (fn [query _rff _context]
+              (mbql-to-native/query->native-form-look-sql (preprocess* query))))]
+    (qp query nil nil)))
+
+(defn compile-and-splice-parameters-native
+  "Return the native form for a `query`, with any prepared statement (or equivalent) parameters spliced into the query
+  itself as literals. This is used to power features such as 'Convert this Question to SQL'.
+  (Currently, this function is mostly used by tests and in the
+  REPL; [[splice-params-in-response/splice-params-in-response]] middleware handles similar functionality for queries
+  that are actually executed.)"
+  [query]
+  ;; We need to preprocess the query first to get a valid database in case we're dealing with a nested query whose DB
+  ;; ID is the virtual DB identifier
+  (let [driver (driver.u/database->driver (:database (preprocess query)))]
+    (driver/splice-parameters-into-native-query driver (compile-native query))))
 
 ;;; +----------------------------------------------------------------------------------------------------------------+
 ;;; |                                      Userland Queries (Public Interface)                                       |

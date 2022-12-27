@@ -19,20 +19,24 @@
            username))
 
 (defn query->native-with-proxy-user
-      "Add proxy user for native query."
-      [{info :info, :as query}]
-      ;; {query :query, :as native-query}
-      (let [creator_id (:creator_id info)
-            executed-by (:executed-by info)
-            user-id (if (= nil creator_id)
-                      executed-by
-                      creator_id)
-            username (get-user-name user-id)
-            native-query (driver/mbql->native driver/*driver* query)
-            from-sql (:query native-query)
-            to-sql (format "-- set proxy.user=%s\n%s" username from-sql)]
-        (log/infof "login-user: %s, from-sql: %s, to-sql: %s." username from-sql to-sql)
-        (assoc native-query :query to-sql)))
+  "Add proxy user for native query."
+  [{info :info, :as query}]
+  ;; {query :query, :as native-query}
+  (let [creator_id (:creator_id info)
+        executed-by (:executed-by info)
+        user-id (if (= nil creator_id)
+                  executed-by
+                  creator_id)
+        username (if (= nil user-id)
+                   user-id
+                   (get-user-name user-id))
+        native-query (driver/mbql->native driver/*driver* query)
+        from-sql (:query native-query)
+        to-sql (if (= nil user-id)
+                 from-sql
+                 (format "-- set proxy.user=%s\n%s" username from-sql))]
+    (log/infof "login-user: %s, from-sql: %s, to-sql: %s." username from-sql to-sql)
+    (assoc native-query :query to-sql)))
 
 (defn query->query-with-proxy-user
       "Add proxy user for native query."
@@ -66,12 +70,6 @@
         )
       )
 
-(defn query->native-form-look-sql
-  "Return a `:native` query form for `query`, converting it from MBQL if needed."
-  [{query-type :type, :as query}]
-  (if-not (= :query query-type)
-          (:native query)
-          (driver/mbql->native driver/*driver* query)))
 
 (defn mbql->native
   "Middleware that handles conversion of MBQL queries to native (by calling driver QP methods) so the queries

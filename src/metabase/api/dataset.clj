@@ -152,7 +152,7 @@
   [:as {query :body}]
   (binding [persisted-info/*allow-persisted-substitution* false]
            (qp.perms/check-current-user-has-adhoc-native-query-perms query)
-           (qp/compile-and-splice-parameters-native query)))
+           (qp/compile-and-splice-parameters query)))
 
 (api/defendpoint ^:streaming POST "/pivot"
   "Generate a pivoted dataset for an ad-hoc query"

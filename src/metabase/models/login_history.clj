@@ -1,19 +1,19 @@
 (ns metabase.models.login-history
-  (:require [clojure.tools.logging :as log]
-            [java-time :as t]
-            [metabase.email.messages :as messages]
-            [metabase.models.setting :refer [defsetting]]
-            [metabase.server.request.util :as request.u]
-            [metabase.util.date-2 :as u.date]
-            [metabase.util.i18n :as i18n :refer [trs tru]]
-            [toucan.db :as db]
-            [toucan.models :as models]))
+    (:require [clojure.tools.logging :as log]
+              [java-time :as t]
+              [metabase.email.messages :as messages]
+              [metabase.models.setting :refer [defsetting]]
+              [metabase.server.request.util :as request.u]
+              [metabase.util.date-2 :as u.date]
+              [metabase.util.i18n :as i18n :refer [trs tru]]
+              [toucan.db :as db]
+              [toucan.models :as models]))
 
 (defn- timezone-display-name [^java.time.ZoneId zone-id]
   (when zone-id
-    (.getDisplayName zone-id
-                     java.time.format.TextStyle/SHORT_STANDALONE
-                     (i18n/user-locale))))
+        (.getDisplayName zone-id
+                         java.time.format.TextStyle/SHORT_STANDALONE
+                         (i18n/user-locale))))
 
 (defn human-friendly-infos
   "Return human-friendly versions of the info in one or more LoginHistory instances. Powers the login history API
@@ -43,15 +43,15 @@
   :type       :boolean
   :visibility :internal
   :setter     :none
-  :default    true)
+  :default    false)
 
 (models/defmodel LoginHistory :login_history)
 
 (defn- post-select [{session-id :session_id, :as login-history}]
   ;; session ID is sensitive, so it's better if we don't even return it. Replace it with a more generic `active` key.
   (cond-> login-history
-    (contains? login-history :session_id) (assoc :active (boolean session-id))
-    true                                  (dissoc :session_id)))
+          (contains? login-history :session_id) (assoc :active (boolean session-id))
+          true                                  (dissoc :session_id)))
 
 (defn- first-login-ever? [{user-id :user_id}]
   (some-> (db/select [LoginHistory :id] :user_id user-id {:limit 2})
@@ -63,23 +63,20 @@
           count
           (= 1)))
 
-(defn- first-login-on-this-device-false [{user-id :user_id, device-id :device_id}]
-       (= 1 2))
-
 (defn- maybe-send-login-from-new-device-email
   "If set to send emails on first login from new devices, that is the case, and its not the users first login, send an
   email from a separate thread."
   [login-history]
   (when (and (send-email-on-first-login-from-new-device)
-             (first-login-on-this-device-false login-history)
+             (first-login-on-this-device? login-history)
              (not (first-login-ever? login-history)))
-    (future
-      ;; off thread for both IP lookup and email sending. Either one could block and slow down user login (#16169)
-      (try
-        (let [[info] (human-friendly-infos [login-history])]
-          (messages/send-login-from-new-device-email! info))
-        (catch Throwable e
-          (log/error e (trs "Error sending ''login from new device'' notification email")))))))
+        (future
+         ;; off thread for both IP lookup and email sending. Either one could block and slow down user login (#16169)
+         (try
+           (let [[info] (human-friendly-infos [login-history])]
+             (messages/send-login-from-new-device-email! info))
+           (catch Throwable e
+             (log/error e (trs "Error sending ''login from new device'' notification email")))))))
 
 (defn- post-insert [login-history]
   (maybe-send-login-from-new-device-email login-history)
@@ -89,9 +86,9 @@
   (throw (RuntimeException. (tru "You can''t update a LoginHistory after it has been created."))))
 
 (extend (class LoginHistory)
-  models/IModel
-  (merge
-   models/IModelDefaults
-   {:post-select post-select
-    :post-insert post-insert
-    :pre-update  pre-update}))
+        models/IModel
+        (merge
+         models/IModelDefaults
+         {:post-select post-select
+          :post-insert post-insert
+          :pre-update  pre-update}))

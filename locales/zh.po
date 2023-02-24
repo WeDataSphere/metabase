@@ -6741,7 +6741,7 @@ msgstr "未设置"
 
 #: frontend/src/metabase/visualizations/components/TableSimple.jsx:138
 msgid "Rows {0}-{1} of {2}"
-msgstr "{2}的{0}~{1}行"
+msgstr "总共{2}行中的{0}~{1}行"
 
 #: frontend/src/metabase/visualizations/components/Visualization.jsx:130
 msgid "Data truncated to {0} rows."
@@ -17708,7 +17708,7 @@ msgstr "首先，你要{0}。"
 
 #: frontend/src/metabase/visualizations/components/TableSimple.jsx:136
 msgid "Rows {0}-{1} of first {2}"
-msgstr "第{0}-{1}行的第{2}行"
+msgstr "{0}-{1}行的前{2}行"
 
 #: frontend/src/metabase/visualizations/components/settings/ChartSettingFieldsPartition.jsx:290
 msgid "Drag fields here"
@@ -22235,12 +22235,12 @@ msgstr "显示更少的选项"
 
 #: frontend/src/metabase/components/EntityItem.jsx:104
 msgid "Unpin"
-msgstr "拔掉插头"
+msgstr "取消固定"
 
 #: frontend/src/metabase/components/EntityItem.jsx:104
 #: frontend/src/metabase/components/EntityItem.jsx:153
 msgid "Pin this"
-msgstr "钉住这个"
+msgstr "固定它"
 
 #: enterprise/frontend/src/metabase-enterprise/license/index.js:12
 msgid "License and Billing"
@@ -22684,7 +22684,7 @@ msgstr "删除时间线"
 
 #: frontend/src/metabase/timelines/collections/components/TimelineListModal/TimelineListModal.tsx:76
 msgid "Archived timelines"
-msgstr "归档的时间线"
+msgstr "存档的时间线"
 
 #: frontend/src/metabase/timelines/common/components/MoveEventModal/MoveEventModal.tsx:49
 #: frontend/src/metabase/timelines/common/components/MoveTimelineModal/MoveTimelineModal.tsx:37

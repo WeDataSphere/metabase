@@ -47,14 +47,15 @@
   {"Content-Security-Policy"
    (str/join
     (for [[k vs] {:default-src  ["'self'"
-				 "*.weoa.com"]
+				 "*.weoa.com"
+         "*.webank.com"]
                   :script-src   (concat
                                   ["'self'"
                                    "'unsafe-eval'" ; TODO - we keep working towards removing this entirely
                                    "https://maps.google.com"
                                    "https://accounts.google.com"
-				   "http://sit.dss.bdp.weoa.com"
-				   "http://sit.metabase.bdap.weoa.com"
+                                   "http://sit.dss.bdp.weoa.com"
+                                   "http://dss.webank.com"
                                    (when (public-settings/anon-tracking-enabled)
                                      "https://www.google-analytics.com")
                                    ;; for webpack hot reloading

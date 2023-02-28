@@ -102,7 +102,7 @@
   [allow-iframes?]
   (update (content-security-policy-header)
           "Content-Security-Policy"
-          #(format "%s frame-ancestors %s;" % (if allow-iframes? "*" (or (embedding-app-origin) "http://sit.dss.bdp.weoa.com")))))
+          #(format "%s frame-ancestors %s;" % (if allow-iframes? "*" (or (embedding-app-origin) "http://dss.webank.com")))))
 
 (defsetting ssl-certificate-public-key
   (deferred-tru

@@ -5566,11 +5566,11 @@ databaseChangeLog:
         - sqlCheck:
             expectedResult: 0
             sql: SELECT count(*) FROM (SELECT count(*) FROM DATABASECHANGELOG GROUP BY ID, AUTHOR, FILENAME HAVING count(*) > 1) t1
-      changes:
-        - addUniqueConstraint:
-            columnNames: id, author, filename
-            constraintName: idx_databasechangelog_id_author_filename
-            tableName: ${databasechangelog.name}
+#      changes:
+#        - addUniqueConstraint:
+#            columnNames: id, author, filename
+#            constraintName: idx_databasechangelog_id_author_filename
+#            tableName: ${databasechangelog.name}
   #
   # ADD Field.settings COLUMN
   #

@@ -41,1485 +41,1485 @@ databaseChangeLog:
       author: agilliland
       validCheckSum: ANY
       changes:
-      - createTable:
-          columns:
-          - column:
-              autoIncrement: true
-              constraints:
-                nullable: false
-                primaryKey: true
-              name: id
-              type: int
-          - column:
-              constraints:
-                nullable: false
-                unique: true
-              name: slug
-              type: varchar(254)
-          - column:
-              constraints:
-                nullable: false
-              name: name
-              type: varchar(254)
-          - column:
-              name: description
-              type: text
-          - column:
-              name: logo_url
-              type: varchar(254)
-          - column:
-              constraints:
-                nullable: false
-              name: inherits
-              type: boolean
-          tableName: core_organization
-      - createTable:
-          columns:
-          - column:
-              autoIncrement: true
-              constraints:
-                nullable: false
-                primaryKey: true
-              name: id
-              type: int
-          - column:
-              constraints:
-                nullable: false
-                unique: true
-              name: email
-              type: varchar(254)
-          - column:
-              constraints:
-                nullable: false
-              name: first_name
-              type: varchar(254)
-          - column:
-              constraints:
-                nullable: false
-              name: last_name
-              type: varchar(254)
-          - column:
-              constraints:
-                nullable: false
-              name: password
-              type: varchar(254)
-          - column:
-              constraints:
-                nullable: false
-              defaultValue: default
-              name: password_salt
-              type: varchar(254)
-          - column:
-              constraints:
-                nullable: false
-              name: date_joined
-              type: DATETIME
-          - column:
-              constraints:
-                nullable: true
-              name: last_login
-              type: DATETIME
-          - column:
-              constraints:
-                nullable: false
-              name: is_staff
-              type: boolean
-          - column:
-              constraints:
-                nullable: false
-              name: is_superuser
-              type: boolean
-          - column:
-              constraints:
-                nullable: false
-              name: is_active
-              type: boolean
-          - column:
-              name: reset_token
-              type: varchar(254)
-          - column:
-              name: reset_triggered
-              type: BIGINT
-          tableName: core_user
-      - createTable:
-          columns:
-          - column:
-              autoIncrement: true
-              constraints:
-                nullable: false
-                primaryKey: true
-              name: id
-              type: int
-          - column:
-              constraints:
-                nullable: false
-              name: admin
-              type: boolean
-          - column:
-              constraints:
-                deferrable: false
-                foreignKeyName: fk_userorgperm_ref_user_id
-                initiallyDeferred: false
-                nullable: false
-                referencedTableName: core_user
-                referencedColumnNames: id
-              name: user_id
-              type: int
-          - column:
-              constraints:
-                deferrable: false
-                foreignKeyName: fk_userorgperm_ref_organization_id
-                initiallyDeferred: false
-                nullable: false
-                referencedTableName: core_organization
-                referencedColumnNames: id
-              name: organization_id
-              type: int
-          tableName: core_userorgperm
-      - addUniqueConstraint:
-          columnNames: user_id, organization_id
-          constraintName: idx_unique_user_id_organization_id
-          tableName: core_userorgperm
-      - createIndex:
-          columns:
-          - column:
-              name: user_id
-              type: int
-          indexName: idx_userorgperm_user_id
-          tableName: core_userorgperm
-      - createIndex:
-          columns:
-          - column:
-              name: organization_id
-              type: int
-          indexName: idx_userorgperm_organization_id
-          tableName: core_userorgperm
-      - createTable:
-          columns:
-          - column:
-              autoIncrement: true
-              constraints:
-                nullable: false
-                primaryKey: true
-              name: id
-              type: int
-          - column:
-              constraints:
-                nullable: false
-              name: url
-              type: varchar(254)
-          - column:
-              constraints:
-                nullable: false
-              name: timestamp
-              type: DATETIME
-          - column:
-              constraints:
-                deferrable: false
-                foreignKeyName: fk_permissionviolation_ref_user_id
-                initiallyDeferred: false
-                nullable: false
-                referencedTableName: core_user
-                referencedColumnNames: id
-              name: user_id
-              type: int
-          tableName: core_permissionsviolation
-      - createIndex:
-          columns:
-          - column:
-              name: user_id
-              type: int
-          indexName: idx_permissionsviolation_user_id
-          tableName: core_permissionsviolation
-      - createTable:
-          columns:
-          - column:
-              autoIncrement: true
-              constraints:
-                nullable: false
-                primaryKey: true
-              name: id
-              type: int
-          - column:
-              constraints:
-                nullable: false
-              name: created_at
-              type: DATETIME
-          - column:
-              constraints:
-                nullable: false
-              name: updated_at
-              type: DATETIME
-          - column:
-              constraints:
-                nullable: false
-              name: name
-              type: varchar(254)
-          - column:
-              name: description
-              type: text
-          - column:
-              constraints:
-                deferrable: false
-                foreignKeyName: fk_database_ref_organization_id
-                initiallyDeferred: false
-                nullable: false
-                referencedTableName: core_organization
-                referencedColumnNames: id
-              name: organization_id
-              type: int
-          - column:
-              name: details
-              type: text
-          - column:
-              constraints:
-                nullable: false
-              name: engine
-              type: varchar(254)
-          tableName: metabase_database
-      - createIndex:
-          columns:
-          - column:
-              name: organization_id
-          indexName: idx_database_organization_id
-          tableName: metabase_database
-      - createTable:
-          columns:
-          - column:
-              autoIncrement: true
-              constraints:
-                nullable: false
-                primaryKey: true
-              name: id
-              type: int
-          - column:
-              constraints:
-                nullable: false
-              name: created_at
-              type: DATETIME
-          - column:
-              constraints:
-                nullable: false
-              name: updated_at
-              type: DATETIME
-          - column:
-              constraints:
-                nullable: false
-              name: name
-              type: varchar(254)
-          - column:
-              name: rows
-              type: int
-          - column:
-              name: description
-              type: text
-          - column:
-              name: entity_name
-              type: varchar(254)
-          - column:
-              name: entity_type
-              type: varchar(254)
-          - column:
-              constraints:
-                nullable: false
-              name: active
-              type: boolean
-          - column:
-              constraints:
-                deferrable: false
-                foreignKeyName: fk_table_ref_database_id
-                initiallyDeferred: false
-                nullable: false
-                referencedTableName: metabase_database
-                referencedColumnNames: id
-              name: db_id
-              type: int
-          tableName: metabase_table
-      - createIndex:
-          columns:
-          - column:
-              name: db_id
-          indexName: idx_table_db_id
-          tableName: metabase_table
-      - createTable:
-          columns:
-          - column:
-              autoIncrement: true
-              constraints:
-                nullable: false
-                primaryKey: true
-              name: id
-              type: int
-          - column:
-              constraints:
-                nullable: false
-              name: created_at
-              type: DATETIME
-          - column:
-              constraints:
-                nullable: false
-              name: updated_at
-              type: DATETIME
-          - column:
-              constraints:
-                nullable: false
-              name: name
-              type: varchar(254)
-          - column:
-              constraints:
-                nullable: false
-              name: base_type
-              type: varchar(255)
-          - column:
-              name: special_type
-              type: varchar(255)
-          - column:
-              constraints:
-                nullable: false
-              name: active
-              type: boolean
-          - column:
-              name: description
-              type: text
-          - column:
-              constraints:
-                nullable: false
-              name: preview_display
-              type: boolean
-          - column:
-              constraints:
-                nullable: false
-              name: position
-              type: int
-          - column:
-              constraints:
-                deferrable: false
-                foreignKeyName: fk_field_ref_table_id
-                initiallyDeferred: false
-                nullable: false
-                referencedTableName: metabase_table
-                referencedColumnNames: id
-              name: table_id
-              type: int
-          - column:
-              constraints:
-                nullable: false
-              name: field_type
-              type: varchar(254)
-          tableName: metabase_field
-      - createIndex:
-          columns:
-          - column:
-              name: table_id
-          indexName: idx_field_table_id
-          tableName: metabase_field
-      - createTable:
-          columns:
-          - column:
-              autoIncrement: true
-              constraints:
-                nullable: false
-                primaryKey: true
-              name: id
-              type: int
-          - column:
-              constraints:
-                nullable: false
-              name: created_at
-              type: DATETIME
-          - column:
-              constraints:
-                nullable: false
-              name: updated_at
-              type: DATETIME
-          - column:
-              constraints:
-                nullable: false
-              name: relationship
-              type: varchar(254)
-          - column:
-              constraints:
-                deferrable: false
-                foreignKeyName: fk_foreignkey_dest_ref_field_id
-                initiallyDeferred: false
-                nullable: false
-                referencedTableName: metabase_field
-                referencedColumnNames: id
-              name: destination_id
-              type: int
-          - column:
-              constraints:
-                deferrable: false
-                foreignKeyName: fk_foreignkey_origin_ref_field_id
-                initiallyDeferred: false
-                nullable: false
-                referencedTableName: metabase_field
-                referencedColumnNames: id
-              name: origin_id
-              type: int
-          tableName: metabase_foreignkey
-      - createIndex:
-          columns:
-          - column:
-              name: destination_id
-          indexName: idx_foreignkey_destination_id
-          tableName: metabase_foreignkey
-      - createIndex:
-          columns:
-          - column:
-              name: origin_id
-          indexName: idx_foreignkey_origin_id
-          tableName: metabase_foreignkey
-      - createTable:
-          columns:
-          - column:
-              autoIncrement: true
-              constraints:
-                nullable: false
-                primaryKey: true
-              name: id
-              type: int
-          - column:
-              constraints:
-                nullable: false
-              name: created_at
-              type: DATETIME
-          - column:
-              constraints:
-                nullable: false
-              name: updated_at
-              type: DATETIME
-          - column:
-              name: values
-              type: text
-          - column:
-              name: human_readable_values
-              type: text
-          - column:
-              constraints:
-                deferrable: false
-                foreignKeyName: fk_fieldvalues_ref_field_id
-                initiallyDeferred: false
-                nullable: false
-                referencedTableName: metabase_field
-                referencedColumnNames: id
-              name: field_id
-              type: int
-          tableName: metabase_fieldvalues
-      - createIndex:
-          columns:
-          - column:
-              name: field_id
-          indexName: idx_fieldvalues_field_id
-          tableName: metabase_fieldvalues
-      - createTable:
-          columns:
-          - column:
-              autoIncrement: true
-              constraints:
-                nullable: false
-                primaryKey: true
-              name: id
-              type: int
-          - column:
-              constraints:
-                nullable: false
-              name: created_at
-              type: DATETIME
-          - column:
-              constraints:
-                nullable: false
-              name: updated_at
-              type: DATETIME
-          - column:
-              constraints:
-                nullable: false
-              name: name
-              type: varchar(254)
-          - column:
-              constraints:
-                deferrable: false
-                foreignKeyName: fk_tablesegment_ref_table_id
-                initiallyDeferred: false
-                nullable: false
-                referencedTableName: metabase_table
-                referencedColumnNames: id
-              name: table_id
-              type: int
-          - column:
-              constraints:
-                nullable: false
-              name: filter_clause
-              type: text
-          tableName: metabase_tablesegment
-      - createIndex:
-          columns:
-          - column:
-              name: table_id
-          indexName: idx_tablesegment_table_id
-          tableName: metabase_tablesegment
-      - createTable:
-          columns:
-          - column:
-              autoIncrement: true
-              constraints:
-                nullable: false
-                primaryKey: true
-              name: id
-              type: int
-          - column:
-              constraints:
-                nullable: false
-              name: created_at
-              type: DATETIME
-          - column:
-              constraints:
-                nullable: false
-              name: updated_at
-              type: DATETIME
-          - column:
-              constraints:
-                nullable: false
-              name: name
-              type: varchar(254)
-          - column:
-              constraints:
-                nullable: false
-              name: type
-              type: varchar(254)
-          - column:
-              constraints:
-                nullable: false
-              name: details
-              type: text
-          - column:
-              constraints:
-                nullable: false
-              name: version
-              type: int
-          - column:
-              constraints:
-                nullable: false
-              name: public_perms
-              type: int
-          - column:
-              constraints:
-                deferrable: false
-                foreignKeyName: fk_query_ref_user_id
-                initiallyDeferred: false
-                nullable: false
-                referencedTableName: core_user
-                referencedColumnNames: id
-              name: creator_id
-              type: int
-          - column:
-              constraints:
-                deferrable: false
-                foreignKeyName: fk_query_ref_database_id
-                initiallyDeferred: false
-                nullable: false
-                referencedTableName: metabase_database
-                referencedColumnNames: id
-              name: database_id
-              type: int
-          tableName: query_query
-      - createIndex:
-          columns:
-          - column:
-              name: creator_id
-          indexName: idx_query_creator_id
-          tableName: query_query
-      - createIndex:
-          columns:
-          - column:
-              name: database_id
-          indexName: idx_query_database_id
-          tableName: query_query
-      - createTable:
-          columns:
-          - column:
-              autoIncrement: true
-              constraints:
-                nullable: false
-                primaryKey: true
-              name: id
-              type: int
-          - column:
-              constraints:
-                nullable: false
-                unique: true
-              name: uuid
-              type: varchar(254)
-          - column:
-              constraints:
-                nullable: false
-              name: version
-              type: int
-          - column:
-              constraints:
-                nullable: false
-              name: json_query
-              type: text
-          - column:
-              constraints:
-                nullable: false
-              name: raw_query
-              type: text
-          - column:
-              constraints:
-                nullable: false
-              name: status
-              type: varchar(254)
-          - column:
-              constraints:
-                nullable: false
-              name: started_at
-              type: DATETIME
-          - column:
-              name: finished_at
-              type: DATETIME
-          - column:
-              constraints:
-                nullable: false
-              name: running_time
-              type: int
-          - column:
-              constraints:
-                nullable: false
-              name: error
-              type: text
-          - column:
-              constraints:
-                nullable: false
-              name: result_file
-              type: varchar(254)
-          - column:
-              constraints:
-                nullable: false
-              name: result_rows
-              type: int
-          - column:
-              constraints:
-                nullable: false
-              name: result_data
-              type: text
-          - column:
-              constraints:
-                deferrable: false
-                foreignKeyName: fk_queryexecution_ref_query_id
-                initiallyDeferred: false
-                nullable: true
-                referencedTableName: query_query
-                referencedColumnNames: id
-              name: query_id
-              type: int
-          - column:
-              constraints:
-                nullable: false
-              name: additional_info
-              type: text
-          - column:
-              constraints:
-                deferrable: false
-                foreignKeyName: fk_queryexecution_ref_user_id
-                initiallyDeferred: false
-                nullable: false
-                referencedTableName: core_user
-                referencedColumnNames: id
-              name: executor_id
-              type: int
-          tableName: query_queryexecution
-      - createIndex:
-          columns:
-          - column:
-              name: query_id
-          indexName: idx_queryexecution_query_id
-          tableName: query_queryexecution
-      - createIndex:
-          columns:
-          - column:
-              name: executor_id
-          indexName: idx_queryexecution_executor_id
-          tableName: query_queryexecution
-      - createTable:
-          columns:
-          - column:
-              autoIncrement: true
-              constraints:
-                nullable: false
-                primaryKey: true
-              name: id
-              type: int
-          - column:
-              constraints:
-                nullable: false
-              name: created_at
-              type: DATETIME
-          - column:
-              constraints:
-                nullable: false
-              name: updated_at
-              type: DATETIME
-          - column:
-              constraints:
-                nullable: false
-              name: name
-              type: varchar(254)
-          - column:
-              name: description
-              type: text
-          - column:
-              constraints:
-                nullable: false
-              name: display
-              type: varchar(254)
-          - column:
-              constraints:
-                nullable: false
-              name: public_perms
-              type: int
-          - column:
-              constraints:
-                nullable: false
-              name: dataset_query
-              type: text
-          - column:
-              constraints:
-                nullable: false
-              name: visualization_settings
-              type: text
-          - column:
-              constraints:
-                deferrable: false
-                foreignKeyName: fk_card_ref_user_id
-                initiallyDeferred: false
-                nullable: false
-                referencedTableName: core_user
-                referencedColumnNames: id
-              name: creator_id
-              type: int
-          - column:
-              constraints:
-                deferrable: false
-                foreignKeyName: fk_card_ref_organization_id
-                initiallyDeferred: false
-                nullable: false
-                referencedTableName: core_organization
-                referencedColumnNames: id
-              name: organization_id
-              type: int
-          tableName: report_card
-      - createIndex:
-          columns:
-          - column:
-              name: creator_id
-          indexName: idx_card_creator_id
-          tableName: report_card
-      - createIndex:
-          columns:
-          - column:
-              name: organization_id
-          indexName: idx_card_organization_id
-          tableName: report_card
-      - createTable:
-          columns:
-          - column:
-              autoIncrement: true
-              constraints:
-                nullable: false
-                primaryKey: true
-              name: id
-              type: int
-          - column:
-              constraints:
-                nullable: false
-              name: created_at
-              type: DATETIME
-          - column:
-              constraints:
-                nullable: false
-              name: updated_at
-              type: DATETIME
-          - column:
-              constraints:
-                deferrable: false
-                foreignKeyName: fk_cardfavorite_ref_card_id
-                initiallyDeferred: false
-                nullable: false
-                referencedTableName: report_card
-                referencedColumnNames: id
-              name: card_id
-              type: int
-          - column:
-              constraints:
-                deferrable: false
-                foreignKeyName: fk_cardfavorite_ref_user_id
-                initiallyDeferred: false
-                nullable: false
-                referencedTableName: core_user
-                referencedColumnNames: id
-              name: owner_id
-              type: int
-          tableName: report_cardfavorite
-      - addUniqueConstraint:
-          columnNames: card_id, owner_id
-          constraintName: idx_unique_cardfavorite_card_id_owner_id
-          tableName: report_cardfavorite
-      - createIndex:
-          columns:
-          - column:
-              name: card_id
-          indexName: idx_cardfavorite_card_id
-          tableName: report_cardfavorite
-      - createIndex:
-          columns:
-          - column:
-              name: owner_id
-          indexName: idx_cardfavorite_owner_id
-          tableName: report_cardfavorite
-      - createTable:
-          columns:
-          - column:
-              autoIncrement: true
-              constraints:
-                nullable: false
-                primaryKey: true
-              name: id
-              type: int
-          - column:
-              constraints:
-                nullable: false
-              name: created_at
-              type: DATETIME
-          - column:
-              constraints:
-                nullable: false
-              name: updated_at
-              type: DATETIME
-          - column:
-              constraints:
-                nullable: false
-              name: name
-              type: varchar(254)
-          - column:
-              name: description
-              type: text
-          - column:
-              constraints:
-                nullable: false
-              name: public_perms
-              type: int
-          - column:
-              constraints:
-                deferrable: false
-                foreignKeyName: fk_dashboard_ref_user_id
-                initiallyDeferred: false
-                nullable: false
-                referencedTableName: core_user
-                referencedColumnNames: id
-              name: creator_id
-              type: int
-          - column:
-              constraints:
-                deferrable: false
-                foreignKeyName: fk_dashboard_ref_organization_id
-                initiallyDeferred: false
-                nullable: false
-                referencedTableName: core_organization
-                referencedColumnNames: id
-              name: organization_id
-              type: int
-          tableName: report_dashboard
-      - createIndex:
-          columns:
-          - column:
-              name: creator_id
-          indexName: idx_dashboard_creator_id
-          tableName: report_dashboard
-      - createIndex:
-          columns:
-          - column:
-              name: organization_id
-          indexName: idx_dashboard_organization_id
-          tableName: report_dashboard
-      - createTable:
-          columns:
-          - column:
-              autoIncrement: true
-              constraints:
-                nullable: false
-                primaryKey: true
-              name: id
-              type: int
-          - column:
-              constraints:
-                nullable: false
-              name: created_at
-              type: DATETIME
-          - column:
-              constraints:
-                nullable: false
-              name: updated_at
-              type: DATETIME
-          - column:
-              constraints:
-                nullable: false
-              name: sizeX
-              type: int
-          - column:
-              constraints:
-                nullable: false
-              name: sizeY
-              type: int
-          - column:
-              name: row
-              type: int
-          - column:
-              name: col
-              type: int
-          - column:
-              constraints:
-                deferrable: false
-                foreignKeyName: fk_dashboardcard_ref_card_id
-                initiallyDeferred: false
-                nullable: false
-                referencedTableName: report_card
-                referencedColumnNames: id
-              name: card_id
-              type: int
-          - column:
-              constraints:
-                deferrable: false
-                foreignKeyName: fk_dashboardcard_ref_dashboard_id
-                initiallyDeferred: false
-                nullable: false
-                referencedTableName: report_dashboard
-                referencedColumnNames: id
-              name: dashboard_id
-              type: int
-          tableName: report_dashboardcard
-      - createIndex:
-          columns:
-          - column:
-              name: card_id
-          indexName: idx_dashboardcard_card_id
-          tableName: report_dashboardcard
-      - createIndex:
-          columns:
-          - column:
-              name: dashboard_id
-          indexName: idx_dashboardcard_dashboard_id
-          tableName: report_dashboardcard
-      - createTable:
-          columns:
-          - column:
-              autoIncrement: true
-              constraints:
-                nullable: false
-                primaryKey: true
-              name: id
-              type: int
-          - column:
-              constraints:
-                deferrable: false
-                foreignKeyName: fk_dashboardsubscription_ref_dashboard_id
-                initiallyDeferred: false
-                nullable: false
-                referencedTableName: report_dashboard
-                referencedColumnNames: id
-              name: dashboard_id
-              type: int
-          - column:
-              constraints:
-                deferrable: false
-                foreignKeyName: fk_dashboardsubscription_ref_user_id
-                initiallyDeferred: false
-                nullable: false
-                referencedTableName: core_user
-                referencedColumnNames: id
-              name: user_id
-              type: int
-          tableName: report_dashboardsubscription
-      - addUniqueConstraint:
-          columnNames: dashboard_id, user_id
-          constraintName: idx_uniq_dashsubscrip_dashboard_id_user_id
-          tableName: report_dashboardsubscription
-      - createIndex:
-          columns:
-          - column:
-              name: dashboard_id
-          indexName: idx_dashboardsubscription_dashboard_id
-          tableName: report_dashboardsubscription
-      - createIndex:
-          columns:
-          - column:
-              name: user_id
-          indexName: idx_dashboardsubscription_user_id
-          tableName: report_dashboardsubscription
-      - createTable:
-          columns:
-          - column:
-              autoIncrement: true
-              constraints:
-                nullable: false
-                primaryKey: true
-              name: id
-              type: int
-          - column:
-              constraints:
-                nullable: false
-              name: created_at
-              type: DATETIME
-          - column:
-              constraints:
-                nullable: false
-              name: updated_at
-              type: DATETIME
-          - column:
-              constraints:
-                nullable: false
-              name: name
-              type: varchar(254)
-          - column:
-              name: description
-              type: text
-          - column:
-              constraints:
-                nullable: false
-              name: public_perms
-              type: int
-          - column:
-              constraints:
-                nullable: false
-              name: mode
-              type: int
-          - column:
-              constraints:
-                nullable: false
-              name: version
-              type: int
-          - column:
-              constraints:
-                nullable: false
-              name: dataset_query
-              type: text
-          - column:
-              name: email_addresses
-              type: text
-          - column:
-              constraints:
-                deferrable: false
-                foreignKeyName: fk_emailreport_ref_user_id
-                initiallyDeferred: false
-                nullable: false
-                referencedTableName: core_user
-                referencedColumnNames: id
-              name: creator_id
-              type: int
-          - column:
-              constraints:
-                deferrable: false
-                foreignKeyName: fk_emailreport_ref_organization_id
-                initiallyDeferred: false
-                nullable: false
-                referencedTableName: core_organization
-                referencedColumnNames: id
-              name: organization_id
-              type: int
-          - column:
-              constraints:
-                nullable: false
-              name: schedule
-              type: text
-          tableName: report_emailreport
-      - createIndex:
-          columns:
-          - column:
-              name: creator_id
-          indexName: idx_emailreport_creator_id
-          tableName: report_emailreport
-      - createIndex:
-          columns:
-          - column:
-              name: organization_id
-          indexName: idx_emailreport_organization_id
-          tableName: report_emailreport
-      - createTable:
-          columns:
-          - column:
-              autoIncrement: true
-              constraints:
-                nullable: false
-                primaryKey: true
-              name: id
-              type: int
-          - column:
-              constraints:
-                deferrable: false
-                foreignKeyName: fk_emailreport_recipients_ref_emailreport_id
-                initiallyDeferred: false
-                nullable: false
-                referencedTableName: report_emailreport
-                referencedColumnNames: id
-              name: emailreport_id
-              type: int
-          - column:
-              constraints:
-                deferrable: false
-                foreignKeyName: fk_emailreport_recipients_ref_user_id
-                initiallyDeferred: false
-                nullable: false
-                referencedTableName: core_user
-                referencedColumnNames: id
-              name: user_id
-              type: int
-          tableName: report_emailreport_recipients
-      - addUniqueConstraint:
-          columnNames: emailreport_id, user_id
-          constraintName: idx_uniq_emailreportrecip_emailreport_id_user_id
-          tableName: report_emailreport_recipients
-      - createIndex:
-          columns:
-          - column:
-              name: emailreport_id
-          indexName: idx_emailreport_recipients_emailreport_id
-          tableName: report_emailreport_recipients
-      - createIndex:
-          columns:
-          - column:
-              name: user_id
-          indexName: idx_emailreport_recipients_user_id
-          tableName: report_emailreport_recipients
-      - createTable:
-          columns:
-          - column:
-              autoIncrement: true
-              constraints:
-                nullable: false
-                primaryKey: true
-              name: id
-              type: int
-          - column:
-              constraints:
-                nullable: false
-              name: details
-              type: text
-          - column:
-              constraints:
-                nullable: false
-              name: status
-              type: varchar(254)
-          - column:
-              constraints:
-                nullable: false
-              name: created_at
-              type: DATETIME
-          - column:
-              name: started_at
-              type: DATETIME
-          - column:
-              name: finished_at
-              type: DATETIME
-          - column:
-              constraints:
-                nullable: false
-              name: error
-              type: text
-          - column:
-              constraints:
-                nullable: false
-              name: sent_email
-              type: text
-          - column:
-              constraints:
-                deferrable: false
-                foreignKeyName: fk_emailreportexecutions_ref_organization_id
-                initiallyDeferred: false
-                nullable: false
-                referencedTableName: core_organization
-                referencedColumnNames: id
-              name: organization_id
-              type: int
-          - column:
-              constraints:
-                deferrable: false
-                foreignKeyName: fk_emailreportexecutions_ref_report_id
-                initiallyDeferred: false
-                nullable: true
-                referencedTableName: report_emailreport
-                referencedColumnNames: id
-              name: report_id
-              type: int
-          tableName: report_emailreportexecutions
-      - createIndex:
-          columns:
-          - column:
-              name: organization_id
-          indexName: idx_emailreportexecutions_organization_id
-          tableName: report_emailreportexecutions
-      - createIndex:
-          columns:
-          - column:
-              name: report_id
-          indexName: idx_emailreportexecutions_report_id
-          tableName: report_emailreportexecutions
-      - createTable:
-          columns:
-          - column:
-              autoIncrement: true
-              constraints:
-                nullable: false
-                primaryKey: true
-              name: id
-              type: int
-          - column:
-              constraints:
-                nullable: false
-              name: created_at
-              type: DATETIME
-          - column:
-              constraints:
-                nullable: false
-              name: updated_at
-              type: DATETIME
-          - column:
-              constraints:
-                nullable: false
-              name: start
-              type: DATETIME
-          - column:
-              constraints:
-                nullable: false
-              name: end
-              type: DATETIME
-          - column:
-              name: title
-              type: TEXT
-          - column:
-              constraints:
-                nullable: false
-              name: body
-              type: TEXT
-          - column:
-              constraints:
-                nullable: false
-              name: annotation_type
-              type: int
-          - column:
-              constraints:
-                nullable: false
-              name: edit_count
-              type: int
-          - column:
-              constraints:
-                nullable: false
-              name: object_type_id
-              type: int
-          - column:
-              constraints:
-                nullable: false
-              name: object_id
-              type: int
-          - column:
-              constraints:
-                deferrable: false
-                foreignKeyName: fk_annotation_ref_user_id
-                initiallyDeferred: false
-                nullable: false
-                referencedTableName: core_user
-                referencedColumnNames: id
-              name: author_id
-              type: int
-          - column:
-              constraints:
-                deferrable: false
-                foreignKeyName: fk_annotation_ref_organization_id
-                initiallyDeferred: false
-                nullable: false
-                referencedTableName: core_organization
-                referencedColumnNames: id
-              name: organization_id
-              type: int
-          tableName: annotation_annotation
-      - createIndex:
-          columns:
-          - column:
-              name: author_id
-          indexName: idx_annotation_author_id
-          tableName: annotation_annotation
-      - createIndex:
-          columns:
-          - column:
-              name: organization_id
-          indexName: idx_annotation_organization_id
-          tableName: annotation_annotation
-      - createIndex:
-          columns:
-          - column:
-              name: object_type_id
-          indexName: idx_annotation_object_type_id
-          tableName: annotation_annotation
-      - createIndex:
-          columns:
-          - column:
-              name: object_id
-          indexName: idx_annotation_object_id
-          tableName: annotation_annotation
-      - modifySql:
-          dbms: postgresql
-          replace:
-            replace: WITHOUT
-            with: WITH
+        - createTable:
+            columns:
+              - column:
+                  autoIncrement: true
+                  constraints:
+                    nullable: false
+                    primaryKey: true
+                  name: id
+                  type: int
+              - column:
+                  constraints:
+                    nullable: false
+                    unique: true
+                  name: slug
+                  type: varchar(254)
+              - column:
+                  constraints:
+                    nullable: false
+                  name: name
+                  type: varchar(254)
+              - column:
+                  name: description
+                  type: text
+              - column:
+                  name: logo_url
+                  type: varchar(254)
+              - column:
+                  constraints:
+                    nullable: false
+                  name: inherits
+                  type: boolean
+            tableName: core_organization
+        - createTable:
+            columns:
+              - column:
+                  autoIncrement: true
+                  constraints:
+                    nullable: false
+                    primaryKey: true
+                  name: id
+                  type: int
+              - column:
+                  constraints:
+                    nullable: false
+                    unique: true
+                  name: email
+                  type: varchar(254)
+              - column:
+                  constraints:
+                    nullable: false
+                  name: first_name
+                  type: varchar(254)
+              - column:
+                  constraints:
+                    nullable: false
+                  name: last_name
+                  type: varchar(254)
+              - column:
+                  constraints:
+                    nullable: false
+                  name: password
+                  type: varchar(254)
+              - column:
+                  constraints:
+                    nullable: false
+                  defaultValue: default
+                  name: password_salt
+                  type: varchar(254)
+              - column:
+                  constraints:
+                    nullable: false
+                  name: date_joined
+                  type: DATETIME
+              - column:
+                  constraints:
+                    nullable: true
+                  name: last_login
+                  type: DATETIME
+              - column:
+                  constraints:
+                    nullable: false
+                  name: is_staff
+                  type: boolean
+              - column:
+                  constraints:
+                    nullable: false
+                  name: is_superuser
+                  type: boolean
+              - column:
+                  constraints:
+                    nullable: false
+                  name: is_active
+                  type: boolean
+              - column:
+                  name: reset_token
+                  type: varchar(254)
+              - column:
+                  name: reset_triggered
+                  type: BIGINT
+            tableName: core_user
+        - createTable:
+            columns:
+              - column:
+                  autoIncrement: true
+                  constraints:
+                    nullable: false
+                    primaryKey: true
+                  name: id
+                  type: int
+              - column:
+                  constraints:
+                    nullable: false
+                  name: admin
+                  type: boolean
+              - column:
+                  constraints:
+                    deferrable: false
+                    foreignKeyName: fk_userorgperm_ref_user_id
+                    initiallyDeferred: false
+                    nullable: false
+                    referencedTableName: core_user
+                    referencedColumnNames: id
+                  name: user_id
+                  type: int
+              - column:
+                  constraints:
+                    deferrable: false
+                    foreignKeyName: fk_userorgperm_ref_organization_id
+                    initiallyDeferred: false
+                    nullable: false
+                    referencedTableName: core_organization
+                    referencedColumnNames: id
+                  name: organization_id
+                  type: int
+            tableName: core_userorgperm
+        - addUniqueConstraint:
+            columnNames: user_id, organization_id
+            constraintName: idx_unique_user_id_organization_id
+            tableName: core_userorgperm
+        - createIndex:
+            columns:
+              - column:
+                  name: user_id
+                  type: int
+            indexName: idx_userorgperm_user_id
+            tableName: core_userorgperm
+        - createIndex:
+            columns:
+              - column:
+                  name: organization_id
+                  type: int
+            indexName: idx_userorgperm_organization_id
+            tableName: core_userorgperm
+        - createTable:
+            columns:
+              - column:
+                  autoIncrement: true
+                  constraints:
+                    nullable: false
+                    primaryKey: true
+                  name: id
+                  type: int
+              - column:
+                  constraints:
+                    nullable: false
+                  name: url
+                  type: varchar(254)
+              - column:
+                  constraints:
+                    nullable: false
+                  name: timestamp
+                  type: DATETIME
+              - column:
+                  constraints:
+                    deferrable: false
+                    foreignKeyName: fk_permissionviolation_ref_user_id
+                    initiallyDeferred: false
+                    nullable: false
+                    referencedTableName: core_user
+                    referencedColumnNames: id
+                  name: user_id
+                  type: int
+            tableName: core_permissionsviolation
+        - createIndex:
+            columns:
+              - column:
+                  name: user_id
+                  type: int
+            indexName: idx_permissionsviolation_user_id
+            tableName: core_permissionsviolation
+        - createTable:
+            columns:
+              - column:
+                  autoIncrement: true
+                  constraints:
+                    nullable: false
+                    primaryKey: true
+                  name: id
+                  type: int
+              - column:
+                  constraints:
+                    nullable: false
+                  name: created_at
+                  type: DATETIME
+              - column:
+                  constraints:
+                    nullable: false
+                  name: updated_at
+                  type: DATETIME
+              - column:
+                  constraints:
+                    nullable: false
+                  name: name
+                  type: varchar(254)
+              - column:
+                  name: description
+                  type: text
+              - column:
+                  constraints:
+                    deferrable: false
+                    foreignKeyName: fk_database_ref_organization_id
+                    initiallyDeferred: false
+                    nullable: false
+                    referencedTableName: core_organization
+                    referencedColumnNames: id
+                  name: organization_id
+                  type: int
+              - column:
+                  name: details
+                  type: text
+              - column:
+                  constraints:
+                    nullable: false
+                  name: engine
+                  type: varchar(254)
+            tableName: metabase_database
+        - createIndex:
+            columns:
+              - column:
+                  name: organization_id
+            indexName: idx_database_organization_id
+            tableName: metabase_database
+        - createTable:
+            columns:
+              - column:
+                  autoIncrement: true
+                  constraints:
+                    nullable: false
+                    primaryKey: true
+                  name: id
+                  type: int
+              - column:
+                  constraints:
+                    nullable: false
+                  name: created_at
+                  type: DATETIME
+              - column:
+                  constraints:
+                    nullable: false
+                  name: updated_at
+                  type: DATETIME
+              - column:
+                  constraints:
+                    nullable: false
+                  name: name
+                  type: varchar(254)
+              - column:
+                  name: rows
+                  type: int
+              - column:
+                  name: description
+                  type: text
+              - column:
+                  name: entity_name
+                  type: varchar(254)
+              - column:
+                  name: entity_type
+                  type: varchar(254)
+              - column:
+                  constraints:
+                    nullable: false
+                  name: active
+                  type: boolean
+              - column:
+                  constraints:
+                    deferrable: false
+                    foreignKeyName: fk_table_ref_database_id
+                    initiallyDeferred: false
+                    nullable: false
+                    referencedTableName: metabase_database
+                    referencedColumnNames: id
+                  name: db_id
+                  type: int
+            tableName: metabase_table
+        - createIndex:
+            columns:
+              - column:
+                  name: db_id
+            indexName: idx_table_db_id
+            tableName: metabase_table
+        - createTable:
+            columns:
+              - column:
+                  autoIncrement: true
+                  constraints:
+                    nullable: false
+                    primaryKey: true
+                  name: id
+                  type: int
+              - column:
+                  constraints:
+                    nullable: false
+                  name: created_at
+                  type: DATETIME
+              - column:
+                  constraints:
+                    nullable: false
+                  name: updated_at
+                  type: DATETIME
+              - column:
+                  constraints:
+                    nullable: false
+                  name: name
+                  type: varchar(254)
+              - column:
+                  constraints:
+                    nullable: false
+                  name: base_type
+                  type: varchar(255)
+              - column:
+                  name: special_type
+                  type: varchar(255)
+              - column:
+                  constraints:
+                    nullable: false
+                  name: active
+                  type: boolean
+              - column:
+                  name: description
+                  type: text
+              - column:
+                  constraints:
+                    nullable: false
+                  name: preview_display
+                  type: boolean
+              - column:
+                  constraints:
+                    nullable: false
+                  name: position
+                  type: int
+              - column:
+                  constraints:
+                    deferrable: false
+                    foreignKeyName: fk_field_ref_table_id
+                    initiallyDeferred: false
+                    nullable: false
+                    referencedTableName: metabase_table
+                    referencedColumnNames: id
+                  name: table_id
+                  type: int
+              - column:
+                  constraints:
+                    nullable: false
+                  name: field_type
+                  type: varchar(254)
+            tableName: metabase_field
+        - createIndex:
+            columns:
+              - column:
+                  name: table_id
+            indexName: idx_field_table_id
+            tableName: metabase_field
+        - createTable:
+            columns:
+              - column:
+                  autoIncrement: true
+                  constraints:
+                    nullable: false
+                    primaryKey: true
+                  name: id
+                  type: int
+              - column:
+                  constraints:
+                    nullable: false
+                  name: created_at
+                  type: DATETIME
+              - column:
+                  constraints:
+                    nullable: false
+                  name: updated_at
+                  type: DATETIME
+              - column:
+                  constraints:
+                    nullable: false
+                  name: relationship
+                  type: varchar(254)
+              - column:
+                  constraints:
+                    deferrable: false
+                    foreignKeyName: fk_foreignkey_dest_ref_field_id
+                    initiallyDeferred: false
+                    nullable: false
+                    referencedTableName: metabase_field
+                    referencedColumnNames: id
+                  name: destination_id
+                  type: int
+              - column:
+                  constraints:
+                    deferrable: false
+                    foreignKeyName: fk_foreignkey_origin_ref_field_id
+                    initiallyDeferred: false
+                    nullable: false
+                    referencedTableName: metabase_field
+                    referencedColumnNames: id
+                  name: origin_id
+                  type: int
+            tableName: metabase_foreignkey
+        - createIndex:
+            columns:
+              - column:
+                  name: destination_id
+            indexName: idx_foreignkey_destination_id
+            tableName: metabase_foreignkey
+        - createIndex:
+            columns:
+              - column:
+                  name: origin_id
+            indexName: idx_foreignkey_origin_id
+            tableName: metabase_foreignkey
+        - createTable:
+            columns:
+              - column:
+                  autoIncrement: true
+                  constraints:
+                    nullable: false
+                    primaryKey: true
+                  name: id
+                  type: int
+              - column:
+                  constraints:
+                    nullable: false
+                  name: created_at
+                  type: DATETIME
+              - column:
+                  constraints:
+                    nullable: false
+                  name: updated_at
+                  type: DATETIME
+              - column:
+                  name: values
+                  type: text
+              - column:
+                  name: human_readable_values
+                  type: text
+              - column:
+                  constraints:
+                    deferrable: false
+                    foreignKeyName: fk_fieldvalues_ref_field_id
+                    initiallyDeferred: false
+                    nullable: false
+                    referencedTableName: metabase_field
+                    referencedColumnNames: id
+                  name: field_id
+                  type: int
+            tableName: metabase_fieldvalues
+        - createIndex:
+            columns:
+              - column:
+                  name: field_id
+            indexName: idx_fieldvalues_field_id
+            tableName: metabase_fieldvalues
+        - createTable:
+            columns:
+              - column:
+                  autoIncrement: true
+                  constraints:
+                    nullable: false
+                    primaryKey: true
+                  name: id
+                  type: int
+              - column:
+                  constraints:
+                    nullable: false
+                  name: created_at
+                  type: DATETIME
+              - column:
+                  constraints:
+                    nullable: false
+                  name: updated_at
+                  type: DATETIME
+              - column:
+                  constraints:
+                    nullable: false
+                  name: name
+                  type: varchar(254)
+              - column:
+                  constraints:
+                    deferrable: false
+                    foreignKeyName: fk_tablesegment_ref_table_id
+                    initiallyDeferred: false
+                    nullable: false
+                    referencedTableName: metabase_table
+                    referencedColumnNames: id
+                  name: table_id
+                  type: int
+              - column:
+                  constraints:
+                    nullable: false
+                  name: filter_clause
+                  type: text
+            tableName: metabase_tablesegment
+        - createIndex:
+            columns:
+              - column:
+                  name: table_id
+            indexName: idx_tablesegment_table_id
+            tableName: metabase_tablesegment
+        - createTable:
+            columns:
+              - column:
+                  autoIncrement: true
+                  constraints:
+                    nullable: false
+                    primaryKey: true
+                  name: id
+                  type: int
+              - column:
+                  constraints:
+                    nullable: false
+                  name: created_at
+                  type: DATETIME
+              - column:
+                  constraints:
+                    nullable: false
+                  name: updated_at
+                  type: DATETIME
+              - column:
+                  constraints:
+                    nullable: false
+                  name: name
+                  type: varchar(254)
+              - column:
+                  constraints:
+                    nullable: false
+                  name: type
+                  type: varchar(254)
+              - column:
+                  constraints:
+                    nullable: false
+                  name: details
+                  type: text
+              - column:
+                  constraints:
+                    nullable: false
+                  name: version
+                  type: int
+              - column:
+                  constraints:
+                    nullable: false
+                  name: public_perms
+                  type: int
+              - column:
+                  constraints:
+                    deferrable: false
+                    foreignKeyName: fk_query_ref_user_id
+                    initiallyDeferred: false
+                    nullable: false
+                    referencedTableName: core_user
+                    referencedColumnNames: id
+                  name: creator_id
+                  type: int
+              - column:
+                  constraints:
+                    deferrable: false
+                    foreignKeyName: fk_query_ref_database_id
+                    initiallyDeferred: false
+                    nullable: false
+                    referencedTableName: metabase_database
+                    referencedColumnNames: id
+                  name: database_id
+                  type: int
+            tableName: query_query
+        - createIndex:
+            columns:
+              - column:
+                  name: creator_id
+            indexName: idx_query_creator_id
+            tableName: query_query
+        - createIndex:
+            columns:
+              - column:
+                  name: database_id
+            indexName: idx_query_database_id
+            tableName: query_query
+        - createTable:
+            columns:
+              - column:
+                  autoIncrement: true
+                  constraints:
+                    nullable: false
+                    primaryKey: true
+                  name: id
+                  type: int
+              - column:
+                  constraints:
+                    nullable: false
+                    unique: true
+                  name: uuid
+                  type: varchar(254)
+              - column:
+                  constraints:
+                    nullable: false
+                  name: version
+                  type: int
+              - column:
+                  constraints:
+                    nullable: false
+                  name: json_query
+                  type: text
+              - column:
+                  constraints:
+                    nullable: false
+                  name: raw_query
+                  type: text
+              - column:
+                  constraints:
+                    nullable: false
+                  name: status
+                  type: varchar(254)
+              - column:
+                  constraints:
+                    nullable: false
+                  name: started_at
+                  type: DATETIME
+              - column:
+                  name: finished_at
+                  type: DATETIME
+              - column:
+                  constraints:
+                    nullable: false
+                  name: running_time
+                  type: int
+              - column:
+                  constraints:
+                    nullable: false
+                  name: error
+                  type: text
+              - column:
+                  constraints:
+                    nullable: false
+                  name: result_file
+                  type: varchar(254)
+              - column:
+                  constraints:
+                    nullable: false
+                  name: result_rows
+                  type: int
+              - column:
+                  constraints:
+                    nullable: false
+                  name: result_data
+                  type: text
+              - column:
+                  constraints:
+                    deferrable: false
+                    foreignKeyName: fk_queryexecution_ref_query_id
+                    initiallyDeferred: false
+                    nullable: true
+                    referencedTableName: query_query
+                    referencedColumnNames: id
+                  name: query_id
+                  type: int
+              - column:
+                  constraints:
+                    nullable: false
+                  name: additional_info
+                  type: text
+              - column:
+                  constraints:
+                    deferrable: false
+                    foreignKeyName: fk_queryexecution_ref_user_id
+                    initiallyDeferred: false
+                    nullable: false
+                    referencedTableName: core_user
+                    referencedColumnNames: id
+                  name: executor_id
+                  type: int
+            tableName: query_queryexecution
+        - createIndex:
+            columns:
+              - column:
+                  name: query_id
+            indexName: idx_queryexecution_query_id
+            tableName: query_queryexecution
+        - createIndex:
+            columns:
+              - column:
+                  name: executor_id
+            indexName: idx_queryexecution_executor_id
+            tableName: query_queryexecution
+        - createTable:
+            columns:
+              - column:
+                  autoIncrement: true
+                  constraints:
+                    nullable: false
+                    primaryKey: true
+                  name: id
+                  type: int
+              - column:
+                  constraints:
+                    nullable: false
+                  name: created_at
+                  type: DATETIME
+              - column:
+                  constraints:
+                    nullable: false
+                  name: updated_at
+                  type: DATETIME
+              - column:
+                  constraints:
+                    nullable: false
+                  name: name
+                  type: varchar(254)
+              - column:
+                  name: description
+                  type: text
+              - column:
+                  constraints:
+                    nullable: false
+                  name: display
+                  type: varchar(254)
+              - column:
+                  constraints:
+                    nullable: false
+                  name: public_perms
+                  type: int
+              - column:
+                  constraints:
+                    nullable: false
+                  name: dataset_query
+                  type: text
+              - column:
+                  constraints:
+                    nullable: false
+                  name: visualization_settings
+                  type: text
+              - column:
+                  constraints:
+                    deferrable: false
+                    foreignKeyName: fk_card_ref_user_id
+                    initiallyDeferred: false
+                    nullable: false
+                    referencedTableName: core_user
+                    referencedColumnNames: id
+                  name: creator_id
+                  type: int
+              - column:
+                  constraints:
+                    deferrable: false
+                    foreignKeyName: fk_card_ref_organization_id
+                    initiallyDeferred: false
+                    nullable: false
+                    referencedTableName: core_organization
+                    referencedColumnNames: id
+                  name: organization_id
+                  type: int
+            tableName: report_card
+        - createIndex:
+            columns:
+              - column:
+                  name: creator_id
+            indexName: idx_card_creator_id
+            tableName: report_card
+        - createIndex:
+            columns:
+              - column:
+                  name: organization_id
+            indexName: idx_card_organization_id
+            tableName: report_card
+        - createTable:
+            columns:
+              - column:
+                  autoIncrement: true
+                  constraints:
+                    nullable: false
+                    primaryKey: true
+                  name: id
+                  type: int
+              - column:
+                  constraints:
+                    nullable: false
+                  name: created_at
+                  type: DATETIME
+              - column:
+                  constraints:
+                    nullable: false
+                  name: updated_at
+                  type: DATETIME
+              - column:
+                  constraints:
+                    deferrable: false
+                    foreignKeyName: fk_cardfavorite_ref_card_id
+                    initiallyDeferred: false
+                    nullable: false
+                    referencedTableName: report_card
+                    referencedColumnNames: id
+                  name: card_id
+                  type: int
+              - column:
+                  constraints:
+                    deferrable: false
+                    foreignKeyName: fk_cardfavorite_ref_user_id
+                    initiallyDeferred: false
+                    nullable: false
+                    referencedTableName: core_user
+                    referencedColumnNames: id
+                  name: owner_id
+                  type: int
+            tableName: report_cardfavorite
+        - addUniqueConstraint:
+            columnNames: card_id, owner_id
+            constraintName: idx_unique_cardfavorite_card_id_owner_id
+            tableName: report_cardfavorite
+        - createIndex:
+            columns:
+              - column:
+                  name: card_id
+            indexName: idx_cardfavorite_card_id
+            tableName: report_cardfavorite
+        - createIndex:
+            columns:
+              - column:
+                  name: owner_id
+            indexName: idx_cardfavorite_owner_id
+            tableName: report_cardfavorite
+        - createTable:
+            columns:
+              - column:
+                  autoIncrement: true
+                  constraints:
+                    nullable: false
+                    primaryKey: true
+                  name: id
+                  type: int
+              - column:
+                  constraints:
+                    nullable: false
+                  name: created_at
+                  type: DATETIME
+              - column:
+                  constraints:
+                    nullable: false
+                  name: updated_at
+                  type: DATETIME
+              - column:
+                  constraints:
+                    nullable: false
+                  name: name
+                  type: varchar(254)
+              - column:
+                  name: description
+                  type: text
+              - column:
+                  constraints:
+                    nullable: false
+                  name: public_perms
+                  type: int
+              - column:
+                  constraints:
+                    deferrable: false
+                    foreignKeyName: fk_dashboard_ref_user_id
+                    initiallyDeferred: false
+                    nullable: false
+                    referencedTableName: core_user
+                    referencedColumnNames: id
+                  name: creator_id
+                  type: int
+              - column:
+                  constraints:
+                    deferrable: false
+                    foreignKeyName: fk_dashboard_ref_organization_id
+                    initiallyDeferred: false
+                    nullable: false
+                    referencedTableName: core_organization
+                    referencedColumnNames: id
+                  name: organization_id
+                  type: int
+            tableName: report_dashboard
+        - createIndex:
+            columns:
+              - column:
+                  name: creator_id
+            indexName: idx_dashboard_creator_id
+            tableName: report_dashboard
+        - createIndex:
+            columns:
+              - column:
+                  name: organization_id
+            indexName: idx_dashboard_organization_id
+            tableName: report_dashboard
+        - createTable:
+            columns:
+              - column:
+                  autoIncrement: true
+                  constraints:
+                    nullable: false
+                    primaryKey: true
+                  name: id
+                  type: int
+              - column:
+                  constraints:
+                    nullable: false
+                  name: created_at
+                  type: DATETIME
+              - column:
+                  constraints:
+                    nullable: false
+                  name: updated_at
+                  type: DATETIME
+              - column:
+                  constraints:
+                    nullable: false
+                  name: sizeX
+                  type: int
+              - column:
+                  constraints:
+                    nullable: false
+                  name: sizeY
+                  type: int
+              - column:
+                  name: row
+                  type: int
+              - column:
+                  name: col
+                  type: int
+              - column:
+                  constraints:
+                    deferrable: false
+                    foreignKeyName: fk_dashboardcard_ref_card_id
+                    initiallyDeferred: false
+                    nullable: false
+                    referencedTableName: report_card
+                    referencedColumnNames: id
+                  name: card_id
+                  type: int
+              - column:
+                  constraints:
+                    deferrable: false
+                    foreignKeyName: fk_dashboardcard_ref_dashboard_id
+                    initiallyDeferred: false
+                    nullable: false
+                    referencedTableName: report_dashboard
+                    referencedColumnNames: id
+                  name: dashboard_id
+                  type: int
+            tableName: report_dashboardcard
+        - createIndex:
+            columns:
+              - column:
+                  name: card_id
+            indexName: idx_dashboardcard_card_id
+            tableName: report_dashboardcard
+        - createIndex:
+            columns:
+              - column:
+                  name: dashboard_id
+            indexName: idx_dashboardcard_dashboard_id
+            tableName: report_dashboardcard
+        - createTable:
+            columns:
+              - column:
+                  autoIncrement: true
+                  constraints:
+                    nullable: false
+                    primaryKey: true
+                  name: id
+                  type: int
+              - column:
+                  constraints:
+                    deferrable: false
+                    foreignKeyName: fk_dashboardsubscription_ref_dashboard_id
+                    initiallyDeferred: false
+                    nullable: false
+                    referencedTableName: report_dashboard
+                    referencedColumnNames: id
+                  name: dashboard_id
+                  type: int
+              - column:
+                  constraints:
+                    deferrable: false
+                    foreignKeyName: fk_dashboardsubscription_ref_user_id
+                    initiallyDeferred: false
+                    nullable: false
+                    referencedTableName: core_user
+                    referencedColumnNames: id
+                  name: user_id
+                  type: int
+            tableName: report_dashboardsubscription
+        - addUniqueConstraint:
+            columnNames: dashboard_id, user_id
+            constraintName: idx_uniq_dashsubscrip_dashboard_id_user_id
+            tableName: report_dashboardsubscription
+        - createIndex:
+            columns:
+              - column:
+                  name: dashboard_id
+            indexName: idx_dashboardsubscription_dashboard_id
+            tableName: report_dashboardsubscription
+        - createIndex:
+            columns:
+              - column:
+                  name: user_id
+            indexName: idx_dashboardsubscription_user_id
+            tableName: report_dashboardsubscription
+        - createTable:
+            columns:
+              - column:
+                  autoIncrement: true
+                  constraints:
+                    nullable: false
+                    primaryKey: true
+                  name: id
+                  type: int
+              - column:
+                  constraints:
+                    nullable: false
+                  name: created_at
+                  type: DATETIME
+              - column:
+                  constraints:
+                    nullable: false
+                  name: updated_at
+                  type: DATETIME
+              - column:
+                  constraints:
+                    nullable: false
+                  name: name
+                  type: varchar(254)
+              - column:
+                  name: description
+                  type: text
+              - column:
+                  constraints:
+                    nullable: false
+                  name: public_perms
+                  type: int
+              - column:
+                  constraints:
+                    nullable: false
+                  name: mode
+                  type: int
+              - column:
+                  constraints:
+                    nullable: false
+                  name: version
+                  type: int
+              - column:
+                  constraints:
+                    nullable: false
+                  name: dataset_query
+                  type: text
+              - column:
+                  name: email_addresses
+                  type: text
+              - column:
+                  constraints:
+                    deferrable: false
+                    foreignKeyName: fk_emailreport_ref_user_id
+                    initiallyDeferred: false
+                    nullable: false
+                    referencedTableName: core_user
+                    referencedColumnNames: id
+                  name: creator_id
+                  type: int
+              - column:
+                  constraints:
+                    deferrable: false
+                    foreignKeyName: fk_emailreport_ref_organization_id
+                    initiallyDeferred: false
+                    nullable: false
+                    referencedTableName: core_organization
+                    referencedColumnNames: id
+                  name: organization_id
+                  type: int
+              - column:
+                  constraints:
+                    nullable: false
+                  name: schedule
+                  type: text
+            tableName: report_emailreport
+        - createIndex:
+            columns:
+              - column:
+                  name: creator_id
+            indexName: idx_emailreport_creator_id
+            tableName: report_emailreport
+        - createIndex:
+            columns:
+              - column:
+                  name: organization_id
+            indexName: idx_emailreport_organization_id
+            tableName: report_emailreport
+        - createTable:
+            columns:
+              - column:
+                  autoIncrement: true
+                  constraints:
+                    nullable: false
+                    primaryKey: true
+                  name: id
+                  type: int
+              - column:
+                  constraints:
+                    deferrable: false
+                    foreignKeyName: fk_emailreport_recipients_ref_emailreport_id
+                    initiallyDeferred: false
+                    nullable: false
+                    referencedTableName: report_emailreport
+                    referencedColumnNames: id
+                  name: emailreport_id
+                  type: int
+              - column:
+                  constraints:
+                    deferrable: false
+                    foreignKeyName: fk_emailreport_recipients_ref_user_id
+                    initiallyDeferred: false
+                    nullable: false
+                    referencedTableName: core_user
+                    referencedColumnNames: id
+                  name: user_id
+                  type: int
+            tableName: report_emailreport_recipients
+        - addUniqueConstraint:
+            columnNames: emailreport_id, user_id
+            constraintName: idx_uniq_emailreportrecip_emailreport_id_user_id
+            tableName: report_emailreport_recipients
+        - createIndex:
+            columns:
+              - column:
+                  name: emailreport_id
+            indexName: idx_emailreport_recipients_emailreport_id
+            tableName: report_emailreport_recipients
+        - createIndex:
+            columns:
+              - column:
+                  name: user_id
+            indexName: idx_emailreport_recipients_user_id
+            tableName: report_emailreport_recipients
+        - createTable:
+            columns:
+              - column:
+                  autoIncrement: true
+                  constraints:
+                    nullable: false
+                    primaryKey: true
+                  name: id
+                  type: int
+              - column:
+                  constraints:
+                    nullable: false
+                  name: details
+                  type: text
+              - column:
+                  constraints:
+                    nullable: false
+                  name: status
+                  type: varchar(254)
+              - column:
+                  constraints:
+                    nullable: false
+                  name: created_at
+                  type: DATETIME
+              - column:
+                  name: started_at
+                  type: DATETIME
+              - column:
+                  name: finished_at
+                  type: DATETIME
+              - column:
+                  constraints:
+                    nullable: false
+                  name: error
+                  type: text
+              - column:
+                  constraints:
+                    nullable: false
+                  name: sent_email
+                  type: text
+              - column:
+                  constraints:
+                    deferrable: false
+                    foreignKeyName: fk_emailreportexecutions_ref_organization_id
+                    initiallyDeferred: false
+                    nullable: false
+                    referencedTableName: core_organization
+                    referencedColumnNames: id
+                  name: organization_id
+                  type: int
+              - column:
+                  constraints:
+                    deferrable: false
+                    foreignKeyName: fk_emailreportexecutions_ref_report_id
+                    initiallyDeferred: false
+                    nullable: true
+                    referencedTableName: report_emailreport
+                    referencedColumnNames: id
+                  name: report_id
+                  type: int
+            tableName: report_emailreportexecutions
+        - createIndex:
+            columns:
+              - column:
+                  name: organization_id
+            indexName: idx_emailreportexecutions_organization_id
+            tableName: report_emailreportexecutions
+        - createIndex:
+            columns:
+              - column:
+                  name: report_id
+            indexName: idx_emailreportexecutions_report_id
+            tableName: report_emailreportexecutions
+        - createTable:
+            columns:
+              - column:
+                  autoIncrement: true
+                  constraints:
+                    nullable: false
+                    primaryKey: true
+                  name: id
+                  type: int
+              - column:
+                  constraints:
+                    nullable: false
+                  name: created_at
+                  type: DATETIME
+              - column:
+                  constraints:
+                    nullable: false
+                  name: updated_at
+                  type: DATETIME
+              - column:
+                  constraints:
+                    nullable: false
+                  name: start
+                  type: DATETIME
+              - column:
+                  constraints:
+                    nullable: false
+                  name: end
+                  type: DATETIME
+              - column:
+                  name: title
+                  type: TEXT
+              - column:
+                  constraints:
+                    nullable: false
+                  name: body
+                  type: TEXT
+              - column:
+                  constraints:
+                    nullable: false
+                  name: annotation_type
+                  type: int
+              - column:
+                  constraints:
+                    nullable: false
+                  name: edit_count
+                  type: int
+              - column:
+                  constraints:
+                    nullable: false
+                  name: object_type_id
+                  type: int
+              - column:
+                  constraints:
+                    nullable: false
+                  name: object_id
+                  type: int
+              - column:
+                  constraints:
+                    deferrable: false
+                    foreignKeyName: fk_annotation_ref_user_id
+                    initiallyDeferred: false
+                    nullable: false
+                    referencedTableName: core_user
+                    referencedColumnNames: id
+                  name: author_id
+                  type: int
+              - column:
+                  constraints:
+                    deferrable: false
+                    foreignKeyName: fk_annotation_ref_organization_id
+                    initiallyDeferred: false
+                    nullable: false
+                    referencedTableName: core_organization
+                    referencedColumnNames: id
+                  name: organization_id
+                  type: int
+            tableName: annotation_annotation
+        - createIndex:
+            columns:
+              - column:
+                  name: author_id
+            indexName: idx_annotation_author_id
+            tableName: annotation_annotation
+        - createIndex:
+            columns:
+              - column:
+                  name: organization_id
+            indexName: idx_annotation_organization_id
+            tableName: annotation_annotation
+        - createIndex:
+            columns:
+              - column:
+                  name: object_type_id
+            indexName: idx_annotation_object_type_id
+            tableName: annotation_annotation
+        - createIndex:
+            columns:
+              - column:
+                  name: object_id
+            indexName: idx_annotation_object_id
+            tableName: annotation_annotation
+        - modifySql:
+            dbms: postgresql
+            replace:
+              replace: WITHOUT
+              with: WITH
   - changeSet:
       id: '2'
       author: agilliland
       validCheckSum: ANY
       changes:
-      - createTable:
-          columns:
-          - column:
-              constraints:
-                nullable: false
-                primaryKey: true
-              name: id
-              type: varchar(254)
-          - column:
-              constraints:
-                deferrable: false
-                foreignKeyName: fk_session_ref_user_id
-                initiallyDeferred: false
-                nullable: false
-                referencedTableName: core_user
-                referencedColumnNames: id
-              name: user_id
-              type: int
-          - column:
-              constraints:
-                nullable: false
-              name: created_at
-              type: DATETIME
-          tableName: core_session
-      - modifySql:
-          dbms: postgresql
-          replace:
-            replace: WITHOUT
-            with: WITH
+        - createTable:
+            columns:
+              - column:
+                  constraints:
+                    nullable: false
+                    primaryKey: true
+                  name: id
+                  type: varchar(254)
+              - column:
+                  constraints:
+                    deferrable: false
+                    foreignKeyName: fk_session_ref_user_id
+                    initiallyDeferred: false
+                    nullable: false
+                    referencedTableName: core_user
+                    referencedColumnNames: id
+                  name: user_id
+                  type: int
+              - column:
+                  constraints:
+                    nullable: false
+                  name: created_at
+                  type: DATETIME
+            tableName: core_session
+        - modifySql:
+            dbms: postgresql
+            replace:
+              replace: WITHOUT
+              with: WITH
   - changeSet:
       id: '4'
       author: cammsaul
       changes:
-      - createTable:
-          columns:
-          - column:
-              constraints:
-                nullable: false
-                primaryKey: true
-              name: key
-              type: varchar(254)
-          - column:
-              constraints:
-                nullable: false
-              name: value
-              type: varchar(254)
-          tableName: setting
+        - createTable:
+            columns:
+              - column:
+                  constraints:
+                    nullable: false
+                    primaryKey: true
+                  name: key
+                  type: varchar(254)
+              - column:
+                  constraints:
+                    nullable: false
+                  name: value
+                  type: varchar(254)
+            tableName: setting
   - changeSet:
       id: '5'
       author: agilliland
       changes:
-      - addColumn:
-          columns:
-          - column:
-              name: report_timezone
-              type: varchar(254)
-          tableName: core_organization
+        - addColumn:
+            columns:
+              - column:
+                  name: report_timezone
+                  type: varchar(254)
+            tableName: core_organization
   - changeSet:
       id: '6'
       author: agilliland
       changes:
-      - dropNotNullConstraint:
-          columnDataType: int
-          columnName: organization_id
-          tableName: metabase_database
-      - dropForeignKeyConstraint:
-          baseTableName: metabase_database
-          constraintName: fk_database_ref_organization_id
-      - dropNotNullConstraint:
-          columnDataType: int
-          columnName: organization_id
-          tableName: report_card
-      - dropForeignKeyConstraint:
-          baseTableName: report_card
-          constraintName: fk_card_ref_organization_id
-      - dropNotNullConstraint:
-          columnDataType: int
-          columnName: organization_id
-          tableName: report_dashboard
-      - dropForeignKeyConstraint:
-          baseTableName: report_dashboard
-          constraintName: fk_dashboard_ref_organization_id
-      - dropNotNullConstraint:
-          columnDataType: int
-          columnName: organization_id
-          tableName: report_emailreport
-      - dropForeignKeyConstraint:
-          baseTableName: report_emailreport
-          constraintName: fk_emailreport_ref_organization_id
-      - dropNotNullConstraint:
-          columnDataType: int
-          columnName: organization_id
-          tableName: report_emailreportexecutions
-      - dropForeignKeyConstraint:
-          baseTableName: report_emailreportexecutions
-          constraintName: fk_emailreportexecutions_ref_organization_id
-      - dropNotNullConstraint:
-          columnDataType: int
-          columnName: organization_id
-          tableName: annotation_annotation
-      - dropForeignKeyConstraint:
-          baseTableName: annotation_annotation
-          constraintName: fk_annotation_ref_organization_id
+        - dropNotNullConstraint:
+            columnDataType: int
+            columnName: organization_id
+            tableName: metabase_database
+        - dropForeignKeyConstraint:
+            baseTableName: metabase_database
+            constraintName: fk_database_ref_organization_id
+        - dropNotNullConstraint:
+            columnDataType: int
+            columnName: organization_id
+            tableName: report_card
+        - dropForeignKeyConstraint:
+            baseTableName: report_card
+            constraintName: fk_card_ref_organization_id
+        - dropNotNullConstraint:
+            columnDataType: int
+            columnName: organization_id
+            tableName: report_dashboard
+        - dropForeignKeyConstraint:
+            baseTableName: report_dashboard
+            constraintName: fk_dashboard_ref_organization_id
+        - dropNotNullConstraint:
+            columnDataType: int
+            columnName: organization_id
+            tableName: report_emailreport
+        - dropForeignKeyConstraint:
+            baseTableName: report_emailreport
+            constraintName: fk_emailreport_ref_organization_id
+        - dropNotNullConstraint:
+            columnDataType: int
+            columnName: organization_id
+            tableName: report_emailreportexecutions
+        - dropForeignKeyConstraint:
+            baseTableName: report_emailreportexecutions
+            constraintName: fk_emailreportexecutions_ref_organization_id
+        - dropNotNullConstraint:
+            columnDataType: int
+            columnName: organization_id
+            tableName: annotation_annotation
+        - dropForeignKeyConstraint:
+            baseTableName: annotation_annotation
+            constraintName: fk_annotation_ref_organization_id
   - changeSet:
       id: '7'
       author: cammsaul
       validCheckSum: ANY
       changes:
-      - addColumn:
-          columns:
-          - column:
-              constraints:
-                foreignKeyName: fk_field_parent_ref_field_id
-                nullable: true
-                referencedTableName: metabase_field
-                referencedColumnNames: id
-              name: parent_id
-              type: int
-          tableName: metabase_field
+        - addColumn:
+            columns:
+              - column:
+                  constraints:
+                    foreignKeyName: fk_field_parent_ref_field_id
+                    nullable: true
+                    referencedTableName: metabase_field
+                    referencedColumnNames: id
+                  name: parent_id
+                  type: int
+            tableName: metabase_field
   - changeSet:
       id: '8'
       author: tlrobinson
       changes:
-      - addColumn:
-          columns:
-          - column:
-              name: display_name
-              type: varchar(254)
-          tableName: metabase_table
-      - addColumn:
-          columns:
-          - column:
-              name: display_name
-              type: varchar(254)
-          tableName: metabase_field
+        - addColumn:
+            columns:
+              - column:
+                  name: display_name
+                  type: varchar(254)
+            tableName: metabase_table
+        - addColumn:
+            columns:
+              - column:
+                  name: display_name
+                  type: varchar(254)
+            tableName: metabase_field
   - changeSet:
       id: '9'
       author: tlrobinson
       changes:
-      - addColumn:
-          columns:
-          - column:
-              name: visibility_type
-              type: varchar(254)
-          tableName: metabase_table
+        - addColumn:
+            columns:
+              - column:
+                  name: visibility_type
+                  type: varchar(254)
+            tableName: metabase_table
   - changeSet:
       id: 10
       author: cammsaul
@@ -3969,13 +3969,13 @@ databaseChangeLog:
       author: senior
       comment: 'Added 0.26.0'
       changes:
-      - dropForeignKeyConstraint:
-          baseTableName: raw_table
-          constraintName: fk_rawtable_ref_database
-          remarks: 'This FK prevents deleting databases even though RAW_TABLE is no longer used. The table is still around to support downgrades, but the FK reference is no longer needed.'
-# Changeset 65 was accidentally released in 0.26.0.RC2. The changeset has been removed from the migrations list so that
-# users that haven't ran the migration (i.e. they didn't run 0.26.0.RC2) won't waste time running it just to have it
-# reversed. For 0.26.0.RC2 users, the below changeset will remove those tables if they are present
+        - dropForeignKeyConstraint:
+            baseTableName: raw_table
+            constraintName: fk_rawtable_ref_database
+            remarks: 'This FK prevents deleting databases even though RAW_TABLE is no longer used. The table is still around to support downgrades, but the FK reference is no longer needed.'
+  # Changeset 65 was accidentally released in 0.26.0.RC2. The changeset has been removed from the migrations list so that
+  # users that haven't ran the migration (i.e. they didn't run 0.26.0.RC2) won't waste time running it just to have it
+  # reversed. For 0.26.0.RC2 users, the below changeset will remove those tables if they are present
   - changeSet:
       id: 66
       author: senior
@@ -3986,7 +3986,7 @@ databaseChangeLog:
             sql: drop table if exists computation_job_result cascade
         - sql:
             sql: drop table if exists computation_job cascade
-# NOTE Atte Keinänen 9/28/17: This was originally in changeset 65 as explained above
+  # NOTE Atte Keinänen 9/28/17: This was originally in changeset 65 as explained above
   - changeSet:
       id: 67
       author: attekei
@@ -4415,7 +4415,7 @@ databaseChangeLog:
                   remarks: 'When was this User last updated?'
         - sql:
             sql: update core_user set updated_at=date_joined
-# Remove the GTAP card_id constraint. When not included, will default to querying against the GTAP table_id.
+  # Remove the GTAP card_id constraint. When not included, will default to querying against the GTAP table_id.
   - changeSet:
       id: 83
       author: senior
@@ -4425,8 +4425,8 @@ databaseChangeLog:
             tableName: group_table_access_policy
             columnName: card_id
             columnDataType: int
-# Switch the logic for metric/segment archiving to be more consistent with other entities in the model.
-# Similarly, add the archived flag to pulses which doesn't have one.
+  # Switch the logic for metric/segment archiving to be more consistent with other entities in the model.
+  # Similarly, add the archived flag to pulses which doesn't have one.
   - changeSet:
       id: 84
       author: senior
@@ -4535,8 +4535,8 @@ databaseChangeLog:
             dbms: mysql,mariadb
             sql: "ALTER TABLE `collection` CHANGE `name` `name` TEXT NOT NULL COMMENT 'The user-facing name of this Collection.'"
 
-# In 0.30.0 we finally removed the long-deprecated native read permissions. Since they're no longer considered valid by
-# our permissions code, remove any entries for them so they don't cause problems.
+  # In 0.30.0 we finally removed the long-deprecated native read permissions. Since they're no longer considered valid by
+  # our permissions code, remove any entries for them so they don't cause problems.
   - changeSet:
       id: 86
       author: camsaul
@@ -4545,7 +4545,7 @@ databaseChangeLog:
         - sql:
             sql: DELETE FROM permissions WHERE object LIKE '%/native/read/'
 
-# Time to finally get rid of the RawTable and RawColumn tables. Bye Felicia!
+  # Time to finally get rid of the RawTable and RawColumn tables. Bye Felicia!
   - changeSet:
       id: 87
       author: camsaul
@@ -4571,11 +4571,11 @@ databaseChangeLog:
                     nullable: false
                   remarks: 'Boolean to indicate if this user is authenticated via SAML'
 
-# The Quartz Task Scheduler can use a DB to 'cluster' tasks and make sure they are only ran by a single instance where
-# using a multi-instance Metabase setup.
+  # The Quartz Task Scheduler can use a DB to 'cluster' tasks and make sure they are only ran by a single instance where
+  # using a multi-instance Metabase setup.
 
-# Quartz identifiers are upper-case in MySQL and H2 but lower-case in PostgreSQL for reasons... so we'll have to
-# define properties for EVERYTHING and use the correct identifiers
+  # Quartz identifiers are upper-case in MySQL and H2 but lower-case in PostgreSQL for reasons... so we'll have to
+  # define properties for EVERYTHING and use the correct identifiers
 
   - property: {name: quartz.blob_data.name,                         dbms: "postgresql",       value: blob_data}
   - property: {name: quartz.blob_data.name,                         dbms: "mysql,mariadb,h2", value: BLOB_DATA}
@@ -5154,9 +5154,9 @@ databaseChangeLog:
                   type: bigint
                   constraints:
                     nullable: false
-# Note: this column is not used on Quartz 2.1.x; it is used in 2.2.x, which recommends making it NOT NULL. I've made it
-# nullable since at the time of this migration we're still using 2.1.7; including it gives us an easy upgrade path in
-# the future.
+              # Note: this column is not used on Quartz 2.1.x; it is used in 2.2.x, which recommends making it NOT NULL. I've made it
+              # nullable since at the time of this migration we're still using 2.1.7; including it gives us an easy upgrade path in
+              # the future.
               - column:
                   name: ${quartz.sched_time.name}
                   type: bigint
@@ -5439,7 +5439,7 @@ databaseChangeLog:
             tableName: core_user
             columnName: saml_auth
 
-# Forgot to get rid of the raw_table_id and raw_column_id columns when we dropped the tables they referenced in migration 87.
+  # Forgot to get rid of the raw_table_id and raw_column_id columns when we dropped the tables they referenced in migration 87.
 
   - changeSet:
       id: 91
@@ -5453,7 +5453,7 @@ databaseChangeLog:
             tableName: metabase_field
             columnName: raw_column_id
 
-# Add database_id column to query_execution
+  # Add database_id column to query_execution
 
   - changeSet:
       id: 92
@@ -5469,7 +5469,7 @@ databaseChangeLog:
                   type: integer
                   remarks: 'ID of the database this query was ran against.'
 
-# Start recording the actual query dictionary that's been executed
+  # Start recording the actual query dictionary that's been executed
 
   - changeSet:
       id: 93
@@ -5484,7 +5484,7 @@ databaseChangeLog:
                   type: text
                   remarks: 'The actual "query dictionary" for this query.'
 
-# Create the TaskHistory table, intended to provide debugging info on our background/quartz processes
+  # Create the TaskHistory table, intended to provide debugging info on our background/quartz processes
   - changeSet:
       id: 94
       author: senior
@@ -5544,13 +5544,13 @@ databaseChangeLog:
             columns:
               - column:
                   name: db_id
-# Before this changeset, the databasechangelog table didn't include any uniqueness constraing for the databasechangelog
-# table. Not having anything that uniquely identifies a row can cause issues for database replication. In earlier
-# versions of Liquibase the uniquenes constraint was (ID, AUTHOR, FILENAME) but that was dropped
-# (https://liquibase.jira.com/browse/CORE-1909) as some as the combination of the three columns caused issues on some
-# databases. We only support PostgreSQL, MySQL and H2 which doesn't have that issue. This changeset puts back that
-# uniqueness constraint since the issue shouldn't affect us and it will allow replication without the user needed to
-# add their own constraint.
+  # Before this changeset, the databasechangelog table didn't include any uniqueness constraing for the databasechangelog
+  # table. Not having anything that uniquely identifies a row can cause issues for database replication. In earlier
+  # versions of Liquibase the uniquenes constraint was (ID, AUTHOR, FILENAME) but that was dropped
+  # (https://liquibase.jira.com/browse/CORE-1909) as some as the combination of the three columns caused issues on some
+  # databases. We only support PostgreSQL, MySQL and H2 which doesn't have that issue. This changeset puts back that
+  # uniqueness constraint since the issue shouldn't affect us and it will allow replication without the user needed to
+  # add their own constraint.
   - changeSet:
       id: 95
       author: senior
@@ -5571,9 +5571,9 @@ databaseChangeLog:
             columnNames: id, author, filename
             constraintName: idx_databasechangelog_id_author_filename
             tableName: ${databasechangelog.name}
-#
-# ADD Field.settings COLUMN
-#
+  #
+  # ADD Field.settings COLUMN
+  #
   - changeSet:
       id: 96
       author: camsaul
@@ -5586,9 +5586,9 @@ databaseChangeLog:
                   name: settings
                   type: text
                   remarks: 'Serialized JSON FE-specific settings like formatting, etc. Scope of what is stored here may increase in future.'
-#
-# Change MySQL/Maria's blob type to LONGBLOB to more closely match what H2 and PostgreSQL support for size limits
-#
+  #
+  # Change MySQL/Maria's blob type to LONGBLOB to more closely match what H2 and PostgreSQL support for size limits
+  #
   - changeSet:
       id: 97
       author: senior
@@ -5603,24 +5603,24 @@ databaseChangeLog:
             columnName: results
             newDataType: longblob
 
-#
-# Add unique constraints for (Field name + table_id + parent_id) and for (Table name + schema + db_id) unless for one
-# reason or another those would-be constraints are already violated. This is to fix issue where sometimes the same Field
-# or Table is synced more than once (see #669, #8950, #9048)
-#
-# Note that the SQL standard says unique constraints should not apply to columns with NULL values. Consider the following:
-#
-# INSERT INTO metabase_table (db_id, schema, name) VALUES (1, 'PUBLIC', 'my_table');
-# INSERT INTO metabase_table (db_id, schema, name) VALUES (1, 'PUBLIC', 'my_table'); -- fails: violates UNIQUE constraint
-#
-# INSERT INTO metabase_table (db_id, schema, name) VALUES (1, NULL, 'my_table');
-# INSERT INTO metabase_table (db_id, schema, name) VALUES (1, NULL, 'my_table'); -- succeeds: because schema is NULL constraint does not apply
-#
-# Thus these constraints won't work if the data warehouse DB in question doesn't use schemas (e.g. MySQL or MongoDB). It
-# will work for other data warehouse types.
-#
-# Luckily Postgres (but not H2 or MySQL) supports constraints that only apply to columns matching conditions, so we can
-# add additional constraints to properly handle those cases.
+  #
+  # Add unique constraints for (Field name + table_id + parent_id) and for (Table name + schema + db_id) unless for one
+  # reason or another those would-be constraints are already violated. This is to fix issue where sometimes the same Field
+  # or Table is synced more than once (see #669, #8950, #9048)
+  #
+  # Note that the SQL standard says unique constraints should not apply to columns with NULL values. Consider the following:
+  #
+  # INSERT INTO metabase_table (db_id, schema, name) VALUES (1, 'PUBLIC', 'my_table');
+  # INSERT INTO metabase_table (db_id, schema, name) VALUES (1, 'PUBLIC', 'my_table'); -- fails: violates UNIQUE constraint
+  #
+  # INSERT INTO metabase_table (db_id, schema, name) VALUES (1, NULL, 'my_table');
+  # INSERT INTO metabase_table (db_id, schema, name) VALUES (1, NULL, 'my_table'); -- succeeds: because schema is NULL constraint does not apply
+  #
+  # Thus these constraints won't work if the data warehouse DB in question doesn't use schemas (e.g. MySQL or MongoDB). It
+  # will work for other data warehouse types.
+  #
+  # Luckily Postgres (but not H2 or MySQL) supports constraints that only apply to columns matching conditions, so we can
+  # add additional constraints to properly handle those cases.
   - changeSet:
       id: 98
       author: camsaul
@@ -5681,13 +5681,13 @@ databaseChangeLog:
             dbms: postgresql
             sql: CREATE UNIQUE INDEX idx_uniq_field_table_id_parent_id_name_2col ON "metabase_field" ("table_id", "name") WHERE "parent_id" IS NULL
 
-#
-# Migration 84 was written slightly incorrectly and did not correctly migrate the values of is_active -> archived for
-# METRICS. If you look at the migration you will notice the raw SQL part is a `sql` map with 2 `sql` keys. The first key
-# is ignored, and that statement was never ran.
-#
-# To fix this we will migrate any metrics that haven't been updated since that migration ran and fix their archived
-# status
+  #
+  # Migration 84 was written slightly incorrectly and did not correctly migrate the values of is_active -> archived for
+  # METRICS. If you look at the migration you will notice the raw SQL part is a `sql` map with 2 `sql` keys. The first key
+  # is ignored, and that statement was never ran.
+  #
+  # To fix this we will migrate any metrics that haven't been updated since that migration ran and fix their archived
+  # status
   - changeSet:
       id: 100
       author: camsaul
@@ -5719,7 +5719,7 @@ databaseChangeLog:
                   AND metric.updated_at < dbcl.dateexecuted
               )
 
-# Very helpful for performance reasons. See #9519
+  # Very helpful for performance reasons. See #9519
   - changeSet:
       id: 101
       author: camsaul
@@ -5732,7 +5732,7 @@ databaseChangeLog:
               - column:
                   name: parent_id
 
-# A per-Database setting for the new Query Builder 3.0.
+  # A per-Database setting for the new Query Builder 3.0.
   - changeSet:
       id: 103
       author: camsaul
@@ -5764,9 +5764,9 @@ databaseChangeLog:
                   type: text
                   remarks: 'Anti-CSRF token for full-app embed sessions.'
 
-#
-# Change `metabase_field.database_type` to `text` to accomodate more exotic field types (enums in Clickhouse, rows in Presto, ...)
-#
+  #
+  # Change `metabase_field.database_type` to `text` to accomodate more exotic field types (enums in Clickhouse, rows in Presto, ...)
+  #
   - changeSet:
       id: 106
       author: sb
@@ -5777,883 +5777,883 @@ databaseChangeLog:
             columnName: database_type
             newDataType: text
 
-#
-#  Migrations 107-160 are used to convert a MySQL or MariaDB database to utf8mb4 on launch -- see #11753 for a detailed explanation of these migrations
-#
+  #
+  #  Migrations 107-160 are used to convert a MySQL or MariaDB database to utf8 on launch -- see #11753 for a detailed explanation of these migrations
+  #
 
   - changeSet:
-        id: 107
-        author: camsaul
-        comment: Added 0.34.2
-        # If this migration fails for any reason continue with the next migration; do not fail the entire process if this one fails
-        failOnError: false
-        preConditions:
-          # If preconditions fail (i.e., dbms is not mysql or mariadb) then mark this migration as 'ran'
-          - onFail: MARK_RAN
-          # If we're generating SQL output for migrations instead of running via liquibase, fail the preconditions which means these migrations will be skipped
-          - onSqlOutput: FAIL
-          - or:
-              - dbms:
-                    type: mysql
-              - dbms:
-                    type: mariadb
-        changes:
-          - sql:
-                sql: ALTER DATABASE CHARACTER SET = utf8mb4 COLLATE = utf8mb4_unicode_ci;
+      id: 107
+      author: camsaul
+      comment: Added 0.34.2
+      # If this migration fails for any reason continue with the next migration; do not fail the entire process if this one fails
+      failOnError: false
+      preConditions:
+        # If preconditions fail (i.e., dbms is not mysql or mariadb) then mark this migration as 'ran'
+        - onFail: MARK_RAN
+        # If we're generating SQL output for migrations instead of running via liquibase, fail the preconditions which means these migrations will be skipped
+        - onSqlOutput: FAIL
+        - or:
+            - dbms:
+                type: mysql
+            - dbms:
+                type: mariadb
+      changes:
+        - sql:
+            sql: ALTER DATABASE CHARACTER SET = utf8 COLLATE = utf8_unicode_ci;
   - changeSet:
-        id: 108
-        author: camsaul
-        comment: Added 0.34.2
-        failOnError: false
-        preConditions:
-          - onFail: MARK_RAN
-          - onSqlOutput: FAIL
-          - or:
-              - dbms:
-                    type: mysql
-              - dbms:
-                    type: mariadb
-        changes:
-          - sql:
-                sql: ALTER TABLE `DATABASECHANGELOG` CONVERT TO CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
+      id: 108
+      author: camsaul
+      comment: Added 0.34.2
+      failOnError: false
+      preConditions:
+        - onFail: MARK_RAN
+        - onSqlOutput: FAIL
+        - or:
+            - dbms:
+                type: mysql
+            - dbms:
+                type: mariadb
+      changes:
+        - sql:
+            sql: ALTER TABLE `DATABASECHANGELOG` CONVERT TO CHARACTER SET utf8 COLLATE utf8_unicode_ci;
   - changeSet:
-        id: 109
-        author: camsaul
-        comment: Added 0.34.2
-        failOnError: false
-        preConditions:
-          - onFail: MARK_RAN
-          - onSqlOutput: FAIL
-          - or:
-              - dbms:
-                    type: mysql
-              - dbms:
-                    type: mariadb
-        changes:
-          - sql:
-                sql: ALTER TABLE `DATABASECHANGELOGLOCK` CONVERT TO CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
+      id: 109
+      author: camsaul
+      comment: Added 0.34.2
+      failOnError: false
+      preConditions:
+        - onFail: MARK_RAN
+        - onSqlOutput: FAIL
+        - or:
+            - dbms:
+                type: mysql
+            - dbms:
+                type: mariadb
+      changes:
+        - sql:
+            sql: ALTER TABLE `DATABASECHANGELOGLOCK` CONVERT TO CHARACTER SET utf8 COLLATE utf8_unicode_ci;
   - changeSet:
-        id: 110
-        author: camsaul
-        comment: Added 0.34.2
-        failOnError: false
-        preConditions:
-          - onFail: MARK_RAN
-          - onSqlOutput: FAIL
-          - or:
-              - dbms:
-                    type: mysql
-              - dbms:
-                    type: mariadb
-        changes:
-          - sql:
-                sql: ALTER TABLE `QRTZ_CALENDARS` CONVERT TO CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
+      id: 110
+      author: camsaul
+      comment: Added 0.34.2
+      failOnError: false
+      preConditions:
+        - onFail: MARK_RAN
+        - onSqlOutput: FAIL
+        - or:
+            - dbms:
+                type: mysql
+            - dbms:
+                type: mariadb
+      changes:
+        - sql:
+            sql: ALTER TABLE `QRTZ_CALENDARS` CONVERT TO CHARACTER SET utf8 COLLATE utf8_unicode_ci;
   - changeSet:
-        id: 111
-        author: camsaul
-        comment: Added 0.34.2
-        failOnError: false
-        preConditions:
-          - onFail: MARK_RAN
-          - onSqlOutput: FAIL
-          - or:
-              - dbms:
-                    type: mysql
-              - dbms:
-                    type: mariadb
-        changes:
-          - sql:
-                sql: ALTER TABLE `QRTZ_FIRED_TRIGGERS` CONVERT TO CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
+      id: 111
+      author: camsaul
+      comment: Added 0.34.2
+      failOnError: false
+      preConditions:
+        - onFail: MARK_RAN
+        - onSqlOutput: FAIL
+        - or:
+            - dbms:
+                type: mysql
+            - dbms:
+                type: mariadb
+      changes:
+        - sql:
+            sql: ALTER TABLE `QRTZ_FIRED_TRIGGERS` CONVERT TO CHARACTER SET utf8 COLLATE utf8_unicode_ci;
   - changeSet:
-        id: 112
-        author: camsaul
-        comment: Added 0.34.2
-        failOnError: false
-        preConditions:
-          - onFail: MARK_RAN
-          - onSqlOutput: FAIL
-          - or:
-              - dbms:
-                    type: mysql
-              - dbms:
-                    type: mariadb
-        changes:
-          - sql:
-                sql: ALTER TABLE `QRTZ_JOB_DETAILS` CONVERT TO CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
+      id: 112
+      author: camsaul
+      comment: Added 0.34.2
+      failOnError: false
+      preConditions:
+        - onFail: MARK_RAN
+        - onSqlOutput: FAIL
+        - or:
+            - dbms:
+                type: mysql
+            - dbms:
+                type: mariadb
+      changes:
+        - sql:
+            sql: ALTER TABLE `QRTZ_JOB_DETAILS` CONVERT TO CHARACTER SET utf8 COLLATE utf8_unicode_ci;
   - changeSet:
-        id: 113
-        author: camsaul
-        comment: Added 0.34.2
-        failOnError: false
-        preConditions:
-          - onFail: MARK_RAN
-          - onSqlOutput: FAIL
-          - or:
-              - dbms:
-                    type: mysql
-              - dbms:
-                    type: mariadb
-        changes:
-          - sql:
-                sql: ALTER TABLE `QRTZ_LOCKS` CONVERT TO CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
+      id: 113
+      author: camsaul
+      comment: Added 0.34.2
+      failOnError: false
+      preConditions:
+        - onFail: MARK_RAN
+        - onSqlOutput: FAIL
+        - or:
+            - dbms:
+                type: mysql
+            - dbms:
+                type: mariadb
+      changes:
+        - sql:
+            sql: ALTER TABLE `QRTZ_LOCKS` CONVERT TO CHARACTER SET utf8 COLLATE utf8_unicode_ci;
   - changeSet:
-        id: 114
-        author: camsaul
-        comment: Added 0.34.2
-        failOnError: false
-        preConditions:
-          - onFail: MARK_RAN
-          - onSqlOutput: FAIL
-          - or:
-              - dbms:
-                    type: mysql
-              - dbms:
-                    type: mariadb
-        changes:
-          - sql:
-                sql: ALTER TABLE `QRTZ_PAUSED_TRIGGER_GRPS` CONVERT TO CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
+      id: 114
+      author: camsaul
+      comment: Added 0.34.2
+      failOnError: false
+      preConditions:
+        - onFail: MARK_RAN
+        - onSqlOutput: FAIL
+        - or:
+            - dbms:
+                type: mysql
+            - dbms:
+                type: mariadb
+      changes:
+        - sql:
+            sql: ALTER TABLE `QRTZ_PAUSED_TRIGGER_GRPS` CONVERT TO CHARACTER SET utf8 COLLATE utf8_unicode_ci;
   - changeSet:
-        id: 115
-        author: camsaul
-        comment: Added 0.34.2
-        failOnError: false
-        preConditions:
-          - onFail: MARK_RAN
-          - onSqlOutput: FAIL
-          - or:
-              - dbms:
-                    type: mysql
-              - dbms:
-                    type: mariadb
-        changes:
-          - sql:
-                sql: ALTER TABLE `QRTZ_SCHEDULER_STATE` CONVERT TO CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
+      id: 115
+      author: camsaul
+      comment: Added 0.34.2
+      failOnError: false
+      preConditions:
+        - onFail: MARK_RAN
+        - onSqlOutput: FAIL
+        - or:
+            - dbms:
+                type: mysql
+            - dbms:
+                type: mariadb
+      changes:
+        - sql:
+            sql: ALTER TABLE `QRTZ_SCHEDULER_STATE` CONVERT TO CHARACTER SET utf8 COLLATE utf8_unicode_ci;
   - changeSet:
-        id: 116
-        author: camsaul
-        comment: Added 0.34.2
-        failOnError: false
-        preConditions:
-          - onFail: MARK_RAN
-          - onSqlOutput: FAIL
-          - or:
-              - dbms:
-                    type: mysql
-              - dbms:
-                    type: mariadb
-        changes:
-          - sql:
-                sql: ALTER TABLE `core_user` CONVERT TO CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
+      id: 116
+      author: camsaul
+      comment: Added 0.34.2
+      failOnError: false
+      preConditions:
+        - onFail: MARK_RAN
+        - onSqlOutput: FAIL
+        - or:
+            - dbms:
+                type: mysql
+            - dbms:
+                type: mariadb
+      changes:
+        - sql:
+            sql: ALTER TABLE `core_user` CONVERT TO CHARACTER SET utf8 COLLATE utf8_unicode_ci;
   - changeSet:
-        id: 117
-        author: camsaul
-        comment: Added 0.34.2
-        failOnError: false
-        preConditions:
-          - onFail: MARK_RAN
-          - onSqlOutput: FAIL
-          - or:
-              - dbms:
-                    type: mysql
-              - dbms:
-                    type: mariadb
-        changes:
-          - sql:
-                sql: ALTER TABLE `data_migrations` CONVERT TO CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
+      id: 117
+      author: camsaul
+      comment: Added 0.34.2
+      failOnError: false
+      preConditions:
+        - onFail: MARK_RAN
+        - onSqlOutput: FAIL
+        - or:
+            - dbms:
+                type: mysql
+            - dbms:
+                type: mariadb
+      changes:
+        - sql:
+            sql: ALTER TABLE `data_migrations` CONVERT TO CHARACTER SET utf8 COLLATE utf8_unicode_ci;
   - changeSet:
-        id: 118
-        author: camsaul
-        comment: Added 0.34.2
-        failOnError: false
-        preConditions:
-          - onFail: MARK_RAN
-          - onSqlOutput: FAIL
-          - or:
-              - dbms:
-                    type: mysql
-              - dbms:
-                    type: mariadb
-        changes:
-          - sql:
-                sql: ALTER TABLE `dependency` CONVERT TO CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
+      id: 118
+      author: camsaul
+      comment: Added 0.34.2
+      failOnError: false
+      preConditions:
+        - onFail: MARK_RAN
+        - onSqlOutput: FAIL
+        - or:
+            - dbms:
+                type: mysql
+            - dbms:
+                type: mariadb
+      changes:
+        - sql:
+            sql: ALTER TABLE `dependency` CONVERT TO CHARACTER SET utf8 COLLATE utf8_unicode_ci;
   - changeSet:
-        id: 119
-        author: camsaul
-        comment: Added 0.34.2
-        failOnError: false
-        preConditions:
-          - onFail: MARK_RAN
-          - onSqlOutput: FAIL
-          - or:
-              - dbms:
-                    type: mysql
-              - dbms:
-                    type: mariadb
-        changes:
-          - sql:
-                sql: ALTER TABLE `label` CONVERT TO CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
+      id: 119
+      author: camsaul
+      comment: Added 0.34.2
+      failOnError: false
+      preConditions:
+        - onFail: MARK_RAN
+        - onSqlOutput: FAIL
+        - or:
+            - dbms:
+                type: mysql
+            - dbms:
+                type: mariadb
+      changes:
+        - sql:
+            sql: ALTER TABLE `label` CONVERT TO CHARACTER SET utf8 COLLATE utf8_unicode_ci;
   - changeSet:
-        id: 120
-        author: camsaul
-        comment: Added 0.34.2
-        failOnError: false
-        preConditions:
-          - onFail: MARK_RAN
-          - onSqlOutput: FAIL
-          - or:
-              - dbms:
-                    type: mysql
-              - dbms:
-                    type: mariadb
-        changes:
-          - sql:
-                sql: ALTER TABLE `metabase_database` CONVERT TO CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
+      id: 120
+      author: camsaul
+      comment: Added 0.34.2
+      failOnError: false
+      preConditions:
+        - onFail: MARK_RAN
+        - onSqlOutput: FAIL
+        - or:
+            - dbms:
+                type: mysql
+            - dbms:
+                type: mariadb
+      changes:
+        - sql:
+            sql: ALTER TABLE `metabase_database` CONVERT TO CHARACTER SET utf8 COLLATE utf8_unicode_ci;
   - changeSet:
-        id: 121
-        author: camsaul
-        comment: Added 0.34.2
-        failOnError: false
-        preConditions:
-          - onFail: MARK_RAN
-          - onSqlOutput: FAIL
-          - or:
-              - dbms:
-                    type: mysql
-              - dbms:
-                    type: mariadb
-        changes:
-          - sql:
-                sql: ALTER TABLE `permissions_group` CONVERT TO CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
+      id: 121
+      author: camsaul
+      comment: Added 0.34.2
+      failOnError: false
+      preConditions:
+        - onFail: MARK_RAN
+        - onSqlOutput: FAIL
+        - or:
+            - dbms:
+                type: mysql
+            - dbms:
+                type: mariadb
+      changes:
+        - sql:
+            sql: ALTER TABLE `permissions_group` CONVERT TO CHARACTER SET utf8 COLLATE utf8_unicode_ci;
   - changeSet:
-        id: 122
-        author: camsaul
-        comment: Added 0.34.2
-        failOnError: false
-        preConditions:
-          - onFail: MARK_RAN
-          - onSqlOutput: FAIL
-          - or:
-              - dbms:
-                    type: mysql
-              - dbms:
-                    type: mariadb
-        changes:
-          - sql:
-                sql: ALTER TABLE `query` CONVERT TO CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
+      id: 122
+      author: camsaul
+      comment: Added 0.34.2
+      failOnError: false
+      preConditions:
+        - onFail: MARK_RAN
+        - onSqlOutput: FAIL
+        - or:
+            - dbms:
+                type: mysql
+            - dbms:
+                type: mariadb
+      changes:
+        - sql:
+            sql: ALTER TABLE `query` CONVERT TO CHARACTER SET utf8 COLLATE utf8_unicode_ci;
   - changeSet:
-        id: 123
-        author: camsaul
-        comment: Added 0.34.2
-        failOnError: false
-        preConditions:
-          - onFail: MARK_RAN
-          - onSqlOutput: FAIL
-          - or:
-              - dbms:
-                    type: mysql
-              - dbms:
-                    type: mariadb
-        changes:
-          - sql:
-                sql: ALTER TABLE `query_cache` CONVERT TO CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
+      id: 123
+      author: camsaul
+      comment: Added 0.34.2
+      failOnError: false
+      preConditions:
+        - onFail: MARK_RAN
+        - onSqlOutput: FAIL
+        - or:
+            - dbms:
+                type: mysql
+            - dbms:
+                type: mariadb
+      changes:
+        - sql:
+            sql: ALTER TABLE `query_cache` CONVERT TO CHARACTER SET utf8 COLLATE utf8_unicode_ci;
   - changeSet:
-        id: 124
-        author: camsaul
-        comment: Added 0.34.2
-        failOnError: false
-        preConditions:
-          - onFail: MARK_RAN
-          - onSqlOutput: FAIL
-          - or:
-              - dbms:
-                    type: mysql
-              - dbms:
-                    type: mariadb
-        changes:
-          - sql:
-                sql: ALTER TABLE `query_execution` CONVERT TO CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
+      id: 124
+      author: camsaul
+      comment: Added 0.34.2
+      failOnError: false
+      preConditions:
+        - onFail: MARK_RAN
+        - onSqlOutput: FAIL
+        - or:
+            - dbms:
+                type: mysql
+            - dbms:
+                type: mariadb
+      changes:
+        - sql:
+            sql: ALTER TABLE `query_execution` CONVERT TO CHARACTER SET utf8 COLLATE utf8_unicode_ci;
   - changeSet:
-        id: 125
-        author: camsaul
-        comment: Added 0.34.2
-        failOnError: false
-        preConditions:
-          - onFail: MARK_RAN
-          - onSqlOutput: FAIL
-          - or:
-              - dbms:
-                    type: mysql
-              - dbms:
-                    type: mariadb
-        changes:
-          - sql:
-                sql: ALTER TABLE `setting` CONVERT TO CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
+      id: 125
+      author: camsaul
+      comment: Added 0.34.2
+      failOnError: false
+      preConditions:
+        - onFail: MARK_RAN
+        - onSqlOutput: FAIL
+        - or:
+            - dbms:
+                type: mysql
+            - dbms:
+                type: mariadb
+      changes:
+        - sql:
+            sql: ALTER TABLE `setting` CONVERT TO CHARACTER SET utf8 COLLATE utf8_unicode_ci;
   - changeSet:
-        id: 126
-        author: camsaul
-        comment: Added 0.34.2
-        failOnError: false
-        preConditions:
-          - onFail: MARK_RAN
-          - onSqlOutput: FAIL
-          - or:
-              - dbms:
-                    type: mysql
-              - dbms:
-                    type: mariadb
-        changes:
-          - sql:
-                sql: ALTER TABLE `task_history` CONVERT TO CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
+      id: 126
+      author: camsaul
+      comment: Added 0.34.2
+      failOnError: false
+      preConditions:
+        - onFail: MARK_RAN
+        - onSqlOutput: FAIL
+        - or:
+            - dbms:
+                type: mysql
+            - dbms:
+                type: mariadb
+      changes:
+        - sql:
+            sql: ALTER TABLE `task_history` CONVERT TO CHARACTER SET utf8 COLLATE utf8_unicode_ci;
   - changeSet:
-        id: 127
-        author: camsaul
-        comment: Added 0.34.2
-        failOnError: false
-        preConditions:
-          - onFail: MARK_RAN
-          - onSqlOutput: FAIL
-          - or:
-              - dbms:
-                    type: mysql
-              - dbms:
-                    type: mariadb
-        changes:
-          - sql:
-                sql: ALTER TABLE `QRTZ_TRIGGERS` CONVERT TO CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
+      id: 127
+      author: camsaul
+      comment: Added 0.34.2
+      failOnError: false
+      preConditions:
+        - onFail: MARK_RAN
+        - onSqlOutput: FAIL
+        - or:
+            - dbms:
+                type: mysql
+            - dbms:
+                type: mariadb
+      changes:
+        - sql:
+            sql: ALTER TABLE `QRTZ_TRIGGERS` CONVERT TO CHARACTER SET utf8 COLLATE utf8_unicode_ci;
   - changeSet:
-        id: 128
-        author: camsaul
-        comment: Added 0.34.2
-        failOnError: false
-        preConditions:
-          - onFail: MARK_RAN
-          - onSqlOutput: FAIL
-          - or:
-              - dbms:
-                    type: mysql
-              - dbms:
-                    type: mariadb
-        changes:
-          - sql:
-                sql: ALTER TABLE `activity` CONVERT TO CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
+      id: 128
+      author: camsaul
+      comment: Added 0.34.2
+      failOnError: false
+      preConditions:
+        - onFail: MARK_RAN
+        - onSqlOutput: FAIL
+        - or:
+            - dbms:
+                type: mysql
+            - dbms:
+                type: mariadb
+      changes:
+        - sql:
+            sql: ALTER TABLE `activity` CONVERT TO CHARACTER SET utf8 COLLATE utf8_unicode_ci;
   - changeSet:
-        id: 129
-        author: camsaul
-        comment: Added 0.34.2
-        failOnError: false
-        preConditions:
-          - onFail: MARK_RAN
-          - onSqlOutput: FAIL
-          - or:
-              - dbms:
-                    type: mysql
-              - dbms:
-                    type: mariadb
-        changes:
-          - sql:
-                sql: ALTER TABLE `collection` CONVERT TO CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
+      id: 129
+      author: camsaul
+      comment: Added 0.34.2
+      failOnError: false
+      preConditions:
+        - onFail: MARK_RAN
+        - onSqlOutput: FAIL
+        - or:
+            - dbms:
+                type: mysql
+            - dbms:
+                type: mariadb
+      changes:
+        - sql:
+            sql: ALTER TABLE `collection` CONVERT TO CHARACTER SET utf8 COLLATE utf8_unicode_ci;
   - changeSet:
-        id: 130
-        author: camsaul
-        comment: Added 0.34.2
-        failOnError: false
-        preConditions:
-          - onFail: MARK_RAN
-          - onSqlOutput: FAIL
-          - or:
-              - dbms:
-                    type: mysql
-              - dbms:
-                    type: mariadb
-        changes:
-          - sql:
-                sql: ALTER TABLE `collection_revision` CONVERT TO CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
+      id: 130
+      author: camsaul
+      comment: Added 0.34.2
+      failOnError: false
+      preConditions:
+        - onFail: MARK_RAN
+        - onSqlOutput: FAIL
+        - or:
+            - dbms:
+                type: mysql
+            - dbms:
+                type: mariadb
+      changes:
+        - sql:
+            sql: ALTER TABLE `collection_revision` CONVERT TO CHARACTER SET utf8 COLLATE utf8_unicode_ci;
   - changeSet:
-        id: 131
-        author: camsaul
-        comment: Added 0.34.2
-        failOnError: false
-        preConditions:
-          - onFail: MARK_RAN
-          - onSqlOutput: FAIL
-          - or:
-              - dbms:
-                    type: mysql
-              - dbms:
-                    type: mariadb
-        changes:
-          - sql:
-                sql: ALTER TABLE `computation_job` CONVERT TO CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
+      id: 131
+      author: camsaul
+      comment: Added 0.34.2
+      failOnError: false
+      preConditions:
+        - onFail: MARK_RAN
+        - onSqlOutput: FAIL
+        - or:
+            - dbms:
+                type: mysql
+            - dbms:
+                type: mariadb
+      changes:
+        - sql:
+            sql: ALTER TABLE `computation_job` CONVERT TO CHARACTER SET utf8 COLLATE utf8_unicode_ci;
   - changeSet:
-        id: 132
-        author: camsaul
-        comment: Added 0.34.2
-        failOnError: false
-        preConditions:
-          - onFail: MARK_RAN
-          - onSqlOutput: FAIL
-          - or:
-              - dbms:
-                    type: mysql
-              - dbms:
-                    type: mariadb
-        changes:
-          - sql:
-                sql: ALTER TABLE `core_session` CONVERT TO CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
+      id: 132
+      author: camsaul
+      comment: Added 0.34.2
+      failOnError: false
+      preConditions:
+        - onFail: MARK_RAN
+        - onSqlOutput: FAIL
+        - or:
+            - dbms:
+                type: mysql
+            - dbms:
+                type: mariadb
+      changes:
+        - sql:
+            sql: ALTER TABLE `core_session` CONVERT TO CHARACTER SET utf8 COLLATE utf8_unicode_ci;
   - changeSet:
-        id: 133
-        author: camsaul
-        comment: Added 0.34.2
-        failOnError: false
-        preConditions:
-          - onFail: MARK_RAN
-          - onSqlOutput: FAIL
-          - or:
-              - dbms:
-                    type: mysql
-              - dbms:
-                    type: mariadb
-        changes:
-          - sql:
-                sql: ALTER TABLE `metabase_table` CONVERT TO CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
+      id: 133
+      author: camsaul
+      comment: Added 0.34.2
+      failOnError: false
+      preConditions:
+        - onFail: MARK_RAN
+        - onSqlOutput: FAIL
+        - or:
+            - dbms:
+                type: mysql
+            - dbms:
+                type: mariadb
+      changes:
+        - sql:
+            sql: ALTER TABLE `metabase_table` CONVERT TO CHARACTER SET utf8 COLLATE utf8_unicode_ci;
   - changeSet:
-        id: 134
-        author: camsaul
-        comment: Added 0.34.2
-        failOnError: false
-        preConditions:
-          - onFail: MARK_RAN
-          - onSqlOutput: FAIL
-          - or:
-              - dbms:
-                    type: mysql
-              - dbms:
-                    type: mariadb
-        changes:
-          - sql:
-                sql: ALTER TABLE `permissions` CONVERT TO CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
+      id: 134
+      author: camsaul
+      comment: Added 0.34.2
+      failOnError: false
+      preConditions:
+        - onFail: MARK_RAN
+        - onSqlOutput: FAIL
+        - or:
+            - dbms:
+                type: mysql
+            - dbms:
+                type: mariadb
+      changes:
+        - sql:
+            sql: ALTER TABLE `permissions` CONVERT TO CHARACTER SET utf8 COLLATE utf8_unicode_ci;
   - changeSet:
-        id: 135
-        author: camsaul
-        comment: Added 0.34.2
-        failOnError: false
-        preConditions:
-          - onFail: MARK_RAN
-          - onSqlOutput: FAIL
-          - or:
-              - dbms:
-                    type: mysql
-              - dbms:
-                    type: mariadb
-        changes:
-          - sql:
-                sql: ALTER TABLE `permissions_revision` CONVERT TO CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
+      id: 135
+      author: camsaul
+      comment: Added 0.34.2
+      failOnError: false
+      preConditions:
+        - onFail: MARK_RAN
+        - onSqlOutput: FAIL
+        - or:
+            - dbms:
+                type: mysql
+            - dbms:
+                type: mariadb
+      changes:
+        - sql:
+            sql: ALTER TABLE `permissions_revision` CONVERT TO CHARACTER SET utf8 COLLATE utf8_unicode_ci;
   - changeSet:
-        id: 136
-        author: camsaul
-        comment: Added 0.34.2
-        failOnError: false
-        preConditions:
-          - onFail: MARK_RAN
-          - onSqlOutput: FAIL
-          - or:
-              - dbms:
-                    type: mysql
-              - dbms:
-                    type: mariadb
-        changes:
-          - sql:
-                sql: ALTER TABLE `revision` CONVERT TO CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
+      id: 136
+      author: camsaul
+      comment: Added 0.34.2
+      failOnError: false
+      preConditions:
+        - onFail: MARK_RAN
+        - onSqlOutput: FAIL
+        - or:
+            - dbms:
+                type: mysql
+            - dbms:
+                type: mariadb
+      changes:
+        - sql:
+            sql: ALTER TABLE `revision` CONVERT TO CHARACTER SET utf8 COLLATE utf8_unicode_ci;
   - changeSet:
-        id: 137
-        author: camsaul
-        comment: Added 0.34.2
-        failOnError: false
-        preConditions:
-          - onFail: MARK_RAN
-          - onSqlOutput: FAIL
-          - or:
-              - dbms:
-                    type: mysql
-              - dbms:
-                    type: mariadb
-        changes:
-          - sql:
-                sql: ALTER TABLE `view_log` CONVERT TO CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
+      id: 137
+      author: camsaul
+      comment: Added 0.34.2
+      failOnError: false
+      preConditions:
+        - onFail: MARK_RAN
+        - onSqlOutput: FAIL
+        - or:
+            - dbms:
+                type: mysql
+            - dbms:
+                type: mariadb
+      changes:
+        - sql:
+            sql: ALTER TABLE `view_log` CONVERT TO CHARACTER SET utf8 COLLATE utf8_unicode_ci;
   - changeSet:
-        id: 138
-        author: camsaul
-        comment: Added 0.34.2
-        failOnError: false
-        preConditions:
-          - onFail: MARK_RAN
-          - onSqlOutput: FAIL
-          - or:
-              - dbms:
-                    type: mysql
-              - dbms:
-                    type: mariadb
-        changes:
-          - sql:
-                sql: ALTER TABLE `QRTZ_BLOB_TRIGGERS` CONVERT TO CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
+      id: 138
+      author: camsaul
+      comment: Added 0.34.2
+      failOnError: false
+      preConditions:
+        - onFail: MARK_RAN
+        - onSqlOutput: FAIL
+        - or:
+            - dbms:
+                type: mysql
+            - dbms:
+                type: mariadb
+      changes:
+        - sql:
+            sql: ALTER TABLE `QRTZ_BLOB_TRIGGERS` CONVERT TO CHARACTER SET utf8 COLLATE utf8_unicode_ci;
   - changeSet:
-        id: 139
-        author: camsaul
-        comment: Added 0.34.2
-        failOnError: false
-        preConditions:
-          - onFail: MARK_RAN
-          - onSqlOutput: FAIL
-          - or:
-              - dbms:
-                    type: mysql
-              - dbms:
-                    type: mariadb
-        changes:
-          - sql:
-                sql: ALTER TABLE `QRTZ_CRON_TRIGGERS` CONVERT TO CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
+      id: 139
+      author: camsaul
+      comment: Added 0.34.2
+      failOnError: false
+      preConditions:
+        - onFail: MARK_RAN
+        - onSqlOutput: FAIL
+        - or:
+            - dbms:
+                type: mysql
+            - dbms:
+                type: mariadb
+      changes:
+        - sql:
+            sql: ALTER TABLE `QRTZ_CRON_TRIGGERS` CONVERT TO CHARACTER SET utf8 COLLATE utf8_unicode_ci;
   - changeSet:
-        id: 140
-        author: camsaul
-        comment: Added 0.34.2
-        failOnError: false
-        preConditions:
-          - onFail: MARK_RAN
-          - onSqlOutput: FAIL
-          - or:
-              - dbms:
-                    type: mysql
-              - dbms:
-                    type: mariadb
-        changes:
-          - sql:
-                sql: ALTER TABLE `QRTZ_SIMPLE_TRIGGERS` CONVERT TO CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
+      id: 140
+      author: camsaul
+      comment: Added 0.34.2
+      failOnError: false
+      preConditions:
+        - onFail: MARK_RAN
+        - onSqlOutput: FAIL
+        - or:
+            - dbms:
+                type: mysql
+            - dbms:
+                type: mariadb
+      changes:
+        - sql:
+            sql: ALTER TABLE `QRTZ_SIMPLE_TRIGGERS` CONVERT TO CHARACTER SET utf8 COLLATE utf8_unicode_ci;
   - changeSet:
-        id: 141
-        author: camsaul
-        comment: Added 0.34.2
-        failOnError: false
-        preConditions:
-          - onFail: MARK_RAN
-          - onSqlOutput: FAIL
-          - or:
-              - dbms:
-                    type: mysql
-              - dbms:
-                    type: mariadb
-        changes:
-          - sql:
-                sql: ALTER TABLE `QRTZ_SIMPROP_TRIGGERS` CONVERT TO CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
+      id: 141
+      author: camsaul
+      comment: Added 0.34.2
+      failOnError: false
+      preConditions:
+        - onFail: MARK_RAN
+        - onSqlOutput: FAIL
+        - or:
+            - dbms:
+                type: mysql
+            - dbms:
+                type: mariadb
+      changes:
+        - sql:
+            sql: ALTER TABLE `QRTZ_SIMPROP_TRIGGERS` CONVERT TO CHARACTER SET utf8 COLLATE utf8_unicode_ci;
   - changeSet:
-        id: 142
-        author: camsaul
-        comment: Added 0.34.2
-        failOnError: false
-        preConditions:
-          - onFail: MARK_RAN
-          - onSqlOutput: FAIL
-          - or:
-              - dbms:
-                    type: mysql
-              - dbms:
-                    type: mariadb
-        changes:
-          - sql:
-                sql: ALTER TABLE `computation_job_result` CONVERT TO CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
+      id: 142
+      author: camsaul
+      comment: Added 0.34.2
+      failOnError: false
+      preConditions:
+        - onFail: MARK_RAN
+        - onSqlOutput: FAIL
+        - or:
+            - dbms:
+                type: mysql
+            - dbms:
+                type: mariadb
+      changes:
+        - sql:
+            sql: ALTER TABLE `computation_job_result` CONVERT TO CHARACTER SET utf8 COLLATE utf8_unicode_ci;
   - changeSet:
-        id: 143
-        author: camsaul
-        comment: Added 0.34.2
-        failOnError: false
-        preConditions:
-          - onFail: MARK_RAN
-          - onSqlOutput: FAIL
-          - or:
-              - dbms:
-                    type: mysql
-              - dbms:
-                    type: mariadb
-        changes:
-          - sql:
-                sql: ALTER TABLE `metabase_field` CONVERT TO CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
+      id: 143
+      author: camsaul
+      comment: Added 0.34.2
+      failOnError: false
+      preConditions:
+        - onFail: MARK_RAN
+        - onSqlOutput: FAIL
+        - or:
+            - dbms:
+                type: mysql
+            - dbms:
+                type: mariadb
+      changes:
+        - sql:
+            sql: ALTER TABLE `metabase_field` CONVERT TO CHARACTER SET utf8 COLLATE utf8_unicode_ci;
   - changeSet:
-        id: 144
-        author: camsaul
-        comment: Added 0.34.2
-        failOnError: false
-        preConditions:
-          - onFail: MARK_RAN
-          - onSqlOutput: FAIL
-          - or:
-              - dbms:
-                    type: mysql
-              - dbms:
-                    type: mariadb
-        changes:
-          - sql:
-                sql: ALTER TABLE `permissions_group_membership` CONVERT TO CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
+      id: 144
+      author: camsaul
+      comment: Added 0.34.2
+      failOnError: false
+      preConditions:
+        - onFail: MARK_RAN
+        - onSqlOutput: FAIL
+        - or:
+            - dbms:
+                type: mysql
+            - dbms:
+                type: mariadb
+      changes:
+        - sql:
+            sql: ALTER TABLE `permissions_group_membership` CONVERT TO CHARACTER SET utf8 COLLATE utf8_unicode_ci;
   - changeSet:
-        id: 145
-        author: camsaul
-        comment: Added 0.34.2
-        failOnError: false
-        preConditions:
-          - onFail: MARK_RAN
-          - onSqlOutput: FAIL
-          - or:
-              - dbms:
-                    type: mysql
-              - dbms:
-                    type: mariadb
-        changes:
-          - sql:
-                sql: ALTER TABLE `pulse` CONVERT TO CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
+      id: 145
+      author: camsaul
+      comment: Added 0.34.2
+      failOnError: false
+      preConditions:
+        - onFail: MARK_RAN
+        - onSqlOutput: FAIL
+        - or:
+            - dbms:
+                type: mysql
+            - dbms:
+                type: mariadb
+      changes:
+        - sql:
+            sql: ALTER TABLE `pulse` CONVERT TO CHARACTER SET utf8 COLLATE utf8_unicode_ci;
   - changeSet:
-        id: 146
-        author: camsaul
-        comment: Added 0.34.2
-        failOnError: false
-        preConditions:
-          - onFail: MARK_RAN
-          - onSqlOutput: FAIL
-          - or:
-              - dbms:
-                    type: mysql
-              - dbms:
-                    type: mariadb
-        changes:
-          - sql:
-                sql: ALTER TABLE `report_dashboard` CONVERT TO CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
+      id: 146
+      author: camsaul
+      comment: Added 0.34.2
+      failOnError: false
+      preConditions:
+        - onFail: MARK_RAN
+        - onSqlOutput: FAIL
+        - or:
+            - dbms:
+                type: mysql
+            - dbms:
+                type: mariadb
+      changes:
+        - sql:
+            sql: ALTER TABLE `report_dashboard` CONVERT TO CHARACTER SET utf8 COLLATE utf8_unicode_ci;
   - changeSet:
-        id: 147
-        author: camsaul
-        comment: Added 0.34.2
-        failOnError: false
-        preConditions:
-          - onFail: MARK_RAN
-          - onSqlOutput: FAIL
-          - or:
-              - dbms:
-                    type: mysql
-              - dbms:
-                    type: mariadb
-        changes:
-          - sql:
-                sql: ALTER TABLE `dashboard_favorite` CONVERT TO CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
+      id: 147
+      author: camsaul
+      comment: Added 0.34.2
+      failOnError: false
+      preConditions:
+        - onFail: MARK_RAN
+        - onSqlOutput: FAIL
+        - or:
+            - dbms:
+                type: mysql
+            - dbms:
+                type: mariadb
+      changes:
+        - sql:
+            sql: ALTER TABLE `dashboard_favorite` CONVERT TO CHARACTER SET utf8 COLLATE utf8_unicode_ci;
   - changeSet:
-        id: 148
-        author: camsaul
-        comment: Added 0.34.2
-        failOnError: false
-        preConditions:
-          - onFail: MARK_RAN
-          - onSqlOutput: FAIL
-          - or:
-              - dbms:
-                    type: mysql
-              - dbms:
-                    type: mariadb
-        changes:
-          - sql:
-                sql: ALTER TABLE `dimension` CONVERT TO CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
+      id: 148
+      author: camsaul
+      comment: Added 0.34.2
+      failOnError: false
+      preConditions:
+        - onFail: MARK_RAN
+        - onSqlOutput: FAIL
+        - or:
+            - dbms:
+                type: mysql
+            - dbms:
+                type: mariadb
+      changes:
+        - sql:
+            sql: ALTER TABLE `dimension` CONVERT TO CHARACTER SET utf8 COLLATE utf8_unicode_ci;
   - changeSet:
-        id: 149
-        author: camsaul
-        comment: Added 0.34.2
-        failOnError: false
-        preConditions:
-          - onFail: MARK_RAN
-          - onSqlOutput: FAIL
-          - or:
-              - dbms:
-                    type: mysql
-              - dbms:
-                    type: mariadb
-        changes:
-          - sql:
-                sql: ALTER TABLE `metabase_fieldvalues` CONVERT TO CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
+      id: 149
+      author: camsaul
+      comment: Added 0.34.2
+      failOnError: false
+      preConditions:
+        - onFail: MARK_RAN
+        - onSqlOutput: FAIL
+        - or:
+            - dbms:
+                type: mysql
+            - dbms:
+                type: mariadb
+      changes:
+        - sql:
+            sql: ALTER TABLE `metabase_fieldvalues` CONVERT TO CHARACTER SET utf8 COLLATE utf8_unicode_ci;
   - changeSet:
-        id: 150
-        author: camsaul
-        comment: Added 0.34.2
-        failOnError: false
-        preConditions:
-          - onFail: MARK_RAN
-          - onSqlOutput: FAIL
-          - or:
-              - dbms:
-                    type: mysql
-              - dbms:
-                    type: mariadb
-        changes:
-          - sql:
-                sql: ALTER TABLE `metric` CONVERT TO CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
+      id: 150
+      author: camsaul
+      comment: Added 0.34.2
+      failOnError: false
+      preConditions:
+        - onFail: MARK_RAN
+        - onSqlOutput: FAIL
+        - or:
+            - dbms:
+                type: mysql
+            - dbms:
+                type: mariadb
+      changes:
+        - sql:
+            sql: ALTER TABLE `metric` CONVERT TO CHARACTER SET utf8 COLLATE utf8_unicode_ci;
   - changeSet:
-        id: 151
-        author: camsaul
-        comment: Added 0.34.2
-        failOnError: false
-        preConditions:
-          - onFail: MARK_RAN
-          - onSqlOutput: FAIL
-          - or:
-              - dbms:
-                    type: mysql
-              - dbms:
-                    type: mariadb
-        changes:
-          - sql:
-                sql: ALTER TABLE `pulse_channel` CONVERT TO CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
+      id: 151
+      author: camsaul
+      comment: Added 0.34.2
+      failOnError: false
+      preConditions:
+        - onFail: MARK_RAN
+        - onSqlOutput: FAIL
+        - or:
+            - dbms:
+                type: mysql
+            - dbms:
+                type: mariadb
+      changes:
+        - sql:
+            sql: ALTER TABLE `pulse_channel` CONVERT TO CHARACTER SET utf8 COLLATE utf8_unicode_ci;
   - changeSet:
-        id: 152
-        author: camsaul
-        comment: Added 0.34.2
-        failOnError: false
-        preConditions:
-          - onFail: MARK_RAN
-          - onSqlOutput: FAIL
-          - or:
-              - dbms:
-                    type: mysql
-              - dbms:
-                    type: mariadb
-        changes:
-          - sql:
-                sql: ALTER TABLE `segment` CONVERT TO CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
+      id: 152
+      author: camsaul
+      comment: Added 0.34.2
+      failOnError: false
+      preConditions:
+        - onFail: MARK_RAN
+        - onSqlOutput: FAIL
+        - or:
+            - dbms:
+                type: mysql
+            - dbms:
+                type: mariadb
+      changes:
+        - sql:
+            sql: ALTER TABLE `segment` CONVERT TO CHARACTER SET utf8 COLLATE utf8_unicode_ci;
   - changeSet:
-        id: 153
-        author: camsaul
-        comment: Added 0.34.2
-        failOnError: false
-        preConditions:
-          - onFail: MARK_RAN
-          - onSqlOutput: FAIL
-          - or:
-              - dbms:
-                    type: mysql
-              - dbms:
-                    type: mariadb
-        changes:
-          - sql:
-                sql: ALTER TABLE `pulse_channel_recipient` CONVERT TO CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
+      id: 153
+      author: camsaul
+      comment: Added 0.34.2
+      failOnError: false
+      preConditions:
+        - onFail: MARK_RAN
+        - onSqlOutput: FAIL
+        - or:
+            - dbms:
+                type: mysql
+            - dbms:
+                type: mariadb
+      changes:
+        - sql:
+            sql: ALTER TABLE `pulse_channel_recipient` CONVERT TO CHARACTER SET utf8 COLLATE utf8_unicode_ci;
   - changeSet:
-        id: 154
-        author: camsaul
-        comment: Added 0.34.2
-        failOnError: false
-        preConditions:
-          - onFail: MARK_RAN
-          - onSqlOutput: FAIL
-          - or:
-              - dbms:
-                    type: mysql
-              - dbms:
-                    type: mariadb
-        changes:
-          - sql:
-                sql: ALTER TABLE `report_card` CONVERT TO CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
+      id: 154
+      author: camsaul
+      comment: Added 0.34.2
+      failOnError: false
+      preConditions:
+        - onFail: MARK_RAN
+        - onSqlOutput: FAIL
+        - or:
+            - dbms:
+                type: mysql
+            - dbms:
+                type: mariadb
+      changes:
+        - sql:
+            sql: ALTER TABLE `report_card` CONVERT TO CHARACTER SET utf8 COLLATE utf8_unicode_ci;
   - changeSet:
-        id: 155
-        author: camsaul
-        comment: Added 0.34.2
-        failOnError: false
-        preConditions:
-          - onFail: MARK_RAN
-          - onSqlOutput: FAIL
-          - or:
-              - dbms:
-                    type: mysql
-              - dbms:
-                    type: mariadb
-        changes:
-          - sql:
-                sql: ALTER TABLE `metric_important_field` CONVERT TO CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
+      id: 155
+      author: camsaul
+      comment: Added 0.34.2
+      failOnError: false
+      preConditions:
+        - onFail: MARK_RAN
+        - onSqlOutput: FAIL
+        - or:
+            - dbms:
+                type: mysql
+            - dbms:
+                type: mariadb
+      changes:
+        - sql:
+            sql: ALTER TABLE `metric_important_field` CONVERT TO CHARACTER SET utf8 COLLATE utf8_unicode_ci;
   - changeSet:
-        id: 156
-        author: camsaul
-        comment: Added 0.34.2
-        failOnError: false
-        preConditions:
-          - onFail: MARK_RAN
-          - onSqlOutput: FAIL
-          - or:
-              - dbms:
-                    type: mysql
-              - dbms:
-                    type: mariadb
-        changes:
-          - sql:
-                sql: ALTER TABLE `report_cardfavorite` CONVERT TO CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
+      id: 156
+      author: camsaul
+      comment: Added 0.34.2
+      failOnError: false
+      preConditions:
+        - onFail: MARK_RAN
+        - onSqlOutput: FAIL
+        - or:
+            - dbms:
+                type: mysql
+            - dbms:
+                type: mariadb
+      changes:
+        - sql:
+            sql: ALTER TABLE `report_cardfavorite` CONVERT TO CHARACTER SET utf8 COLLATE utf8_unicode_ci;
   - changeSet:
-        id: 157
-        author: camsaul
-        comment: Added 0.34.2
-        failOnError: false
-        preConditions:
-          - onFail: MARK_RAN
-          - onSqlOutput: FAIL
-          - or:
-              - dbms:
-                    type: mysql
-              - dbms:
-                    type: mariadb
-        changes:
-          - sql:
-                sql: ALTER TABLE `card_label` CONVERT TO CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
+      id: 157
+      author: camsaul
+      comment: Added 0.34.2
+      failOnError: false
+      preConditions:
+        - onFail: MARK_RAN
+        - onSqlOutput: FAIL
+        - or:
+            - dbms:
+                type: mysql
+            - dbms:
+                type: mariadb
+      changes:
+        - sql:
+            sql: ALTER TABLE `card_label` CONVERT TO CHARACTER SET utf8 COLLATE utf8_unicode_ci;
   - changeSet:
-        id: 158
-        author: camsaul
-        comment: Added 0.34.2
-        failOnError: false
-        preConditions:
-          - onFail: MARK_RAN
-          - onSqlOutput: FAIL
-          - or:
-              - dbms:
-                    type: mysql
-              - dbms:
-                    type: mariadb
-        changes:
-          - sql:
-                sql: ALTER TABLE `pulse_card` CONVERT TO CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
+      id: 158
+      author: camsaul
+      comment: Added 0.34.2
+      failOnError: false
+      preConditions:
+        - onFail: MARK_RAN
+        - onSqlOutput: FAIL
+        - or:
+            - dbms:
+                type: mysql
+            - dbms:
+                type: mariadb
+      changes:
+        - sql:
+            sql: ALTER TABLE `pulse_card` CONVERT TO CHARACTER SET utf8 COLLATE utf8_unicode_ci;
   - changeSet:
-        id: 159
-        author: camsaul
-        comment: Added 0.34.2
-        failOnError: false
-        preConditions:
-          - onFail: MARK_RAN
-          - onSqlOutput: FAIL
-          - or:
-              - dbms:
-                    type: mysql
-              - dbms:
-                    type: mariadb
-        changes:
-          - sql:
-                sql: ALTER TABLE `report_dashboardcard` CONVERT TO CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
+      id: 159
+      author: camsaul
+      comment: Added 0.34.2
+      failOnError: false
+      preConditions:
+        - onFail: MARK_RAN
+        - onSqlOutput: FAIL
+        - or:
+            - dbms:
+                type: mysql
+            - dbms:
+                type: mariadb
+      changes:
+        - sql:
+            sql: ALTER TABLE `report_dashboardcard` CONVERT TO CHARACTER SET utf8 COLLATE utf8_unicode_ci;
   - changeSet:
-        id: 160
-        author: camsaul
-        comment: Added 0.34.2
-        failOnError: false
-        preConditions:
-          - onFail: MARK_RAN
-          - onSqlOutput: FAIL
-          - or:
-              - dbms:
-                    type: mysql
-              - dbms:
-                    type: mariadb
-        changes:
-          - sql:
-                sql: ALTER TABLE `dashboardcard_series` CONVERT TO CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
+      id: 160
+      author: camsaul
+      comment: Added 0.34.2
+      failOnError: false
+      preConditions:
+        - onFail: MARK_RAN
+        - onSqlOutput: FAIL
+        - or:
+            - dbms:
+                type: mysql
+            - dbms:
+                type: mariadb
+      changes:
+        - sql:
+            sql: ALTER TABLE `dashboardcard_series` CONVERT TO CHARACTER SET utf8 COLLATE utf8_unicode_ci;
 
-# [161 has been removed. Superceded by 166]
+  # [161 has been removed. Superceded by 166]
 
-# Drop the old query_queryexecution table if present. This was replaced by query_execution in 0.23.0. This was
-# formerly a data migration but was converted to a Liquibase migration so people running migrations manually will
-# still have the Table dropped.
+  # Drop the old query_queryexecution table if present. This was replaced by query_execution in 0.23.0. This was
+  # formerly a data migration but was converted to a Liquibase migration so people running migrations manually will
+  # still have the Table dropped.
 
   - changeSet:
       id: 162
@@ -6667,10 +6667,10 @@ databaseChangeLog:
         - dropTable:
             tableName: query_queryexecution
 
-# Drop Card.read_permissions. Prior to 0.30.0 Card permissions were always based on the Database/Table(s) being
-# queried (i.e., the permissions model we use for ad-hoc queries). These permissions were calculated and stored in
-# `read_permissions` for performance reasons. In 0.30.0, we switched to having Card permissions always be inherited
-# from their parent Collection, and the column hasn't been used since then. Time to let it go.
+  # Drop Card.read_permissions. Prior to 0.30.0 Card permissions were always based on the Database/Table(s) being
+  # queried (i.e., the permissions model we use for ad-hoc queries). These permissions were calculated and stored in
+  # `read_permissions` for performance reasons. In 0.30.0, we switched to having Card permissions always be inherited
+  # from their parent Collection, and the column hasn't been used since then. Time to let it go.
 
   - changeSet:
       id: 163
@@ -6681,8 +6681,8 @@ databaseChangeLog:
             tableName: report_card
             columnName: read_permissions
 
-# Add User `locale` -- when set, this User will see the Metabase in this Locale rather than the system default Locale
-# (the `site-locale` Setting).
+  # Add User `locale` -- when set, this User will see the Metabase in this Locale rather than the system default Locale
+  # (the `site-locale` Setting).
 
   - changeSet:
       id: 164
@@ -6697,8 +6697,8 @@ databaseChangeLog:
                   remarks: 'Preferred ISO locale (language/country) code, e.g "en" or "en-US", for this User. Overrides site default.'
                   type: varchar(5)
 
-# Add Field `database_position` to keep the order in which fields are ordered in the DB, `custom_position` for custom
-# position; and Table `field_order` setting.
+  # Add Field `database_position` to keep the order in which fields are ordered in the DB, `custom_position` for custom
+  # position; and Table `field_order` setting.
 
   - changeSet:
       id: 165
@@ -6736,11 +6736,11 @@ databaseChangeLog:
         - sql:
             sql: update metabase_field set database_position = id
 
-# Change field_values.updated_at and query_cache.updated_at from datetime to timestamp [with time zone] to get >
-# second resolution on MySQL.
-#
-# query_cache.updated_at was originally converted to a timestamp in 161, but we used `timestamp` instead of
-# `timestamp(6)`. It is converted correctly here.
+  # Change field_values.updated_at and query_cache.updated_at from datetime to timestamp [with time zone] to get >
+  # second resolution on MySQL.
+  #
+  # query_cache.updated_at was originally converted to a timestamp in 161, but we used `timestamp` instead of
+  # `timestamp(6)`. It is converted correctly here.
 
   - changeSet:
       id: 166
@@ -6756,7 +6756,7 @@ databaseChangeLog:
             columnName: updated_at
             newDataType: ${timestamp_type}
 
-# Create the native query snippets table, intended to store snippets and their metadata
+  # Create the native query snippets table, intended to store snippets and their metadata
   - changeSet:
       id: 167
       author: walterl, camsaul
@@ -6834,8 +6834,8 @@ databaseChangeLog:
               - column:
                   name: name
 
-# Convert query execution from DATETIME to TIMESTAMP(6) so have normalize TZ
-# offset and so MySQL/MariaDB has better than second precision
+  # Convert query execution from DATETIME to TIMESTAMP(6) so have normalize TZ
+  # offset and so MySQL/MariaDB has better than second precision
 
   - changeSet:
       id: 168
@@ -6847,8 +6847,8 @@ databaseChangeLog:
             columnName: started_at
             newDataType: ${timestamp_type}
 
-# Remove `Table.rows`, which hasn't been used for years now. Older versions of Metabase used to store the row count in
-# this column but we disabled it a long time ago for performance reasons. Now it's time to remove it entirely.
+  # Remove `Table.rows`, which hasn't been used for years now. Older versions of Metabase used to store the row count in
+  # this column but we disabled it a long time ago for performance reasons. Now it's time to remove it entirely.
 
   - changeSet:
       id: 169
@@ -6859,8 +6859,8 @@ databaseChangeLog:
             tableName: metabase_table
             columnName: rows
 
-# Remove fields_hash from Table model, as we no longer skip sync steps if metadata
-# hash hasn't changed.
+  # Remove fields_hash from Table model, as we no longer skip sync steps if metadata
+  # hash hasn't changed.
 
   - changeSet:
       id: 170
@@ -6871,8 +6871,8 @@ databaseChangeLog:
             tableName: metabase_table
             columnName: fields_hash
 
-# In EE, NativeQuerySnippets have a permissions system based on "snippet folders" which are Collections under the
-# hood. However, these Collections live in a separate "namespace" -- a completely separate hierarchy of Collections.
+  # In EE, NativeQuerySnippets have a permissions system based on "snippet folders" which are Collections under the
+  # hood. However, these Collections live in a separate "namespace" -- a completely separate hierarchy of Collections.
 
   - changeSet:
       id: 171
@@ -6915,8 +6915,8 @@ databaseChangeLog:
                   constraints:
                     nullable: true
 
-# These migrations convert various FK constraints in the DB to ones with ON DELETE CASCADE so the DB can handle this
-# instead of relying on Toucan pre-delete methods to do it, which are subject to race conditions.
+  # These migrations convert various FK constraints in the DB to ones with ON DELETE CASCADE so the DB can handle this
+  # instead of relying on Toucan pre-delete methods to do it, which are subject to race conditions.
 
   # activity.user_id -> core_user.id
   - changeSet:
@@ -7999,7 +7999,7 @@ databaseChangeLog:
             constraintName: fk_view_log_ref_user_id
             onDelete: CASCADE
 
-# changesets 268-272 allow for handling user account emails in lowercase (GH issue 3047)
+  # changesets 268-272 allow for handling user account emails in lowercase (GH issue 3047)
   - changeSet:
       id: 268
       author: rlotun
@@ -8017,10 +8017,10 @@ databaseChangeLog:
       changes:
         - createIndex:
             columns:
-             - column:
-                 name: lower(email)
-                 computed: true
-                 type: varchar(254)
+              - column:
+                  name: lower(email)
+                  computed: true
+                  type: varchar(254)
             tableName: core_user
             indexName: idx_lower_email
   - changeSet:
@@ -8067,10 +8067,10 @@ databaseChangeLog:
       comment: Added 0.37.0 # for H2 convert column to VARCHAR_IGNORECASE
       failOnError: false
       preConditions:
-         - onFail: MARK_RAN
-         - or:
-             - dbms:
-                   type: h2
+        - onFail: MARK_RAN
+        - or:
+            - dbms:
+                type: h2
       changes:
         - modifyDataType:
             tableName: core_user
@@ -8099,10 +8099,10 @@ databaseChangeLog:
             columnDataType: boolean
             defaultValueBoolean: true
 
- # Add refingerprint to database to mark if fingerprinting or
- # not. Nullable in first pass so can be opt in and then in a
- # subsequent pass can be globally turned on where null, respecting
- # people who turned it on and then off.
+  # Add refingerprint to database to mark if fingerprinting or
+  # not. Nullable in first pass so can be opt in and then in a
+  # subsequent pass can be globally turned on where null, respecting
+  # people who turned it on and then off.
 
   - changeSet:
       id: 275
@@ -8128,17 +8128,17 @@ databaseChangeLog:
         - addColumn:
             tableName: pulse_card
             columns:
-            - column:
-                name: dashboard_card_id
-                type: int
-                remarks: 'If this Pulse is a Dashboard subscription, the ID of the DashboardCard that corresponds to this PulseCard.'
-                constraints:
-                  nullable: true
-                  referencedTableName: report_dashboardcard
-                  referencedColumnNames: id
-                  foreignKeyName: fk_pulse_card_ref_pulse_card_id
-                  deferrable: false
-                  initiallyDeferred: false
+              - column:
+                  name: dashboard_card_id
+                  type: int
+                  remarks: 'If this Pulse is a Dashboard subscription, the ID of the DashboardCard that corresponds to this PulseCard.'
+                  constraints:
+                    nullable: true
+                    referencedTableName: report_dashboardcard
+                    referencedColumnNames: id
+                    foreignKeyName: fk_pulse_card_ref_pulse_card_id
+                    deferrable: false
+                    initiallyDeferred: false
 
   - changeSet:
       id: 277
@@ -8316,21 +8316,21 @@ databaseChangeLog:
       validCheckSum: ANY
       changes:
         - sql:
-              sql: >-
-                UPDATE metabase_field
-                set effective_type    = 'type/Instant',
-                    coercion_strategy = (case semantic_type
-                                          WHEN 'type/UNIXTimestampSeconds'      THEN 'Coercion/UNIXSeconds->DateTime'
-                                          WHEN 'timestamp_seconds'              THEN 'Coercion/UNIXSeconds->DateTime'
-                                          WHEN 'type/UNIXTimestampMilliSeconds' THEN 'Coercion/UNIXMilliSeconds->DateTime'
-                                          WHEN 'timestamp_milliseconds'         THEN 'Coercion/UNIXMilliSeconds->DateTime'
-                                          WHEN 'type/UNIXTimestampMicroSeconds' THEN 'Coercion/UNIXMicroSeconds->DateTime'
-                                         END)
-                WHERE semantic_type IN ('type/UNIXTimestampSeconds',
-                                        'type/UNIXTimestampMilliSeconds',
-                                        'type/UNIXTimestampMicroSeconds',
-                                        'timestamp_seconds',
-                                        'timestamp_milliseconds');
+            sql: >-
+              UPDATE metabase_field
+              set effective_type    = 'type/Instant',
+                  coercion_strategy = (case semantic_type
+                                        WHEN 'type/UNIXTimestampSeconds'      THEN 'Coercion/UNIXSeconds->DateTime'
+                                        WHEN 'timestamp_seconds'              THEN 'Coercion/UNIXSeconds->DateTime'
+                                        WHEN 'type/UNIXTimestampMilliSeconds' THEN 'Coercion/UNIXMilliSeconds->DateTime'
+                                        WHEN 'timestamp_milliseconds'         THEN 'Coercion/UNIXMilliSeconds->DateTime'
+                                        WHEN 'type/UNIXTimestampMicroSeconds' THEN 'Coercion/UNIXMicroSeconds->DateTime'
+                                       END)
+              WHERE semantic_type IN ('type/UNIXTimestampSeconds',
+                                      'type/UNIXTimestampMilliSeconds',
+                                      'type/UNIXTimestampMicroSeconds',
+                                      'timestamp_seconds',
+                                      'timestamp_milliseconds');
 
   - changeSet:
       id: 289
@@ -8339,15 +8339,15 @@ databaseChangeLog:
       validCheckSum: ANY
       changes:
         - sql:
-              sql: >-
-                UPDATE metabase_field
-                set effective_type    = 'type/Instant',
-                    coercion_strategy = (case semantic_type
-                                          WHEN 'type/UNIXTimestampMilliseconds' THEN 'Coercion/UNIXMilliSeconds->DateTime'
-                                          WHEN 'type/UNIXTimestampMicroseconds' THEN 'Coercion/UNIXMicroSeconds->DateTime'
-                                         END)
-                WHERE semantic_type IN ('type/UNIXTimestampMilliseconds',
-                                        'type/UNIXTimestampMicroseconds')
+            sql: >-
+              UPDATE metabase_field
+              set effective_type    = 'type/Instant',
+                  coercion_strategy = (case semantic_type
+                                        WHEN 'type/UNIXTimestampMilliseconds' THEN 'Coercion/UNIXMilliSeconds->DateTime'
+                                        WHEN 'type/UNIXTimestampMicroseconds' THEN 'Coercion/UNIXMicroSeconds->DateTime'
+                                       END)
+              WHERE semantic_type IN ('type/UNIXTimestampMilliseconds',
+                                      'type/UNIXTimestampMicroseconds')
 
   - changeSet:
       id: 290
@@ -8355,9 +8355,9 @@ databaseChangeLog:
       comment: Added 0.39 - Semantic type system - Clobber semantic_type where there was a coercion
       changes:
         - sql:
-              sql: UPDATE metabase_field set semantic_type = null where coercion_strategy is not null
+            sql: UPDATE metabase_field set semantic_type = null where coercion_strategy is not null
 
-# 291-297 create the new login history Table
+  # 291-297 create the new login history Table
 
   - changeSet:
       id: 291
@@ -8615,29 +8615,29 @@ databaseChangeLog:
       comment: Added 0.40.0 (replaces a data migration dating back to 0.20.0)
       changes:
         - sql:
-              sql: >-
-                UPDATE metabase_field
-                SET semantic_type = (CASE semantic_type
-                                      WHEN 'avatar'    THEN 'type/AvatarURL'
-                                      WHEN 'category'  THEN 'type/Category'
-                                      WHEN 'city'      THEN 'type/City'
-                                      WHEN 'country'   THEN 'type/Country'
-                                      WHEN 'desc'      THEN 'type/Description'
-                                      WHEN 'fk'        THEN 'type/FK'
-                                      WHEN 'id'        THEN 'type/PK'
-                                      WHEN 'image'     THEN 'type/ImageURL'
-                                      WHEN 'json'      THEN 'type/SerializedJSON'
-                                      WHEN 'latitude'  THEN 'type/Latitude'
-                                      WHEN 'longitude' THEN 'type/Longitude'
-                                      WHEN 'name'      THEN 'type/Name'
-                                      WHEN 'number'    THEN 'type/Number'
-                                      WHEN 'state'     THEN 'type/State'
-                                      WHEN 'url'       THEN 'type/URL'
-                                      WHEN 'zip_code'  THEN 'type/ZipCode'
-                                     END)
-                WHERE semantic_type IN ('avatar', 'category', 'city', 'country', 'desc', 'fk', 'id', 'image',
-                                        'json', 'latitude', 'longitude', 'name', 'number', 'state', 'url',
-                                        'zip_code');
+            sql: >-
+              UPDATE metabase_field
+              SET semantic_type = (CASE semantic_type
+                                    WHEN 'avatar'    THEN 'type/AvatarURL'
+                                    WHEN 'category'  THEN 'type/Category'
+                                    WHEN 'city'      THEN 'type/City'
+                                    WHEN 'country'   THEN 'type/Country'
+                                    WHEN 'desc'      THEN 'type/Description'
+                                    WHEN 'fk'        THEN 'type/FK'
+                                    WHEN 'id'        THEN 'type/PK'
+                                    WHEN 'image'     THEN 'type/ImageURL'
+                                    WHEN 'json'      THEN 'type/SerializedJSON'
+                                    WHEN 'latitude'  THEN 'type/Latitude'
+                                    WHEN 'longitude' THEN 'type/Longitude'
+                                    WHEN 'name'      THEN 'type/Name'
+                                    WHEN 'number'    THEN 'type/Number'
+                                    WHEN 'state'     THEN 'type/State'
+                                    WHEN 'url'       THEN 'type/URL'
+                                    WHEN 'zip_code'  THEN 'type/ZipCode'
+                                   END)
+              WHERE semantic_type IN ('avatar', 'category', 'city', 'country', 'desc', 'fk', 'id', 'image',
+                                      'json', 'latitude', 'longitude', 'name', 'number', 'state', 'url',
+                                      'zip_code');
 
   - changeSet:
       id: 305
@@ -8719,13 +8719,13 @@ databaseChangeLog:
         - sql:
             dbms: mariadb,mysql
             sql: |
-                UPDATE setting SET value='simple' WHERE `key`='humanization-strategy'
-                AND value='advanced'
+              UPDATE setting SET value='simple' WHERE `key`='humanization-strategy'
+              AND value='advanced'
         - sql:
             dbms: postgresql,h2
             sql: |
-                UPDATE setting SET value='simple' WHERE key='humanization-strategy'
-                AND value='advanced'
+              UPDATE setting SET value='simple' WHERE key='humanization-strategy'
+              AND value='advanced'
 
   - changeSet:
       id: 312
@@ -10865,8 +10865,8 @@ databaseChangeLog:
                   constraints:
                     nullable: false
                   remarks: >-
-                     Indicate whether the time component matters or if the timestamp should just serve to indicate the
-                     day of the event without any time associated to it.
+                    Indicate whether the time component matters or if the timestamp should just serve to indicate the
+                    day of the event without any time associated to it.
               - column:
                   name: timezone
                   constraints:
@@ -11251,12 +11251,12 @@ databaseChangeLog:
       changes:
         - addColumn:
             columns:
-            - column:
-                remarks: Nested field column paths, flattened
-                name: nfc_path
-                type: varchar(254)
-                constraints:
-                  nullable: true
+              - column:
+                  remarks: Nested field column paths, flattened
+                  name: nfc_path
+                  type: varchar(254)
+                  constraints:
+                    nullable: true
             tableName: metabase_field
 
   - changeSet:
@@ -11347,12 +11347,12 @@ databaseChangeLog:
             newDataType: ${timestamp_type}
 
   - changeSet:
-        id: v43.00-050
-        author: qnkhuat
-        comment: Added 0.43.0. Add permissions_group_membership.is_group_manager
-        changes:
-          - addColumn:
-              columns:
+      id: v43.00-050
+      author: qnkhuat
+      comment: Added 0.43.0. Add permissions_group_membership.is_group_manager
+      changes:
+        - addColumn:
+            columns:
               - column:
                   remarks: Boolean flag to indicate whether user is a group's manager.
                   name: is_group_manager
@@ -11360,7 +11360,7 @@ databaseChangeLog:
                   constraints:
                     nullable: false
                   defaultValue: false
-              tableName: permissions_group_membership
+            tableName: permissions_group_membership
 
   - changeSet:
       id: v43.00-051
@@ -11369,13 +11369,13 @@ databaseChangeLog:
       changes:
         - addColumn:
             columns:
-            - column:
-                remarks: Boolean value indicating if the timeline is the default one for the containing Collection
-                name: default
-                type: boolean
-                defaultValue: false
-                constraints:
-                  nullable: false
+              - column:
+                  remarks: Boolean value indicating if the timeline is the default one for the containing Collection
+                  name: default
+                  type: boolean
+                  defaultValue: false
+                  constraints:
+                    nullable: false
             tableName: timeline
 
   - changeSet:
@@ -11654,13 +11654,13 @@ databaseChangeLog:
       changes:
         - addColumn:
             columns:
-            - column:
-                remarks: Random NanoID tag for unique identity.
-                name: entity_id
-                type: char(21)
-                constraints:
-                  nullable: true
-                  unique: true
+              - column:
+                  remarks: Random NanoID tag for unique identity.
+                  name: entity_id
+                  type: char(21)
+                  constraints:
+                    nullable: true
+                    unique: true
             tableName: metric
   - changeSet:
       id: v44.00-003
@@ -11669,13 +11669,13 @@ databaseChangeLog:
       changes:
         - addColumn:
             columns:
-            - column:
-                remarks: Random NanoID tag for unique identity.
-                name: entity_id
-                type: char(21)
-                constraints:
-                  nullable: true
-                  unique: true
+              - column:
+                  remarks: Random NanoID tag for unique identity.
+                  name: entity_id
+                  type: char(21)
+                  constraints:
+                    nullable: true
+                    unique: true
             tableName: segment
   - changeSet:
       id: v44.00-004
@@ -11684,13 +11684,13 @@ databaseChangeLog:
       changes:
         - addColumn:
             columns:
-            - column:
-                remarks: Random NanoID tag for unique identity.
-                name: entity_id
-                type: char(21)
-                constraints:
-                  nullable: true
-                  unique: true
+              - column:
+                  remarks: Random NanoID tag for unique identity.
+                  name: entity_id
+                  type: char(21)
+                  constraints:
+                    nullable: true
+                    unique: true
             tableName: collection
   - changeSet:
       id: v44.00-005
@@ -11699,13 +11699,13 @@ databaseChangeLog:
       changes:
         - addColumn:
             columns:
-            - column:
-                remarks: Random NanoID tag for unique identity.
-                name: entity_id
-                type: char(21)
-                constraints:
-                  nullable: true
-                  unique: true
+              - column:
+                  remarks: Random NanoID tag for unique identity.
+                  name: entity_id
+                  type: char(21)
+                  constraints:
+                    nullable: true
+                    unique: true
             tableName: report_dashboard
   - changeSet:
       id: v44.00-006
@@ -11714,13 +11714,13 @@ databaseChangeLog:
       changes:
         - addColumn:
             columns:
-            - column:
-                remarks: Random NanoID tag for unique identity.
-                name: entity_id
-                type: char(21)
-                constraints:
-                  nullable: true
-                  unique: true
+              - column:
+                  remarks: Random NanoID tag for unique identity.
+                  name: entity_id
+                  type: char(21)
+                  constraints:
+                    nullable: true
+                    unique: true
             tableName: dimension
   - changeSet:
       id: v44.00-007
@@ -11729,13 +11729,13 @@ databaseChangeLog:
       changes:
         - addColumn:
             columns:
-            - column:
-                remarks: Random NanoID tag for unique identity.
-                name: entity_id
-                type: char(21)
-                constraints:
-                  nullable: true
-                  unique: true
+              - column:
+                  remarks: Random NanoID tag for unique identity.
+                  name: entity_id
+                  type: char(21)
+                  constraints:
+                    nullable: true
+                    unique: true
             tableName: pulse
   - changeSet:
       id: v44.00-008
@@ -11744,13 +11744,13 @@ databaseChangeLog:
       changes:
         - addColumn:
             columns:
-            - column:
-                remarks: Random NanoID tag for unique identity.
-                name: entity_id
-                type: char(21)
-                constraints:
-                  nullable: true
-                  unique: true
+              - column:
+                  remarks: Random NanoID tag for unique identity.
+                  name: entity_id
+                  type: char(21)
+                  constraints:
+                    nullable: true
+                    unique: true
             tableName: report_card
   - changeSet:
       id: v44.00-009
@@ -11759,13 +11759,13 @@ databaseChangeLog:
       changes:
         - addColumn:
             columns:
-            - column:
-                remarks: Random NanoID tag for unique identity.
-                name: entity_id
-                type: char(21)
-                constraints:
-                  nullable: true
-                  unique: true
+              - column:
+                  remarks: Random NanoID tag for unique identity.
+                  name: entity_id
+                  type: char(21)
+                  constraints:
+                    nullable: true
+                    unique: true
             tableName: native_query_snippet
   - changeSet:
       id: v44.00-010
@@ -11774,13 +11774,13 @@ databaseChangeLog:
       changes:
         - addColumn:
             columns:
-            - column:
-                remarks: Random NanoID tag for unique identity.
-                name: entity_id
-                type: char(21)
-                constraints:
-                  nullable: true
-                  unique: true
+              - column:
+                  remarks: Random NanoID tag for unique identity.
+                  name: entity_id
+                  type: char(21)
+                  constraints:
+                    nullable: true
+                    unique: true
             tableName: timeline
   - changeSet:
       id: v44.00-011
@@ -11789,13 +11789,13 @@ databaseChangeLog:
       changes:
         - addColumn:
             columns:
-            - column:
-                remarks: Random NanoID tag for unique identity.
-                name: entity_id
-                type: char(21)
-                constraints:
-                  nullable: true
-                  unique: true
+              - column:
+                  remarks: Random NanoID tag for unique identity.
+                  name: entity_id
+                  type: char(21)
+                  constraints:
+                    nullable: true
+                    unique: true
             tableName: report_dashboardcard
 
   - changeSet:
@@ -11960,13 +11960,13 @@ databaseChangeLog:
       changes:
         - addColumn:
             columns:
-            - column:
-                remarks: Random NanoID tag for unique identity.
-                name: entity_id
-                type: char(21)
-                constraints:
-                  nullable: true
-                  unique: true
+              - column:
+                  remarks: Random NanoID tag for unique identity.
+                  name: entity_id
+                  type: char(21)
+                  constraints:
+                    nullable: true
+                    unique: true
             tableName: pulse_card
 
   - changeSet:
@@ -11976,13 +11976,13 @@ databaseChangeLog:
       changes:
         - addColumn:
             columns:
-            - column:
-                remarks: Random NanoID tag for unique identity.
-                name: entity_id
-                type: char(21)
-                constraints:
-                  nullable: true
-                  unique: true
+              - column:
+                  remarks: Random NanoID tag for unique identity.
+                  name: entity_id
+                  type: char(21)
+                  constraints:
+                    nullable: true
+                    unique: true
             tableName: pulse_channel
 
   - changeSet:

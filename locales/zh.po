@@ -22308,7 +22308,7 @@ msgstr "管理数据库"
 
 #: frontend/src/metabase-lib/lib/Dimension.ts:613
 msgid "Unbinned"
-msgstr "未被钉住的"
+msgstr "未被固定的"
 
 #: frontend/src/metabase-lib/lib/Dimension.ts:1566
 msgid "Invalid template tag \"{0}\""

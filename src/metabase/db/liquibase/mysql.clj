@@ -57,7 +57,7 @@
                 (if-not (str/starts-with? (.toSql sql) "CREATE TABLE")
                   sql
                   (UnparsedSql. (str (.toSql sql)
-                                     " ENGINE InnoDB CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;")
+                                     " ENGINE InnoDB CHARACTER SET utf8 COLLATE utf8_unicode_ci;")
                                 (into-array DatabaseObject (.getAffectedDatabaseObjects sql)))))
               (proxy-super generateSql statement database sql-generator-chain)))))))
 

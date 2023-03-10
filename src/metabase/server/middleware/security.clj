@@ -46,9 +46,7 @@
   []
   {"Content-Security-Policy"
    (str/join
-    (for [[k vs] {:default-src  ["'self'"
-				 "*.weoa.com"
-         "*.webank.com"]
+    (for [[k vs] {:default-src  ["'self'" "*.weoa.com" "*.webank.com"]
                   :script-src   (concat
                                   ["'self'"
                                    "'unsafe-eval'" ; TODO - we keep working towards removing this entirely
@@ -56,6 +54,7 @@
                                    "https://accounts.google.com"
                                    "http://sit.dss.bdp.weoa.com"
                                    "http://dss.webank.com"
+                                   "http://gray.dss.bdap.webank.com"
                                    (when (public-settings/anon-tracking-enabled)
                                      "https://www.google-analytics.com")
                                    ;; for webpack hot reloading
